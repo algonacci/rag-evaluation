@@ -1,0 +1,429 @@
+{
+  "name": "Local chatbot with retrieval augmented generation (RAG) Gemini",
+  "nodes": [
+    {
+      "parameters": {
+        "model": "nomic-embed-text:latest"
+      },
+      "id": "ef40c538-ec81-4e72-a708-25d249cc87d6",
+      "name": "Embeddings Ollama",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
+      "position": [
+        -752,
+        432
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "ollamaApi": {
+          "id": "WOKtOQEr6OBGxYan",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "id": "bf47b555-a121-4c54-843a-228de7de670c",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        -624,
+        432
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkSize": 200,
+        "chunkOverlap": 50,
+        "options": {}
+      },
+      "id": "99df8ba7-a9f1-47f2-95b9-956329deefe5",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        -544,
+        640
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Data Ingestion\n**Add data to the semantic database",
+        "height": 700,
+        "width": 840,
+        "color": 3
+      },
+      "id": "003b1f82-c1fd-4196-9926-84dd1fac0cbc",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1072,
+        112
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "availableInChat": true,
+        "options": {}
+      },
+      "id": "869ec5d8-46b0-45d9-a715-a708bad0882b",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        -80,
+        800
+      ],
+      "webhookId": "87edeb50-e0da-4a4d-aed8-6bdf2e02f792",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "content": "## RAG Chatbot\n*Chat with your data",
+        "height": 700,
+        "width": 1200,
+        "color": 4
+      },
+      "id": "d15074d5-dbcb-45a3-b1db-814ed68b19b8",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -16,
+        208
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "formTitle": "Add your paper here",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "File",
+              "fieldType": "file",
+              "acceptFileTypes": ".pdf",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e6d7c49a-7fc7-4cd9-8d87-29bd8fdcc256",
+      "name": "On form submission1",
+      "type": "n8n-nodes-base.formTrigger",
+      "position": [
+        -976,
+        416
+      ],
+      "webhookId": "bed9ee4b-f894-49fc-a77a-f9ab3ae7367b",
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "Skripsi-RAG",
+          "mode": "list",
+          "cachedResultName": "Skripsi-RAG"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.3,
+      "position": [
+        -720,
+        208
+      ],
+      "id": "61947118-cb27-478f-8d33-52e68d92e1b7",
+      "name": "Qdrant Vector Store",
+      "credentials": {
+        "qdrantApi": {
+          "id": "J0n5ZCVCQiwp8bNf",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are an advanced AI Agent specialized in Internet Security research and academic document analysis.\n\nSYSTEM CONTEXT:\nYou operate within a Retrieval-Augmented Generation (RAG) system.\nAll answers MUST be strictly based on the retrieved documents provided in the context.\nDo not use external knowledge, assumptions, or prior training data.\n\nCORE RESPONSIBILITIES:\n1. Analyze scientific documents related to Internet Security and Cybersecurity.\n2. Extract key concepts, definitions, methodologies, experimental results, and research gaps.\n3. Summarize academic content clearly and precisely.\n4. Compare methods, frameworks, and security approaches when relevant.\n5. Provide structured and academically rigorous responses.\n\nMULTIMODAL CAPABILITY:\nYou can process:\n- Plain text\n- PDF content\n- OCR-extracted text from scanned documents\n- Tables and structured data\n\nIf tables are provided, analyze and interpret them instead of repeating raw values.\n\nSTRICT KNOWLEDGE BOUNDARY:\n- Only answer using information explicitly found in the retrieved documents.\n- If the answer is not present in the retrieved context, respond with:\n\n  English: \"The answer is not available in the provided documents.\"\n  Indonesian: \"Jawaban tidak tersedia dalam dokumen yang diberikan.\"\n\nTOPIC RESTRICTION:\nThis system is strictly limited to Internet Security and closely related cybersecurity research.\nIf a question is outside this scope, respond with:\n\n  English: \"I cannot answer this question because it is outside the scope of Internet Security research.\"\n  Indonesian: \"Saya tidak dapat menjawab pertanyaan ini karena berada di luar ruang lingkup penelitian Internet Security.\"\n\nLANGUAGE ADAPTATION RULE:\n- If the user asks in English, respond entirely in English.\n- If the user asks in Indonesian, respond entirely in Indonesian.\n- Do not mix languages unless explicitly requested.\n- Maintain formal academic tone in both languages.\n\nRESPONSE STYLE:\n- Use formal academic tone.\n- Be concise, precise, and structured.\n- Avoid speculation.\n- Organize answers using bullet points or structured sections when appropriate.\n- Base every claim on retrieved context."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        384
+      ],
+      "id": "3883cc2e-e522-486f-970b-958499dcfe23",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {},
+      "id": "cd8fb5ea-ff95-4986-b438-9f90c30fdcbf",
+      "name": "Simple Memory1",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        288,
+        640
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "model": "nomic-embed-text:latest"
+      },
+      "id": "86447a36-f662-4da4-bb5c-89c3e1a2b682",
+      "name": "Embeddings Ollama2",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
+      "position": [
+        944,
+        800
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "ollamaApi": {
+          "id": "WOKtOQEr6OBGxYan",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "You are an advanced AI Agent specialized in Internet Security analysis, academic text understanding, and information extraction.\nYou can process multimodal inputs (text, PDF, scanned images/OCR, tables) and respond in multiple languages.",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "Skripsi-RAG",
+          "mode": "list",
+          "cachedResultName": "Skripsi-RAG"
+        },
+        "topK": 7,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.3,
+      "position": [
+        624,
+        624
+      ],
+      "id": "8c73dec0-8f86-4896-88cb-65be4259fb74",
+      "name": "Qdrant Vector Store2",
+      "credentials": {
+        "qdrantApi": {
+          "id": "J0n5ZCVCQiwp8bNf",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3-flash-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        160,
+        656
+      ],
+      "id": "0d28ee55-ddc7-46f4-8d30-cea37dc7b956",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "cYa83I5OmYyuX9NZ",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://bc0e-103-163-240-34.ngrok-free.app/rag_evaluation",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "question",
+              "value": "=={{ $json.chatInput}}"
+            },
+            {
+              "name": "answer",
+              "value": "=={{ $json.output}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1088,
+        400
+      ],
+      "id": "0ba13e0f-6f4e-4bbd-a140-3eb10f6fae05",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        912,
+        384
+      ],
+      "id": "4d74a689-8ae6-483e-be11-89b2ee3645c7",
+      "name": "Merge"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Embeddings Ollama": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission1": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Vector Store2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Ollama2": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store2",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "25c842e3-1718-421d-9364-48a850177423",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c3171bf78182f8ba1d4a94e040022c98926d91e1f9b45957124ef0d5191dd61a"
+  },
+  "id": "dllEv4ocYCqnukDK",
+  "tags": []
+}
