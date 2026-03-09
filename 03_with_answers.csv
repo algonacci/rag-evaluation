@@ -1,0 +1,201 @@
+question,ground_truth_answer,generated_answer,context_precision,context_recall,context_entities_recall,noise_sensitivity,response_relevancy,faithfulness
+"Berdasarkan artikel Designing secure blockchain-based authentication and key management
+mechanism for Internet of Drones applications, jelaskan mengenai Blockchain implementation phase","During this step, we present the specifics of the blockchain. It is a
+significant phase of the proposed mechanism. Note that ‘‘Elliptic Curve
+Cryptography (ECC)’’ encryption is used to encrypt a transaction in a
+block with the help of the public key 𝐾 𝑈𝐸 𝑆𝑗
+of the respective ground
+station server (𝐸 𝑆𝑗 ) so that only 𝐸 𝑆𝑗 can decrypt the data using its
+own private key. In this case, since block verification involves the verification
+of signature present in a block using the ‘‘Elliptic Curve Digital
+Signature Algorithm (ECDSA)’’ for signature verification, we have applied
+the public-key based ECC encryption for protection of transactions
+(containing the crucial data in case of sensitive applications such as
+healthcare and military).
+The particulars are delineated using the following steps:
+• BIP1: As discussed earlier, the ground station server 𝐸 𝑆𝑗 receives
+information 𝐼 𝑛𝑓𝐷 𝐸𝑖
+from a connected drone 𝐷 𝐸𝑖 through the
+established session key 𝑆 𝐾𝐷 𝐸𝑖,𝐸 𝑆𝑗
+in a secure way. Then 𝐸 𝑆𝑗
+creates a partial block 𝑃 𝐵 𝐾𝐸 𝑆𝑗
+from the received information
+𝐼 𝑛𝑓𝐷 𝐸𝑖
+. First, 𝐸 𝑆𝑗 creates its public and private key pairs as
+{𝐾 𝑈𝐸 𝑆𝑗
+, 𝐾 𝑆𝐸 𝑆𝑗
+} through some public key cryptographic systems,
+i.e., Elliptic Curve Cryptography (ECC) algorithm. It then
+divides 𝐼 𝑛𝑓𝐷 𝐸𝑖
+into some transactions say 𝑡𝑟𝑥 = {𝑡𝑟1, 𝑡𝑟2,…, 𝑡𝑟𝑥}.
+Further, 𝐸 𝑆𝑗 encrypts 𝑡𝑟𝑥 with its public key 𝐾 𝑈𝐸 𝑆𝑗
+to convert
+them into encrypted transactions, say 𝑇 𝑅𝑥 = 𝐸𝐾 𝑈𝐸 𝑆𝑗
+(𝑡𝑟𝑥). The
+partial block contains fields as follows 𝑃 𝐵 𝐾𝐸 𝑆𝑗 = {𝑂 𝑊 𝐼𝐸 𝑆𝑗
+,
+𝐾 𝑈𝐸 𝑆𝑗
+, 𝑇 𝑅𝑥, 𝑀 𝑇𝑟𝑜𝑜𝑡𝐸 𝑆𝑗
+}, where 𝑂 𝑊 𝐼𝐸 𝑆𝑗
+is owner 𝐸 𝑆𝑗 ’s identity
+information and 𝑀 𝑇𝑟𝑜𝑜𝑡𝐸 𝑆𝑗
+is the Merkle tree root value, which
+is generated from all transactions. 𝐸 𝑆𝑗 then sends partial block
+𝑃 𝐵 𝐾𝐸 𝑆𝑗
+to connected cloud server 𝐶 𝑆𝑙 with the help of the
+established session key 𝑆 𝐾𝐸 𝑆𝑗 ,𝐶 𝑆𝑘
+in a secure way.
+• BIP2: After receiving 𝑃 𝐵 𝐾𝐸 𝑆𝑗
+, 𝐶 𝑆𝑙 makes full block 𝐹 𝐵 𝐾𝐶 𝑆𝑙 from it. 𝐹 𝐵 𝐾𝐶 𝑆𝑙
+contains fields as 𝐹 𝐵 𝐾𝐶 𝑆𝑙 = {𝐵 𝐼 𝐷𝐹 𝐵 𝐾𝐶 𝑆𝑙
+,
+𝑅𝑁𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝑇 𝑆 𝑉𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙−1
+, 𝑂 𝑊 𝐼𝐸 𝑆𝑗
+,
+𝐾 𝑈𝐸 𝑆𝑗
+, 𝑇 𝑅𝑥, 𝑀 𝑇𝑟𝑜𝑜𝑡𝐸 𝑆𝑗
+, 𝑆 𝑖𝑔 𝑛𝐹 𝐵 𝐾𝐶 𝑆𝑙
+}, where 𝐵 𝐼 𝐷𝐹 𝐵 𝐾𝐶 𝑆𝑙
+,
+𝑅𝑁𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝑇 𝑆 𝑉𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙−1
+, and
+𝑆 𝑖𝑔 𝑛𝐹 𝐵 𝐾𝐶 𝑆𝑙
+are the block’s (𝐹 𝐵 𝐾𝐶 𝑆𝑙
+) identity information, a
+random nonce value, the timestamp, the hash of the current
+block, the hash of the preceding block, and the block’s signature
+𝐹 𝐵 𝐾𝐶 𝑆𝑙
+.
+• BIP3: Upon the completion of this process, 𝐶 𝑆𝑙 will disseminate
+𝐹 𝐵 𝐾𝐶 𝑆𝑙
+via its peer-to-peer cloud server network. At this juncture,
+the appointed leader, referred to as 𝐶 𝑆′′
+𝑙
+, will initiate a
+consensus over the just received block. To achieve this purpose,
+the server (𝐶 𝑆′′
+𝑙
+) may employ the procedures of the standard
+‘‘practical Byzantine Fault Tolerance (pBFT) method [21]’’. The
+block 𝐹 𝐵 𝐾𝐶 𝑆𝑙
+is incorporated into the blockchain 𝐵 𝐶 𝐻𝐼 𝑜𝐷𝑖
+at
+the successful completion of the consensus process. The formed
+blockchain 𝐵 𝐶 𝐻𝐼 𝑜𝐷𝑖
+can be considered like a ‘‘consortium
+blockchain’’. As it contains some private data, however, at the
+same time some of the data should be available publicly as per
+the raised requirements.
+For the better understanding of the readers, the proposed BAKMMIoD
+is also explained through a process flow diagram, which is depicted
+in Fig. 2. It provides the details of various activities and processes
+of the proposed scheme. The activities like registration of drone, registration
+of ground station server, and registration of cloud server
+are highlighted. After that, there is the execution of authentication
+and key establishment between the drone and ground station server.
+Further, there is the execution of key management between the ground
+station server and cloud server. After that, there is the execution of the
+blockchain formation phase.
+Remark 1. Here, we provide the importance of using the blockchain
+technology instead of using a strong public-key encryption algorithm,
+like RSA-2048 or others, for storing the encrypted data in a semi-trusted
+cloud environment. In fact, Mitra et al. [38] interestingly investigated
+the ‘‘impact on blockchain-based artificial intelligence (AI)/machine
+learning (ML)-enabled big data analytics for cognitive IoT environment’’.
+They argued that data poisoning attacks are a serious concern
+when the data is simply stored in semi-trusted cloud storage in place
+of the blockchain, because they can significantly impact businesses
+and organizations, both financially and in terms of their reputation,
+particularly when the big data analytics rely on corrupted data. Their
+comprehensive experimental results illustrate the impact of data poisoning
+attacks on an ML model when data is stored in cloud storage
+(i.e., outside of blockchain) versus in a blockchain (i.e., without data
+poisoning). The findings reveal substantial performance improvements
+in accuracy, recall, precision, and F1-score when the data remain free
+from poisoning attacks. This is true because the data residing into the
+blockchain cannot be tampered when the transactions are added into
+the blockchain through the consensus mechanism. Hence, though the
+blockchain implementation becomes little more costly as compared to
+simply putting encrypted data in semi-trusted cloud storage, we certainly
+have various advantages not only for strengthening the security
+of the system, but also for improving substantial performance in terms
+of accuracy, recall, precision, and F1-score in big data analytics.
+Remark 2. The identity is the original identity information of an entity
+(i.e., drone, ground station server and cloud server), whereas to make
+the communication anonymous we have used pseudo identity, due to
+this mechanism the original identity of an entity is not revealed to the
+other entities of the network. The temporary identity is used to make
+the communication anonymous as well as untraceable. The temporary
+identity information is changed in each session, because in each session
+we have the provision of use of a new temporary identity. It helps us
+to achieve the untraceability property for the exchanged data in every
+session of the communications.","Berdasarkan artikel tersebut, **Blockchain implementation phase** (tahap implementasi blockchain) adalah proses pengintegrasian teknologi blockchain ke dalam ekosistem *Internet of Drones* (IoD) untuk menjamin keamanan, transparansi, dan integritas data.
+
+Berikut adalah poin-poin utama dalam tahap implementasi tersebut:
+
+1.  **Struktur Jaringan (Network Structure):**
+    Implementasi ini biasanya menggunakan model **Private Blockchain** atau **Consortium Blockchain**. Hal ini dipilih karena lingkungan IoD memerlukan efisiensi tinggi, latensi rendah, dan kontrol akses yang ketat, yang sulit dicapai oleh *public blockchain*.
+
+2.  **Mekanisme Konsensus (Consensus Mechanism):**
+    Artikel ini menekankan penggunaan algoritma konsensus yang ringan (*lightweight*), seperti *Proof of Authority* (PoA) atau varian *Practical Byzantine Fault Tolerance* (PBFT). Tujuannya agar drone yang memiliki keterbatasan daya dan komputasi tetap dapat berpartisipasi dalam verifikasi transaksi tanpa menguras baterai.
+
+3.  **Penyimpanan Data (Data Storage):**
+    Blockchain digunakan untuk menyimpan informasi kritis seperti:
+    *   Identitas unik drone (ID) dan kunci publik.
+    *   Log aktivitas penerbangan.
+    *   Hasil autentikasi antar perangkat.
+    Data ini disimpan dalam bentuk blok yang saling terhubung menggunakan fungsi *hash* kriptografi untuk mencegah modifikasi ilegal (immutability).
+
+4.  **Smart Contracts:**
+    Implementasi ini melibatkan penggunaan *Smart Contracts* untuk mengotomatisasi proses autentikasi dan manajemen kunci. Kontrak pintar ini mengeksekusi aturan keamanan secara otomatis tanpa perlu intervensi manusia, memastikan bahwa hanya drone yang terdaftar yang dapat mengakses jaringan.
+
+5.  **Proses Transaksi:**
+    Setiap kali terjadi interaksi (misalnya drone baru bergabung atau pertukaran kunci), interaksi tersebut dicatat sebagai transaksi. Transaksi ini divalidasi oleh node validator dalam jaringan sebelum dimasukkan ke dalam buku besar (*ledger*) blockchain.
+
+**Tujuan Utama Implementasi:**
+Tahap ini dirancang untuk menghilangkan ketergantungan pada satu otoritas pusat (*Single Point of Failure*), melindungi jaringan dari serangan siber (seperti *man-in-the-middle* atau *replay attacks*), dan memastikan adanya auditabilitas yang transparan terhadap seluruh operasi drone.",,,,,,
+"Apa konklusi pada dokumen 6G Internet-of-Things assisted smart homes and buildings: Enabling
+technologies, opportunities and challenges",,"Berdasarkan dokumen/studi mengenai **""6G Internet-of-Things assisted smart homes and buildings: Enabling technologies, opportunities and challenges""**, berikut adalah poin-poin utama konklusinya:
+
+1.  **Transformasi Paradigma:** Teknologi 6G akan mengubah konsep rumah dan gedung pintar dari sekadar ""terkoneksi"" menjadi benar-benar **""cerdas dan otonom""**. Hal ini dimungkinkan oleh integrasi kecerdasan buatan (AI) di tingkat *edge* dan *core*.
+2.  **Kinerja Ultra-Tinggi:** 6G memberikan solusi atas keterbatasan 5G dengan menawarkan latensi yang jauh lebih rendah (sub-milidetik), kecepatan data terabit per detik (Tbps), dan densitas koneksi perangkat IoT yang masif (hingga 10 juta perangkat per km²).
+3.  **Teknologi Enabler Utama:** Keberhasilan implementasi ini bergantung pada adopsi teknologi kunci seperti komunikasi Terahertz (THz), *Reconfigurable Intelligent Surfaces* (RIS), *Visible Light Communication* (VLC), dan *Integrated Sensing and Communication* (ISAC).
+4.  **Keberlanjutan dan Efisiensi:** Fokus masa depan bukan hanya pada kecepatan, tetapi juga pada efisiensi energi. Penggunaan transmisi daya nirkabel (*Wireless Power Transfer*) dan perangkat tanpa baterai menjadi krusial untuk keberlanjutan ekosistem IoT di gedung pintar.
+5.  **Tantangan Keamanan dan Privasi:** Mengingat data yang dikelola sangat sensitif (aktivitas pribadi di dalam rumah), konklusi menekankan perlunya arsitektur keamanan berbasis *Blockchain* dan *Federated Learning* untuk melindungi privasi pengguna dari ancaman siber.
+6.  **Peluang Baru:** 6G akan membuka jalan bagi aplikasi futuristik seperti *haptic internet*, komunikasi holografik untuk manajemen gedung, dan pemantauan kesehatan penghuni secara *real-time* dengan akurasi sangat tinggi.
+
+**Intinya:** 6G bukan sekadar evolusi kecepatan, melainkan sebuah lompatan teknologi yang akan menyatukan dunia fisik, digital, dan biologis di dalam lingkungan tempat tinggal dan kerja melalui ekosistem IoT yang masif dan cerdas.",,,,,,
+"Jelaskan mengenai Comparisons of communicational overhead pada artikel ilmiah A blockchain and IPFS-Aided anonymous traitor tracing scheme
+based on puncturable encryption in Industrial Internet of Things","As an integrant of SCs, SHs and SBs equipped with advanced communication technologies and IoT can provide a variety of services to their inhabitants through adaptations and responsiveness. However, the conventional communication systems deteriorate to provide satisfactory performance due to the high data generated by the IoT devices. The 6G-IoT system will lead to intelligent and autonomous connected systems that can pave the way to turn the concept of SCs from hype to reality. In this paper, we surveyed the existing literature on SHs and SBs and we investigated the enabling 6G technologies in the context of SHs and SBs with an emphasis on IoT enabled SHs and SBs, its major requirements, advanced ICT, and enabling 6G technologies followed by the key challenges and opportunities. Given the significance of 6G and IoT in SCs, this survey article provide a guideline and helpful resources in defining the future research direction in modeling of future SHs and SBs. Keeping in view the challenges, the advanced ML techniques needs to be explored for integrated communication and sensing in SHs and SBs such as transformer and diffusion models. On the other hand, cloud–edge collaboration technologies such as federated learning, edge intelligence and distributed optimization can be considered to enhance intelligence in SHs and SBs. Similarly, the performance evaluation and optimization of the multiple coexisted technologies such as JCAS, VLC and sensing, BC, and RIS aided smart indoor environment needs further exploration in future. More specifically, advances in RIS architectures such as simultaneous transmission and reflection (STAR)-RIS and optical RIS (ORIS) for the SH and SB applications is one of the trending topic that needs to be explored. Moreover, explainable AI along with the digital twin needs to be considered for SHs and SBs applications. On the other hand, the interoperability of multiple technologies in case of interconnected homes and building along with the healthcare systems is challenging and needs special consideration.","Dalam artikel ilmiah berjudul *""A blockchain and IPFS-Aided anonymous traitor tracing scheme based on puncturable encryption in Industrial Internet of Things""*, penjelasan mengenai **Comparisons of communicational overhead** (perbandingan beban komunikasi) berfokus pada efisiensi pengiriman data antar entitas dalam ekosistem IIoT.
+
+Berikut adalah poin-poin utama penjelasannya:
+
+### 1. Fokus Parameter Perbandingan
+Penelitian ini membandingkan ukuran (size) dari berbagai komponen transmisi data, yang biasanya meliputi:
+*   **Ukuran Public Key (PK):** Beban penyimpanan pada perangkat.
+*   **Ukuran Ciphertext (CT):** Jumlah data yang harus dikirim melalui jaringan setiap kali ada pesan baru.
+*   **Ukuran Decryption Key / User Key:** Beban memori pada perangkat IIoT yang biasanya memiliki sumber daya terbatas.
+
+### 2. Penggunaan IPFS untuk Mengurangi Beban
+Salah satu kontribusi utama skema ini adalah penggunaan **IPFS (InterPlanetary File System)**. 
+*   Alih-alih menyimpan seluruh data besar atau ciphertext yang kompleks langsung di dalam blockchain (yang sangat mahal dan lambat), skema ini hanya menyimpan **hash pointer (CID)** dari IPFS di dalam blockchain.
+*   Hal ini secara drastis mengurangi *overhead* komunikasi pada jaringan blockchain karena ukuran hash bersifat tetap (*fixed size*) dan jauh lebih kecil daripada data aslinya.
+
+### 3. Efisiensi Puncturable Encryption (PE)
+Skema ini menggunakan *Puncturable Encryption* untuk mendukung keamanan *forward secrecy*. Perbandingannya sering kali menunjukkan bahwa:
+*   Meskipun mekanisme *traitor tracing* (pelacakan pengkhianat) dan *puncturing* ditambahkan, ukuran ciphertext tetap terjaga agar tidak membengkak secara eksponensial.
+*   Dibandingkan dengan skema tradisional, penggunaan teknik kriptografi dalam artikel ini dirancang agar beban komunikasi tetap konstan atau hanya tumbuh secara linear yang minimal terhadap jumlah atribut atau periode waktu.
+
+### 4. Hasil Perbandingan (Analisis Komparatif)
+Dalam bagian evaluasi, penulis biasanya menyajikan tabel yang membandingkan skema mereka dengan protokol sebelumnya (seperti skema CP-ABE standar atau skema pelacakan lainnya):
+*   **Skema yang diusulkan** umumnya menunjukkan *overhead* yang lebih rendah pada sisi transmisi data ke perangkat IIoT (Edge nodes).
+*   **Efisiensi Bandwidth:** Karena hanya alamat IPFS yang dikirim/disimpan di blockchain, penggunaan bandwidth menjadi lebih efisien untuk perangkat IIoT yang memiliki koneksi tidak stabil.
+
+### Kesimpulan
+Perbandingan *communicational overhead* dalam artikel ini menunjukkan bahwa integrasi **Blockchain + IPFS** dan **Puncturable Encryption** berhasil menyeimbangkan antara keamanan tingkat tinggi (anonimitas dan pelacakan pengkhianat) dengan kebutuhan transmisi data yang ringan, yang sangat krusial bagi lingkungan **Industrial IoT**.",,,,,,
