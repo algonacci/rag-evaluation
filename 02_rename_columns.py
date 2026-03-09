@@ -3,6 +3,7 @@ import pandas as pd
 df = pd.read_excel('data_awal.xlsx', skiprows=1)
 
 column_mapping = {
+    'Question': 'question',
     'Pertanyaan': 'question',
     'jawaban': 'ground_truth_answer',
     'Context': 'context',
