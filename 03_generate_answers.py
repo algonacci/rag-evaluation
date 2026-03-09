@@ -24,7 +24,7 @@ def generate_answer(question):
         response = client.chat.completions.create(
             model=str(model),
             messages=[
-                {"role": "system", "content": "You are a helpful assistant. Answer the question accurately and concisely based on the provided context or your knowledge."},
+                {"role": "system", "content": "You are a helpful assistant. Always answer in clear English. Answer the question accurately and concisely based on the provided context or your knowledge."},
                 {"role": "user", "content": question}
             ],
             temperature=0.7
