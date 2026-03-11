@@ -1,6 +1,14 @@
+import os
 import pandas as pd
+from dotenv import load_dotenv
 
-df = pd.read_excel('data_awal.xlsx', skiprows=1)
+load_dotenv()
+
+input_path = os.getenv("DATA_AWAL_PATH") or "data_awal.xlsx"
+if input_path.lower().endswith(".csv"):
+    df = pd.read_csv(input_path)
+else:
+    df = pd.read_excel(input_path, skiprows=1)
 
 column_mapping = {
     'Question': 'question',
@@ -16,6 +24,7 @@ df = df.rename(columns=column_mapping)
 
 required_columns = [
     'question',
+    'context',
     'ground_truth_answer',
     'generated_answer',
     'context_precision',

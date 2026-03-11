@@ -3,10 +3,11 @@ from dotenv import load_dotenv
 import os
 import asyncio
 import re
+import json
 from openai import AsyncOpenAI
 from ragas.llms import llm_factory
 from ragas.embeddings import OpenAIEmbeddings
-from ragas.metrics.collections import Faithfulness, AnswerRelevancy
+from ragas.metrics import ContextPrecision, ContextRecall, ContextEntityRecall, Faithfulness, NoiseSensitivity, AnswerRelevancy
 from tqdm import tqdm
 
 load_dotenv()
@@ -31,8 +32,12 @@ embeddings = OpenAIEmbeddings(
 )
 
 metrics = [
+    ContextPrecision(llm=evaluator_llm),
+    ContextRecall(llm=evaluator_llm),
+    ContextEntityRecall(llm=evaluator_llm),
     Faithfulness(llm=evaluator_llm),
-    AnswerRelevancy(llm=evaluator_llm, embeddings=embeddings)
+    NoiseSensitivity(llm=evaluator_llm),
+    AnswerRelevancy(llm=evaluator_llm, embeddings=embeddings),
 ]
 
 df = pd.read_csv('03_with_answers.csv')
@@ -86,22 +91,53 @@ def extract_metric_value(value):
     return value
 
 
-def build_inputs(question, answer, reference, limits):
+def build_inputs(question, answer, reference, contexts, limits):
     clean_question = compress_text(question, limits["question"], max_sentences=2)
     clean_answer = compress_text(answer, limits["answer"], max_sentences=4)
     clean_reference = compress_text(reference, limits["reference"], max_sentences=4)
-    supporting_context = clean_reference or clean_answer
-    return clean_question, clean_answer, supporting_context
+    context_limit = limits.get("context", 800)
+    clean_contexts = [compress_text(c, context_limit, max_sentences=4) for c in contexts]
+    return clean_question, clean_answer, clean_reference, clean_contexts
 
 
-async def evaluate_metric(metric, question, answer, reference, limits):
-    clean_question, clean_answer, supporting_context = build_inputs(question, answer, reference, limits)
+async def evaluate_metric(metric, question, answer, reference, contexts, limits):
+    clean_question, clean_answer, clean_reference, clean_contexts = build_inputs(
+        question, answer, reference, contexts, limits
+    )
 
-    if metric.name == "faithfulness":
+    if metric.name == "context_precision":
         score = await metric.ascore(
             user_input=clean_question,
             response=clean_answer,
-            retrieved_contexts=[supporting_context],
+            retrieved_contexts=clean_contexts,
+            reference=clean_reference,
+        )
+    elif metric.name == "context_recall":
+        score = await metric.ascore(
+            user_input=clean_question,
+            response=clean_answer,
+            retrieved_contexts=clean_contexts,
+            reference=clean_reference,
+        )
+    elif metric.name == "context_entity_recall":
+        score = await metric.ascore(
+            user_input=clean_question,
+            response=clean_answer,
+            retrieved_contexts=clean_contexts,
+            reference=clean_reference,
+        )
+    elif metric.name == "faithfulness":
+        score = await metric.ascore(
+            user_input=clean_question,
+            response=clean_answer,
+            retrieved_contexts=clean_contexts,
+        )
+    elif metric.name == "noise_sensitivity":
+        score = await metric.ascore(
+            user_input=clean_question,
+            response=clean_answer,
+            retrieved_contexts=clean_contexts,
+            reference=clean_reference,
         )
     elif metric.name == "answer_relevancy":
         score = await metric.ascore(
@@ -115,6 +151,13 @@ async def evaluate_metric(metric, question, answer, reference, limits):
 
 
 def get_metric_retry_limits(metric_name):
+    if metric_name in ("context_precision", "context_recall", "context_entity_recall", "noise_sensitivity"):
+        return [
+            {"question": 260, "answer": 800, "reference": 900, "context": 1000},
+            {"question": 200, "answer": 600, "reference": 700, "context": 800},
+            {"question": 160, "answer": 450, "reference": 500, "context": 600},
+            {"question": 120, "answer": 320, "reference": 320, "context": 450},
+        ]
     if metric_name == "faithfulness":
         return RETRY_LIMITS
     if metric_name == "answer_relevancy":
@@ -127,7 +170,27 @@ def get_metric_retry_limits(metric_name):
     return RETRY_LIMITS
 
 
-async def evaluate_row(idx, question, answer, reference, existing_result):
+def parse_contexts(value):
+    if pd.isna(value) or value is None:
+        return []
+    if isinstance(value, list):
+        return [str(v) for v in value if str(v).strip()]
+    text = str(value).strip()
+    if not text:
+        return []
+    if text.startswith("[") and text.endswith("]"):
+        try:
+            parsed = json.loads(text)
+            if isinstance(parsed, list):
+                return [str(v) for v in parsed if str(v).strip()]
+        except json.JSONDecodeError:
+            pass
+    if "\n\n---\n\n" in text:
+        return [t.strip() for t in text.split("\n\n---\n\n") if t.strip()]
+    return [text]
+
+
+async def evaluate_row(idx, question, answer, reference, contexts, existing_result):
     results = {metric.name: existing_result.get(metric.name) for metric in metrics}
 
     if pd.isna(answer) or str(answer).strip() == '':
@@ -138,9 +201,14 @@ async def evaluate_row(idx, question, answer, reference, existing_result):
             continue
 
         last_error = None
+        if metric.name in ("context_precision", "context_recall", "context_entity_recall", "noise_sensitivity", "faithfulness") and not contexts:
+            continue
+
         for limits in get_metric_retry_limits(metric.name):
             try:
-                results[metric.name] = await evaluate_metric(metric, question, answer, reference, limits)
+                results[metric.name] = await evaluate_metric(
+                    metric, question, answer, reference, contexts, limits
+                )
                 break
             except Exception as e:
                 if is_auth_error(e):
@@ -195,8 +263,9 @@ async def evaluate_all():
         question = row['question']
         answer = row['generated_answer']
         reference = row['ground_truth_answer']
+        contexts = parse_contexts(row.get('context'))
 
-        results[idx] = await evaluate_row(idx, question, answer, reference, results[idx])
+        results[idx] = await evaluate_row(idx, question, answer, reference, contexts, results[idx])
         persist_results(results)
 
     return results
@@ -210,7 +279,7 @@ persist_results(results)
 
 print(f"Evaluation saved to {OUTPUT_CSV}")
 print(f"\nFirst 3 rows with scores:")
-print(df[['question', 'faithfulness', 'answer_relevancy']].head(3))
+print(df[['question', 'context_precision', 'context_recall', 'context_entity_recall', 'noise_sensitivity', 'faithfulness', 'answer_relevancy']].head(3))
 print(f"\nAverage scores:")
 for metric in metrics:
     valid_scores = df[metric.name].dropna()

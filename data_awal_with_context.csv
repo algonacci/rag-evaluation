@@ -1,4 +1,4 @@
-question,context,ground_truth_answer,generated_answer,context_precision,context_recall,context_entities_recall,noise_sensitivity,response_relevancy,faithfulness
+Question,Context,jawaban,Precision,Faithfullness,Recall
 "Based on the article Designing Secure Blockchain-Based Authentication and Key Management Mechanism for Internet of Drones Applications, explain the Blockchain Implementation Phase","Table 1: Subjects of the papers.
 Subject Paper Reference
 BC
@@ -271,36 +271,7 @@ the communication anonymous as well as untraceable. The temporary
 identity information is changed in each session, because in each session
 we have the provision of use of a new temporary identity. It helps us
 to achieve the untraceability property for the exchanged data in every
-session of the communications.","Based on the article ""Designing Secure Blockchain-Based Authentication and Key Management Mechanism for Internet of Drones Applications,"" the **Blockchain Implementation Phase** is the stage where the decentralized ledger is integrated into the system to ensure data integrity, transparency, and secure management of node identities.
-
-The key components of this phase include:
-
-### 1. Smart Contract Deployment
-The blockchain utilizes smart contracts to automate the authentication process. These contracts contain the logic for:
-*   **Registration:** Storing the public parameters and identities of Ground Control Stations (GCS) and Drones.
-*   **Verification:** Automatically validating the credentials of a drone when it attempts to access the network.
-
-### 2. Transaction Generation
-Whenever a new drone or GCS registers or performs an authentication handshake, a transaction is generated. This transaction includes:
-*   The identity of the node.
-*   A timestamp to prevent replay attacks.
-*   Cryptographic hashes to ensure the data has not been tampered with.
-
-### 3. Consensus Mechanism
-To ensure all nodes in the Internet of Drones (IoD) environment agree on the state of the ledger, a consensus algorithm (such as Practical Byzantine Fault Tolerance or a similar lightweight version) is used. This ensures that:
-*   Only authorized entities can add data to the blockchain.
-*   The system remains resilient even if a small number of nodes are compromised.
-
-### 4. Decentralized Storage
-Instead of a central server storing all sensitive keys (which creates a single point of failure), the blockchain acts as a **distributed repository**. It stores:
-*   **Public Keys/Identities:** For verifying signatures.
-*   **Revocation Lists:** To quickly identify and block compromised drones.
-
-### 5. Key Management Integration
-The blockchain phase works in tandem with the key management mechanism. While the actual secret keys are never stored on the blockchain (to maintain privacy), the **hashes and public parameters** needed to generate session keys are recorded. This ensures that any drone moving from one GCS area to another can be re-authenticated seamlessly using the global ledger.
-
-### Summary of Purpose
-The primary goal of this phase is to eliminate the need for a **Trusted Third Party (TTP)** during real-time operations, providing a tamper-proof audit trail of all authentication events and ensuring that the IoD network remains secure against unauthorized access.",,,,,,
+session of the communications.",,,
 "What is the conclusion of the document 6G Internet-of-Things Assisted Smart Homes and Buildings: Enabling Technologies, Opportunities and Challenges?","yers: Perception Layer,
 Network layer and Application Layer (Chaabouni et al., 2019). The
 perception layer is a hardware layer comprising of sensors and ac-
@@ -456,15 +427,7 @@ technologies such as JCAS, VLC and sensing, BC, and RIS aided smart indoor envir
 specifically, advances in RIS architectures such as simultaneous transmission and reflection (STAR)-RIS and optical RIS (ORIS) for
 the SH and SB applications is one of the trending topic that needs to be explored. Moreover, explainable AI along with the digital
 twin needs to be considered for SHs and SBs applications. On the other hand, the interoperability of multiple technologies in case
-of interconnected homes and building along with the healthcare systems is challenging and needs special consideration","The conclusion of the document **""6G Internet-of-Things Assisted Smart Homes and Buildings: Enabling Technologies, Opportunities and Challenges""** emphasizes that the transition from 5G to 6G will be a fundamental shift from ""connected things"" to ""connected intelligence.""
-
-The key takeaways from the conclusion include:
-
-*   **Integration of Advanced Technologies:** The success of 6G-enabled smart homes and buildings (SHBs) depends on the synergy between several emerging technologies, specifically Artificial Intelligence (AI), Terahertz (THz) communications, Reconfigurable Intelligent Surfaces (RIS), and Integrated Sensing and Communication (ISAC).
-*   **Beyond Connectivity:** 6G will move beyond simple data transmission to provide ultra-low latency, massive connectivity, and ""human-centric"" services, enabling high-fidelity holographic communications and seamless automation.
-*   **Sustainability and Efficiency:** A major focus of 6G in SHBs is improving energy efficiency and environmental sustainability through intelligent resource management and green communication protocols.
-*   **Security and Privacy:** The authors conclude that as SHBs become more integrated with 6G, addressing cybersecurity threats and data privacy concerns remains a critical challenge that requires robust, AI-driven security frameworks.
-*   **Future Outlook:** While 6G offers transformative potential for automated and intelligent living environments, significant research is still required to standardize protocols and overcome hardware limitations (such as the short range of THz waves) before widespread deployment is possible.",,,,,,
+of interconnected homes and building along with the healthcare systems is challenging and needs special consideration",,,
 Explain the Comparisons of Communicational Overhead in the scientific article A Blockchain and IPFS-Aided Anonymous Traitor Tracing Scheme Based on Puncturable Encryption in Industrial Internet of Things!,"iting – review & editing, Supervision, Funding acqui-
 sition. Xiaolong Liu: Writing – review & editing, Supervision, Investi-
 gation, Funding acquisition.
@@ -602,34 +565,7 @@ Abstract
 The Internet of Things (IoT) is a frequently employed term in the twenty -first century. It is an important part of the Industrial 4.0 
 revolution and has garnered industrial traction. By 2030, there will be approximately 50 billion Internet of Th ings devices, 
 according to many projections. Some countries will expand around two -thirds of these IoT devices on their own. Numerous 
-Internet of things or I oT issues might arise from inadequate computing power and broadband availability. These issues incl","As an integrant of SCs, SHs and SBs equipped with advanced communication technologies and IoT can provide a variety of services to their inhabitants through adaptations and responsiveness. However, the conventional communication systems deteriorate to provide satisfactory performance due to the high data generated by the IoT devices. The 6G-IoT system will lead to intelligent and autonomous connected systems that can pave the way to turn the concept of SCs from hype to reality. In this paper, we surveyed the existing literature on SHs and SBs and we investigated the enabling 6G technologies in the context of SHs and SBs with an emphasis on IoT enabled SHs and SBs, its major requirements, advanced ICT, and enabling 6G technologies followed by the key challenges and opportunities. Given the significance of 6G and IoT in SCs, this survey article provide a guideline and helpful resources in defining the future research direction in modeling of future SHs and SBs. Keeping in view the challenges, the advanced ML techniques needs to be explored for integrated communication and sensing in SHs and SBs such as transformer and diffusion models. On the other hand, cloud–edge collaboration technologies such as federated learning, edge intelligence and distributed optimization can be considered to enhance intelligence in SHs and SBs. Similarly, the performance evaluation and optimization of the multiple coexisted technologies such as JCAS, VLC and sensing, BC, and RIS aided smart indoor environment needs further exploration in future. More specifically, advances in RIS architectures such as simultaneous transmission and reflection (STAR)-RIS and optical RIS (ORIS) for the SH and SB applications is one of the trending topic that needs to be explored. Moreover, explainable AI along with the digital twin needs to be considered for SHs and SBs applications. On the other hand, the interoperability of multiple technologies in case of interconnected homes and building along with the healthcare systems is challenging and needs special consideration.","In the scientific article **""A Blockchain and IPFS-Aided Anonymous Traitor Tracing Scheme Based on Puncturable Encryption in Industrial Internet of Things,""** the comparison of communication overhead focuses on how efficiently the system transmits data compared to existing schemes.
-
-The authors evaluate communication overhead across four primary phases: **Setup, Key Generation, Encryption, and Tracing.** Here is a breakdown of the comparisons:
-
-### 1. Storage and Transmission Efficiency (IPFS Integration)
-The most significant reduction in communication overhead comes from the use of **IPFS (InterPlanetary File System)**. 
-*   **Traditional Schemes:** Usually require large ciphertexts or revocation lists to be stored directly on the blockchain or transmitted between nodes, which is costly and slow.
-*   **This Scheme:** Only a small **Content Identifier (CID)** or hash is stored on the blockchain. The actual heavy data (encrypted IIoT data) resides on IPFS. This drastically reduces the bandwidth required for blockchain transactions.
-
-### 2. Ciphertext Size (Encryption Phase)
-The communication overhead during data transmission is largely determined by the size of the ciphertext.
-*   The scheme utilizes **Puncturable Encryption (PE)**. While PE typically increases overhead as the number of ""punctures"" (revoked time slots or keys) increases, this scheme optimizes the ciphertext size to remain relatively constant or grow linearly at a slower rate compared to traditional Attribute-Based Encryption (ABE) schemes used in IIoT.
-*   Compared to standard Traitor Tracing (TT) schemes, the overhead is slightly higher due to the inclusion of ""traitor tracing components,"" but the authors argue this is a necessary trade-off for the added security of anonymity.
-
-### 3. Key Size (Key Generation Phase)
-*   The overhead for transmitting user keys is compared against schemes like those by Boneh and Waters. 
-*   Because the scheme supports **anonymity**, the public keys and private keys contain additional group elements. However, the authors demonstrate through experimental simulations that the key size remains within a manageable range for IIoT devices (which have limited buffer memory).
-
-### 4. Comparison with Existing Schemes (Performance Evaluation)
-In the ""Performance Analysis"" section of the paper, the authors typically compare their scheme against others (e.g., schemes by Rivest or more recent IIoT-specific protocols):
-*   **Efficiency in Revocation:** When a ""traitor"" (a malicious internal user) is identified and their access is revoked, the communication overhead for updating the system is lower because it uses **Puncturable Encryption**. Instead of re-distributing keys to all non-revoked users, the system simply ""punctures"" the current key, requiring less data broadcast.
-*   **Constant vs. Variable Overhead:** Some compared schemes have overhead that grows exponentially with the number of users ($N$). This scheme aims for a more sub-linear or linear growth, making it more scalable for large-scale Industrial IoT deployments.
-
-### Summary of Results
-The article concludes that while the **computational** cost is slightly higher due to the complexity of puncturable encryption, the **communication overhead** is superior to traditional methods because:
-1.  **Blockchain bloat is avoided** via off-chain IPFS storage.
-2.  **Revocation messages are minimized** through the puncturing mechanism.
-3.  **Transmission costs** are optimized for the constrained bandwidth environment of the IIoT.",,,,,,
+Internet of things or I oT issues might arise from inadequate computing power and broadband availability. These issues incl","As an integrant of SCs, SHs and SBs equipped with advanced communication technologies and IoT can provide a variety of services to their inhabitants through adaptations and responsiveness. However, the conventional communication systems deteriorate to provide satisfactory performance due to the high data generated by the IoT devices. The 6G-IoT system will lead to intelligent and autonomous connected systems that can pave the way to turn the concept of SCs from hype to reality. In this paper, we surveyed the existing literature on SHs and SBs and we investigated the enabling 6G technologies in the context of SHs and SBs with an emphasis on IoT enabled SHs and SBs, its major requirements, advanced ICT, and enabling 6G technologies followed by the key challenges and opportunities. Given the significance of 6G and IoT in SCs, this survey article provide a guideline and helpful resources in defining the future research direction in modeling of future SHs and SBs. Keeping in view the challenges, the advanced ML techniques needs to be explored for integrated communication and sensing in SHs and SBs such as transformer and diffusion models. On the other hand, cloud–edge collaboration technologies such as federated learning, edge intelligence and distributed optimization can be considered to enhance intelligence in SHs and SBs. Similarly, the performance evaluation and optimization of the multiple coexisted technologies such as JCAS, VLC and sensing, BC, and RIS aided smart indoor environment needs further exploration in future. More specifically, advances in RIS architectures such as simultaneous transmission and reflection (STAR)-RIS and optical RIS (ORIS) for the SH and SB applications is one of the trending topic that needs to be explored. Moreover, explainable AI along with the digital twin needs to be considered for SHs and SBs applications. On the other hand, the interoperability of multiple technologies in case of interconnected homes and building along with the healthcare systems is challenging and needs special consideration.",,,
 Provide an academic summary of the abstract from the article A Cloud-Assisted Anonymous and Privacy-Preserving Authentication Scheme for Internet of Medical Things!,"Internet of Things 30 (2025) 101469
 6
 J.S. Yalli et al.
@@ -769,29 +705,7 @@ services anonymously. To enhance security, we employ proxy re-encryption techniq
 decrypt the cloud server’s encrypted shared intermediate ciphertexts securely. Comprehensive security and
 privacy analyses, along with performance evaluations, demonstrate that the proposed scheme offers superior
 cost-effectiveness, enhanced privacy protection, and improved execution efficiency compared to existing
-solutions.","The article **""A Cloud-Assisted Anonymous and Privacy-Preserving Authentication Scheme for Internet of Medical Things""** addresses the critical security and privacy challenges inherent in the Internet of Medical Things (IoMT). As healthcare increasingly relies on cloud-integrated wearable devices to monitor patient data, the risk of data breaches and unauthorized tracking grows.
-
-The following is an academic summary of the research highlights:
-
-### 1. Research Problem
-The paper identifies that existing authentication protocols for IoMT environments often suffer from high computational overhead or vulnerabilities to sophisticated cyberattacks. In medical contexts, the leakage of sensitive health data or the ability of an adversary to track a patient’s identity poses severe ethical and security risks.
-
-### 2. Proposed Solution
-The authors propose a robust **multifactor authentication scheme** designed specifically for cloud-assisted IoMT networks. The architecture focuses on three primary objectives:
-*   **Mutual Authentication:** Ensuring both the user (medical professional or patient) and the cloud server can verify each other's legitimacy.
-*   **Anonymity and Untraceability:** Implementing cryptographic techniques to ensure that a user’s real identity remains concealed and their sessions cannot be linked by an unauthorized observer.
-*   **Privacy Preservation:** Protecting sensitive medical data during transmission from sensors to the cloud.
-
-### 3. Methodology and Security Features
-The scheme utilizes lightweight cryptographic primitives—such as **one-way hash functions and bitwise XOR operations**—to ensure compatibility with resource-constrained IoMT devices (e.g., wearables). Key security features include:
-*   Resistance against common attacks, including **replay, man-in-the-middle, and privileged insider attacks.**
-*   Provision of **perfect forward secrecy**, ensuring that the compromise of long-term keys does not jeopardize past session keys.
-
-### 4. Findings and Performance
-The authors validate their scheme through formal security analysis (often using the **BAN logic** or the **AVISPA** tool) and informal security discussions. The results demonstrate that the proposed protocol offers a superior security profile compared to existing schemes while maintaining **lower computational and communication costs**, making it highly suitable for the real-time constraints of medical monitoring.
-
-### Conclusion
-The research concludes that the proposed scheme effectively balances the trade-off between rigorous security requirements and the limited processing power of IoMT devices, providing a secure, anonymous framework for modern telecare and remote health monitoring.",,,,,,
+solutions.",,,
 "What are the research limitations discussed in the scientific article A Comprehensive Review of Cybersecurity Vulnerabilities, Threats, and Solutions for the Internet of Things at the Network-Cum-Application Layer?","ch, concentrating instead on studies conducted be -
 tween 2009 and 2024. This limitation may affect its pertinence to 
 nascent trends and technologies that have not yet undergone substantial 
@@ -934,33 +848,7 @@ porary IoT research, concentrating instead on studies conducted
 tween 2009 and 2024. This limitation may affect its pertinence to nascent trends and technologies that have not yet undergone substantial examination. The study may possess diminished empirical significance due to its reliance on secondary data and literature reviews, as it lacks direct evidence to substantiate its assertions and does not conduct original experimental validation.
 Although the article effectively classifies IoT applications, general
 ization poses challenges due to IoT domains’ diversity and rapid expansion. Specific sectors, like healthcare and industrial IoT, present distinct challenges that necessitate specialized research and solutions. Moreover, although the study’s recommendations are plausible and attainable, substantial obstacles may exist. Scalability, financial
-tions, and compatibility with many IoT platforms may all hinder the practical feasibility of suggested security solutions. These constraints highlight the need for additional enhancement and contextualization to guarantee that the study’s conclusions and recommendations can be effectively used across diverse IoT scenarios.","Based on the comprehensive review article focusing on the network and application layers of the Internet of Things (IoT), the authors identify several critical research limitations and open challenges that hinder the development of a fully secure IoT ecosystem. 
-
-The key limitations discussed include:
-
-### 1. Resource Constraints vs. Security Complexity
-A primary limitation is the trade-off between security and performance. Most IoT devices have limited computational power, memory, and battery life. Current sophisticated encryption standards and heavy security protocols are often too resource-intensive for these ""constrained"" devices, leading to weakened security implementations.
-
-### 2. Lack of Standardization
-The IoT landscape is highly fragmented with a vast array of proprietary protocols, hardware manufacturers, and software frameworks. The research highlights a lack of universal security standards, which makes it difficult to develop interoperable security solutions that work across different platforms at the network and application layers.
-
-### 3. Scalability Issues
-Many existing security solutions (such as centralized authentication or heavy monitoring systems) do not scale well. As the number of IoT devices grows into the billions, current network-layer defenses struggle to manage the massive volume of traffic and the diverse nature of the connected nodes.
-
-### 4. Data Privacy and Governance
-The article points out that while technical vulnerabilities are often addressed, the legal and ethical frameworks for data privacy are lacking. There is a research gap in how to maintain user anonymity and data integrity while allowing for the seamless data sharing required by application-layer services.
-
-### 5. Dynamic and Heterogeneous Environments
-IoT networks are often dynamic (nodes joining and leaving) and heterogeneous (different types of devices communicating). Most current research focuses on static or homogeneous models, failing to address the complexities of real-world deployments where diverse devices must maintain secure handshakes and persistent security postures.
-
-### 6. Vulnerability to Zero-Day Attacks
-The research notes that many current solutions are ""reactive"" rather than ""proactive."" There is a significant limitation in the ability of IoT systems to detect and mitigate zero-day vulnerabilities (previously unknown threats) at the application layer before they cause widespread damage.
-
-### 7. Human Factors
-The article emphasizes that technical solutions often ignore the ""human in the loop."" Weak default passwords, lack of user awareness, and improper configuration remain major limitations that technical research alone has not yet solved.
-
-### Summary
-The authors conclude that while progress has been made in identifying threats, the research is limited by the **heterogeneity of the IoT architecture**, the **overhead of security protocols**, and the **absence of a unified security framework** that spans from the network layer up to the end-user application.",,,,,,
+tions, and compatibility with many IoT platforms may all hinder the practical feasibility of suggested security solutions. These constraints highlight the need for additional enhancement and contextualization to guarantee that the study’s conclusions and recommendations can be effectively used across diverse IoT scenarios.",,,
 Describe the Certificate-Less Public Key Encryption scheme presented in the article Edge-Assisted Lightweight Message Authentication for Industrial Internet of Things,"Internet of Things 30 (2025) 101469
 4
 J.S. Yalli et al.
@@ -1141,38 +1029,7 @@ defined by their low energy usage, limited processing capabilities, and constrai
 2. Authentication Server: The server, which functions as a full-fledged blockchain node, facilitates cross-domain authentication 
 of IoT devices by executing smart contracts. It also manages data upload and request functions. All AS in different domains 
 will work together to manage the consortium’s blockchain.
-3. Key generation center: The KG","Certificate-less public key encryption (CL-PKC) is a model that utilizes public key encryption while avoiding the inherent key escrow associated with identity-based encryption, and it does not require certificates to verify the authenticity of public keys. In the CL-PKC system, Key Generation Center (KGC) provides entities with partial private keys, which the entities then combine with secret information to generate their actual private keys. Additionally, entities compute their public keys by combining their secret information with the KGC’s public parameters. In this framework, the KGC is unable to access the entities’ private keys, thus mitigating the key escrow issue. More details can be found in [50].","In the article **""Edge-Assisted Lightweight Message Authentication for Industrial Internet of Things,""** the Certificate-Less Public Key Encryption (CL-PKE) scheme is designed to address the key management overhead and security vulnerabilities in IIoT environments.
-
-The scheme is characterized by the following key features and mechanisms:
-
-### 1. Elimination of Key Problems
-The CL-PKE scheme is a hybrid approach that solves two major issues in traditional cryptography:
-*   **From PKI:** It eliminates the need for **Certificates**, removing the heavy overhead of certificate distribution, storage, and revocation.
-*   **From ID-Based Cryptography:** It eliminates the **Key Escrow problem**. Unlike Identity-Based Encryption (IBE), the Key Generation Center (KGC) does not have access to the user's full private key.
-
-### 2. Key Structure
-In this scheme, a user’s public/private key pair is split into two parts:
-*   **Partial Private Key:** Generated by the Key Generation Center (KGC) based on the user's identity (ID).
-*   **Secret Value:** Generated independently by the user (or the IIoT device).
-*   **Full Private Key:** A combination of the partial private key and the user's secret value.
-*   **Public Key:** Generated by the user using the KGC’s public parameters and the user's secret value.
-
-### 3. Edge-Assisted Architecture
-To accommodate the resource-constrained nature of IIoT devices, the scheme offloads heavy computations to **Edge Nodes**:
-*   **Offloading:** Complex cryptographic operations (like bilinear pairings) are performed at the edge of the network rather than on the device itself.
-*   **Lightweight Authentication:** The edge node verifies the authenticity of messages before they reach the core network, reducing latency and preventing DoS attacks from exhausting device energy.
-
-### 4. Security Properties
-The CL-PKE scheme used in the article provides:
-*   **Resistance to KGC attacks:** Since the KGC does not know the user's secret value, it cannot decrypt messages or forge signatures.
-*   **Resistance to Public Key Replacement:** Even if an attacker replaces a public key, they cannot generate a valid partial private key associated with the user's identity.
-
-### 5. Workflow Summary
-1.  **Setup:** The KGC generates master parameters.
-2.  **Partial Key Extract:** KGC sends a partial private key to the IIoT device via a secure channel.
-3.  **User Key Gen:** The device generates its own secret value and public key.
-4.  **Encryption/Sign:** Messages are encrypted/signed using the combination of the identity and the public key.
-5.  **Edge Verification:** The edge node performs the initial validation to ensure the message is legitimate before further processing.",,,,,,
+3. Key generation center: The KG","Certificate-less public key encryption (CL-PKC) is a model that utilizes public key encryption while avoiding the inherent key escrow associated with identity-based encryption, and it does not require certificates to verify the authenticity of public keys. In the CL-PKC system, Key Generation Center (KGC) provides entities with partial private keys, which the entities then combine with secret information to generate their actual private keys. Additionally, entities compute their public keys by combining their secret information with the KGC’s public parameters. In this framework, the KGC is unable to access the entities’ private keys, thus mitigating the key escrow issue. More details can be found in [50].",,,
 Explain the concept of data sharing based on blockchain as presented in the scientific article A Data Sharing Scheme Based on Blockchain for Privacy Protection Certification of Internet of Vehicles,"Vehicular Communications 51 (2025) 100864
 Available online 2 December 2024
 2214-2096/© 2024 Elsevier Inc. All rights are reserved, including those for text and data mining, AI training, and similar technologies.
@@ -1354,38 +1211,7 @@ mechanism of blockchain and applied it in medical data sharing scenarios.
 Tanwar et al. [17] proposed a blockchain based electronic
 medical record sharing system, in which a new access control strategy
 algorithm was proposed to improve data accessibility between healthcare
-providers.","Based on the article *""A Data Sharing Scheme Based on Blockchain for Privacy Protection Certification of Internet of Vehicles,""* the concept of data sharing is reimagined to solve the conflict between the need for data exchange in the Internet of Vehicles (IoV) and the requirement for user privacy.
-
-Here is an explanation of the core concepts presented in the scheme:
-
-### 1. Decentralized Trust Model
-Traditional IoV data sharing relies on a central authority (cloud server), which is a single point of failure and a privacy risk. This scheme uses **blockchain** to create a decentralized environment where vehicles can share data without a third-party intermediary. The blockchain acts as a transparent, immutable ledger that records data transactions and identity verification.
-
-### 2. Privacy-Preserving Identity (Pseudonymity)
-To protect user privacy, the scheme ensures that a vehicle's real identity is never exposed during data sharing. It utilizes:
-*   **Pseudonyms:** Vehicles use temporary IDs for communication.
-*   **Conditional Privacy:** While identities are hidden from other vehicles, a Trusted Authority (TA) can trace the real identity if malicious behavior (like sending false traffic data) is detected.
-
-### 3. Data Integrity and Certification
-The scheme focuses on **Certification**. Before data is shared, it must be verified.
-*   **Digital Signatures:** Vehicles sign their data packages to ensure they haven't been tampered with.
-*   **Consensus Mechanism:** The blockchain nodes (Roadside Units or RSUs) validate the data and the sender’s credentials before adding the transaction to the ledger. This prevents ""Sybil attacks"" or the spread of false information.
-
-### 4. Secure Data Storage and Access Control
-The scheme separates the data into two parts:
-*   **Off-chain Storage:** Large volumes of IoV data (sensor logs, video) are stored in distributed databases or local RSUs to prevent bloating the blockchain.
-*   **On-chain Indexes:** Only the metadata, hashes (digital fingerprints), and access permissions are stored on the blockchain. This ensures the data is searchable and verifiable without slowing down the network.
-
-### 5. Incentive Mechanism
-To encourage vehicles to share high-quality data (such as road congestion or accident alerts), the scheme often incorporates a **token-based incentive**. Vehicles that provide verified, useful data are rewarded with credits or tokens, while those requesting data may need to ""pay"" for access.
-
-### Summary of the Workflow:
-1.  **Request:** A vehicle requests specific traffic data.
-2.  **Verification:** The provider vehicle’s identity is verified via the blockchain using cryptographic keys.
-3.  **Sharing:** The data is encrypted and shared.
-4.  **Recording:** The ""proof"" of this exchange is recorded on the blockchain, ensuring that the provider is rewarded and the data is certified as authentic without revealing the driver's private details.
-
-By combining **cryptography** (for privacy) with **blockchain** (for trust), the article proposes a system where IoV data is liquid and useful, but the vehicle owners remain anonymous and secure.",,,,,,
+providers.",,,
 Explain the concept of IoT-based smart buildings as discussed in the article Adoption of Internet of Things in Residential Smart Homes: A Structural Equation Modeling Approach!,"Adoption of internet of things in residential smart homes: A structural 
 equation modeling approach
 Amir Mohammad Norouzzadeh
@@ -1524,31 +1350,7 @@ infrastructures, and essential necessities in this field [ 29 ]. Previously,
 household processes were mechanized using wired protocols, which, 
 despite their advantages, required extensive wiring and changes to the 
 building’s electrical system, leading to high costs and complexity [ 2","To implement IoT applications, a horizontal and flexible approach is used, where a common operational platform manages the network and services, utilizing multiple data sources [31]. The American smart building institute defines a smart building as one that optimizes its structure, systems, services, and management to provide an efficient and productive environment [13,15]. Conversely, the European smart building group in Britain states that a smart building maximizes occupant effectiveness while providing optimal resource management with minimal hardware and infrastructure costs [32–34]. According to the Singapore department of public utilities, a smart building must have advanced automated control systems for monitoring facilities such as ventilation, temperature, lighting, security, and fire safety [19].
-In the present era, with the emergence of the concept of smart homes and buildings, significant efforts in smartening have been focused on the production and development of products, solutions, infrastructures, and essential necessities in this field [29]. The concept of smart homes and buildings has led to significant efforts in developing products, solutions, infrastructures, and essential necessities in this field [29]. Previously, household processes were mechanized using wired protocols, which, despite their advantages, required extensive wiring and changes to the building’s electrical system, leading to high costs and complexity [26]. However, with advancements in smart automation and technology, it is now possible to implement wireless and secure smart systems, reducing construction costs and preventing destruction [35]. Today, IoT technology enhances the comfort, convenience, cleanliness, savings, order, and smart management of homes [36]. Smart building solutions was illustrated in Fig 1.","In the article **""Adoption of Internet of Things in Residential Smart Homes: A Structural Equation Modeling Approach,""** the concept of IoT-based smart buildings (specifically residential smart homes) is framed as an ecosystem of interconnected physical objects that enhance the quality of life, efficiency, and security of occupants.
-
-Based on the study, the concept is explained through the following key dimensions:
-
-### 1. Definition and Infrastructure
-The article defines these buildings as environments equipped with sensors, actuators, and communication technologies. These devices are connected via the internet to collect and exchange data, allowing the home to sense, monitor, and react to the needs of the residents automatically or remotely.
-
-### 2. Core Functionalities
-The IoT integration in buildings focuses on several primary domains:
-*   **Energy Management:** Automating lighting and HVAC (heating, ventilation, and air conditioning) to reduce consumption.
-*   **Security and Safety:** Utilizing smart locks, surveillance cameras, and smoke detectors that provide real-time alerts to homeowners' smartphones.
-*   **Convenience and Comfort:** Voice-activated assistants and automated appliances that streamline daily chores.
-*   **Healthcare Monitoring:** Particularly for the elderly, where IoT devices track health metrics and emergency falls.
-
-### 3. The Adoption Framework (The SEM Approach)
-The core of the article uses **Structural Equation Modeling (SEM)** to explain that a ""smart building"" is not just about technology, but about **user perception**. The concept is defined by several psychological and technical drivers:
-*   **Perceived Usefulness & Ease of Use:** The belief that the IoT system will improve daily life without being overly complex.
-*   **Trust and Privacy:** A critical component of the smart home concept; the building must be perceived as secure against data breaches to be successfully adopted.
-*   **Cost vs. Benefit:** The trade-off between the high initial investment in smart infrastructure and the long-term gains in efficiency and lifestyle.
-
-### 4. Integration and Connectivity
-The article emphasizes that a true IoT-based smart building relies on the seamless integration of various protocols. It isn't just a collection of ""smart"" gadgets, but a unified system where devices communicate with one another to create an ""intelligent"" environment.
-
-### Summary
-In this context, an IoT-based smart building is viewed as a **socio-technical system**. Its success depends not only on the hardware (sensors and internet) but on how well the technology aligns with human behavior, addresses privacy concerns, and provides tangible value in terms of security and energy savings.",,,,,,
+In the present era, with the emergence of the concept of smart homes and buildings, significant efforts in smartening have been focused on the production and development of products, solutions, infrastructures, and essential necessities in this field [29]. The concept of smart homes and buildings has led to significant efforts in developing products, solutions, infrastructures, and essential necessities in this field [29]. Previously, household processes were mechanized using wired protocols, which, despite their advantages, required extensive wiring and changes to the building’s electrical system, leading to high costs and complexity [26]. However, with advancements in smart automation and technology, it is now possible to implement wireless and secure smart systems, reducing construction costs and preventing destruction [35]. Today, IoT technology enhances the comfort, convenience, cleanliness, savings, order, and smart management of homes [36]. Smart building solutions was illustrated in Fig 1.",,,
 Describe the simulation and results presented in the scientific article Advancing IoMT Security: A Two-Factor Authentication Model Employing PUF and Fuzzy Logic Techniques.,"t 
 the scheme designed in this paper is safe and effective.Additionally, a simple simulation implementation of the protocol is 
 performed, proving the feasibility of the proposed solution even with low computational overhead. 
@@ -1694,29 +1496,7 @@ whether the IoMT devices, fog layer, and healthcare providers are still
 active or not. Fig 13(a) and 13(b) depicts the setting the simulation of
 the proposed IoMT-2FAPF model. The result of the simulation shows
 that the proposed model is safe from various attacks which is depicted in
-Fig. 14 and 15.","The scientific article **""Advancing IoMT Security: A Two-Factor Authentication Model Employing PUF and Fuzzy Logic Techniques""** focuses on securing the Internet of Medical Things (IoMT) using hardware-based security and intelligent decision-making.
-
-Here is a description of the simulation environment and the results presented:
-
-### 1. Simulation Setup
-The researchers evaluated the proposed model using a combination of hardware simulation and software analysis:
-*   **PUF Implementation:** Physical Unclonable Functions (PUFs) were used to generate unique hardware ""fingerprints"" for IoMT devices. This eliminates the need to store sensitive private keys in non-volatile memory, which is vulnerable to physical attacks.
-*   **Fuzzy Logic Controller:** A Fuzzy Logic system was implemented to handle the ""noise"" inherent in PUF responses. Since environmental factors (temperature, voltage) can cause slight variations in PUF outputs, the fuzzy logic component ensures reliable authentication by determining if a noisy response is ""close enough"" to the registered challenge-response pair.
-*   **Formal Security Verification:** The protocol was formally verified using the **AVISPA** (Automated Validation of Internet Security Protocols and Applications) tool to ensure resistance against common network attacks.
-*   **Performance Metrics:** The simulation measured communication overhead, computational costs, and energy consumption.
-
-### 2. Key Results
-The results demonstrated that the proposed model outperforms existing authentication schemes in several categories:
-
-*   **Security Robustness:** The AVISPA results confirmed that the protocol is secure against **Replay attacks, Man-in-the-Middle (MitM) attacks, Impersonation attacks, and Desynchronization attacks.** The use of PUFs specifically provided high resistance to physical cloning and side-channel attacks.
-*   **Reliability (Fuzzy Logic Performance):** The Fuzzy Logic integration successfully reduced the **False Rejection Rate (FRR)**. It allowed the system to correctly identify legitimate devices even when the hardware PUF output was slightly inconsistent due to environmental noise.
-*   **Efficiency:** 
-    *   **Computational Cost:** The model showed a significant reduction in processing time compared to traditional heavy cryptographic methods (like RSA or standard ECC) because it relies on lightweight XOR operations and hash functions.
-    *   **Communication Overhead:** The number of messages and bits exchanged during the authentication phase was minimized, making it suitable for battery-constrained IoMT sensors.
-*   **Storage Efficiency:** Because the device identity is generated on-the-fly via the PUF, the requirement for secure on-chip storage was virtually eliminated, reducing the hardware footprint.
-
-### Conclusion
-The study concluded that the combination of **PUFs (for hardware security)** and **Fuzzy Logic (for error correction and intelligent verification)** creates a lightweight, ""zero-storage"" security framework that is highly effective for the resource-constrained and high-stakes environment of medical IoT devices.",,,,,,
+Fig. 14 and 15.",,,
 Provide a detailed description of the structure of the proposed scheme in the article A Hash-Based Post-Quantum Ring Signature Scheme for the Internet of Vehicles.,"Journal of Systems Architecture 160 (2025) 103345
 6
 S. Liu et al.
@@ -1866,45 +1646,7 @@ trees and discuss its application within the IoV environment. Chapter
 4 offers a security analysis and proof of the robustness of proposed. In
 Chapter 5, we evaluate the performance of the scheme and compare it
 with existing alternatives. Finally, Chapter 6 concludes the paper and
-outlines directions for future research.","The proposed scheme in the article **""A Hash-Based Post-Quantum Ring Signature Scheme for the Internet of Vehicles""** is structured around a **Merkle Tree-based hash-based signature** framework, specifically designed to resist quantum computing threats while ensuring privacy and efficiency in an IoV (Internet of Vehicles) environment.
-
-The structure of the scheme is divided into four main phases/algorithms: **Setup, Key Generation, Ring Signing, and Verification.**
-
-### 1. The Underlying Primitive: W-OTS+
-The scheme is built upon the **Winternitz One-Time Signature plus (W-OTS+)** variant. This is a crucial component because hash-based signatures are naturally quantum-resistant (relying on the collision resistance of hash functions rather than the difficulty of factoring large integers).
-
-### 2. The Merkle Tree Hierarchy
-The core structure utilizes a Merkle hash tree to manage public keys.
-*   **Leaves:** Each leaf node of the tree represents the public key of a W-OTS+ instance.
-*   **Nodes:** Each internal node is the hash of the concatenation of its child nodes.
-*   **Root:** The root of the tree serves as the master public key for a vehicle or a Roadside Unit (RSU).
-
-### 3. Procedural Structure
-The scheme operates through the following four steps:
-
-#### A. Setup ($1^\lambda$)
-The system parameters are initialized. A security parameter $\lambda$ is chosen to determine the hash function (e.g., SHA-256 or SHAKE). The Winternitz parameter $w$ is defined to balance signature size and computational speed.
-
-#### B. Key Generation
-*   **Private Key:** A vehicle generates a set of random seeds used to produce W-OTS+ private keys.
-*   **Public Key:** The vehicle calculates the corresponding W-OTS+ public keys, builds a Merkle tree, and uses the **Merkle Root** as its long-term public key.
-
-#### C. Ring Signing (The Anonymity Layer)
-To provide anonymity (so a message cannot be traced to a specific vehicle), the scheme forms a ""ring"" of $n$ members.
-*   **Input:** The message $M$, the signer's private key, and a set of $n$ public keys (the ring) from other vehicles.
-*   **Process:** The signer uses their private key to sign the message. To prove membership in the ring without revealing their identity, they provide the **authentication path** (the sibling nodes in the Merkle tree) that leads to the root.
-*   **Output:** The signature includes the W-OTS+ signature, the Merkle root, and the authentication paths for the ring members.
-
-#### D. Verification
-The verifier (e.g., another vehicle or an RSU) checks the validity of the signature:
-*   It verifies the W-OTS+ signature against the provided public key.
-*   It uses the authentication path to reconstruct the Merkle root.
-*   If the reconstructed root matches the public key in the ring, the signature is accepted as authentic and coming from a legitimate member of the group.
-
-### 4. Characteristics of the Structure
-*   **Post-Quantum Security:** By avoiding RSA or Elliptic Curve Cryptography (ECC) and using only hash functions, the structure remains secure against Shor’s algorithm.
-*   **Anonymity:** The ring signature structure ensures that a verifier knows the signer is a legitimate vehicle within the ""ring"" but cannot identify exactly which one.
-*   **Efficiency for IoV:** The scheme is optimized to reduce the ""signature size"" problem typically associated with hash-based schemes, making it more suitable for the high-speed, low-latency requirements of vehicle-to-everything (V2X) communication.",,,,,,
+outlines directions for future research.",,,
 Explain the attack model described in the scientific article A High-Security Batch Message Authentication Protocol Assisted by Edge Servers in Industrial Internet of Things.,"Internet of Things 30 (2025) 101469
 20
 J.S. Yalli et al.
@@ -2046,35 +1788,7 @@ mutual identity verification, secure data transmission, and perfect
 forward and backward secrecy. In addition, it should be able to defend
 against active attacks, including impersonation attacks, replay attacks,
 man-in-the-middle attacks, and denial of service (DoS) attacks, as well
-as passive attacks such as eavesdropping and location tracking.","In the article **""A High-Security Batch Message Authentication Protocol Assisted by Edge Servers in Industrial Internet of Things,""** the attack model is defined by the capabilities of a potential adversary and the specific security threats the protocol aims to resist.
-
-The attack model is based on the following key components:
-
-### 1. Adversary Capabilities (Dolev-Yao Model)
-The authors assume a standard **Dolev-Yao threat model**, which implies:
-*   **Message Interception:** The adversary can intercept any message transmitted over the public wireless channel.
-*   **Modification:** The attacker can modify, delete, or replay captured messages.
-*   **Injection:** The attacker can inject malicious or forged messages into the network to impersonate legitimate entities (IIoT devices or Edge Servers).
-
-### 2. Specific Attack Vectors
-The protocol is designed to defend against several specific types of attacks common in IIoT environments:
-*   **Replay Attacks:** Where an attacker captures a valid authentication message and re-sends it later to gain unauthorized access.
-*   **Modification Attacks:** Where an attacker alters the content of a batch of messages to trigger incorrect actions in industrial control systems.
-*   **Impersonation Attacks:** Where an unauthorized entity attempts to pose as a legitimate IIoT device or a trusted Edge Server.
-*   **Man-in-the-Middle (MitM) Attacks:** Where an attacker positions themselves between the device and the Edge Server to intercept and manipulate communication.
-
-### 3. Trust Assumptions
-*   **Semi-Trusted Edge Servers:** The model considers Edge Servers to be ""honest-but-curious."" They will follow the protocol correctly but may attempt to learn sensitive information from the data they process.
-*   **Trusted Authority (TA):** The Registration Center or Trusted Authority is assumed to be fully secure and beyond compromise.
-*   **Compromised Devices:** The model accounts for the possibility that some IIoT devices may be physically captured or compromised, necessitating a mechanism to prevent the leakage of master keys (Forward Secrecy).
-
-### 4. Security Goals
-Within this attack model, the protocol's objective is to ensure:
-*   **Batch Integrity:** Ensuring that a group of messages has not been tampered with.
-*   **Authenticity:** Verifying that the messages originated from a legitimate source.
-*   **Anonymity/Privacy:** Protecting the identity of the IIoT devices from external observers and preventing linkability.
-
-In summary, the attack model describes a **hostile network environment** where an active adversary has full control over the communication channel, requiring the protocol to use cryptographic primitives (like Elliptic Curve Cryptography) to ensure security and efficiency.",,,,,,
+as passive attacks such as eavesdropping and location tracking.",,,
 What conclusions are presented in the scientific article A Hybrid Blockchain and Machine Learning Approach for Intrusion Detection System in Industrial Internet of Things?,"A. Roy, D. Bhattacharjee and O. Krejcar / Data in Brief 60 (2025) 111599 9 
 CRediT Author Statement 
 Aparup Roy: Conceptualization, Data curation, Methodology, Writing – original draft, Visual- 
@@ -2196,30 +1910,7 @@ as the Internet of Things (IoT) and IIoT, big data, blockchain, FL, and
 The IoT shifts the communication paradigm, enabling billions of
 heterogeneous devices to connect seamlessly and provide real-time
 information. The IoT is the fastest-growin","The proposed hybrid IDS utilises machine learning and optimisation techniques to enhance the security of industrial IoT networks using blockchain technology. Incorporating blockchain technology ensures that data is immutable, that trust is created, and that communications among IoT devices are secure. In addition to improving threat detection accuracy, XGBoost minimises false positives in AFSO Optimization. This model outperforms existing models in high detection accuracy (97.43%) using the BOT-IoT dataset. Using blockchains for intrusion detection and security of IIoT environments has been found to be effective in reducing cyber threats and improving security. Developing real-time deployment scenarios and adaptive learning models will enhance IDS resilience when dealing with evolving cyber threats in the future. Future work will analyze the long-term viability of the block
-chain ledger in handling high-frequency security events, focusing","The scientific article **""A Hybrid Blockchain and Machine Learning Approach for Intrusion Detection System in Industrial Internet of Things""** (typically associated with researchers like Fatani et al. or similar scholars in the field of IIoT security) presents several key conclusions regarding the integration of these technologies.
-
-The primary conclusions of the study are as follows:
-
-### 1. Enhanced Security through Decentralization
-The authors conclude that traditional centralized Intrusion Detection Systems (IDS) are vulnerable to single points of failure. By integrating **Blockchain**, the system ensures data integrity and immutability. This prevents attackers from tampering with the logs or the detection rules, creating a more robust security framework for IIoT environments.
-
-### 2. Improved Detection Accuracy
-The study demonstrates that **Machine Learning (ML)**—often specifically Deep Learning or optimized algorithms like Swarm Intelligence—significantly improves the detection of complex and zero-day attacks. The hybrid approach allows the system to learn from network traffic patterns more effectively than signature-based systems.
-
-### 3. Privacy-Preserving Data Sharing
-A major conclusion is that the blockchain layer allows multiple IIoT nodes or industrial sites to share threat intelligence without compromising sensitive local data. This collaborative learning (often linked to Federated Learning concepts) improves the overall model without exposing private industrial processes.
-
-### 4. Efficiency and Scalability
-The researchers conclude that the hybrid model can handle the high volume of data generated by IIoT devices. By using feature selection techniques (reducing the amount of data the ML model needs to process) and lightweight consensus mechanisms for the blockchain, the system maintains a low latency suitable for industrial applications.
-
-### 5. Superiority Over Baseline Models
-The article concludes with empirical evidence showing that the hybrid approach outperforms existing standalone IDS solutions in terms of:
-*   **Precision and Recall:** Higher accuracy in identifying malicious activities.
-*   **False Positive Rate:** A significant reduction in false alarms compared to traditional methods.
-*   **Resilience:** Better survival against adversarial attacks aimed at the detection system itself.
-
-### Summary
-The overarching conclusion is that **Blockchain and Machine Learning are complementary**: Blockchain provides the **trust and data security** infrastructure, while Machine Learning provides the **analytical intelligence** required to identify sophisticated cyber-attacks in the Industrial Internet of Things.",,,,,,
+chain ledger in handling high-frequency security events, focusing",,,
 Explain the results and discussion presented in the scientific article A Hybrid Blockchain and AI-Based Approach for Attack Protection to Secure Internet of Medical Things Networks,"S. Javanmardi et al.
 the articles based on the recent fog computing research about security 
 challenges, service and operational issues, and resource management. 
@@ -2378,26 +2069,7 @@ concept.
 Organizations can use these logs for auditing, identifying areas of
 concern and improving security measures, where possible. According to
 Fig. 7, businesses can determine accurate entry points, determine the
-cause, and assess the harm of an incident by using audit trails.","The results and discussion in the article **""A Hybrid Blockchain and AI-Based Approach for Attack Protection to Secure Internet of Medical Things (IoMT) Networks""** center on the effectiveness of combining Distributed Ledger Technology (Blockchain) with Machine Learning (AI) to secure sensitive medical data.
-
-Here is a concise explanation of the key findings and the subsequent discussion:
-
-### 1. Key Results
-
-*   **High Detection Accuracy:** The AI component (typically utilizing Deep Learning or Random Forest models) demonstrated high precision in identifying various cyber threats, such as DDoS, Man-in-the-Middle (MitM), and unauthorized access attacks. The study reported accuracy rates often exceeding **98-99%**.
-*   **Low Latency and Overhead:** Despite the complexity of blockchain, the researchers optimized the consensus mechanism. The results showed that the system could process IoMT data transactions with minimal delay, making it suitable for real-time medical monitoring.
-*   **Data Integrity and Immutability:** The blockchain layer successfully ensured that once medical records were stored, they could not be tampered with. Testing showed that unauthorized attempts to alter data were immediately flagged and rejected by the network nodes.
-*   **Decentralized Authentication:** The hybrid model outperformed traditional centralized systems by removing the ""Single Point of Failure."" The results indicated that the network remained operational and secure even if several nodes were compromised.
-
-### 2. Discussion Points
-
-*   **The Synergy of AI and Blockchain:** The authors discuss how AI acts as the ""brain"" (proactive threat detection), while Blockchain acts as the ""shield"" (secure data storage and verification). This dual layer addresses the vulnerabilities inherent in the resource-constrained devices used in IoMT.
-*   **Scalability:** A significant portion of the discussion focuses on scalability. The authors argue that by using a ""lightweight"" blockchain protocol, the system can handle the massive influx of data generated by thousands of IoMT devices without crashing or slowing down significantly.
-*   **Privacy Compliance:** The discussion highlights that this approach aligns with global healthcare regulations (like HIPAA or GDPR). By encrypting data before it hits the blockchain, patient anonymity is maintained while providing a transparent audit trail for healthcare providers.
-*   **Robustness against Evolving Threats:** The researchers discuss the ""adaptive"" nature of the AI. As new types of malware or attack vectors emerge, the AI model can be retrained using the immutable data logs stored on the blockchain, creating a self-improving security cycle.
-
-### Conclusion of the Article
-The authors conclude that the hybrid approach effectively mitigates the security risks of IoMT. While AI provides the necessary speed for threat detection, Blockchain provides the trust and permanence required for medical data, creating a comprehensive framework for modern smart healthcare systems.",,,,,,
+cause, and assess the harm of an incident by using audit trails.",,,
 Provide a detailed explanation of the research motivation discussed in the article A Hybrid PKI and Spiking Neural Network Approach for Enhancing Security and Energy Efficiency in IoMT-Based Healthcare 5.0,"S. Javanmardi et al.
 the articles based on the recent fog computing research about security 
 challenges, service and operational issues, and resource management. 
@@ -2542,27 +2214,7 @@ such as [ 4 , 9 ]. Additionally, [10] presented security guidelines, and the
 impact of 5 G on IoT systems. 
 The architectural aspects of IoT, including its layers, were the focal 
 point of [11] , while diﬀerent protocols were discussed in various works 
-like [12–14] . Diverse applications of IoT, exempliﬁed by [8] , emp","In the healthcare 5.0 era, IoMT is revolutionizing patient care by achieving seamless connectivity and real-time access to data. Still, significant issues remain in terms of secure energy-efficient data transmission. Protecting health information from unauthorized access to patient data and efficient utilization of energy in resource-constrained settings is very important. The requirements and actual motivation for this work relate to the meeting of the above two challenges jointly through the design of an effective framework that will rely on PKI for secure communication, spike neural networks for precise anomaly detection, and ZOA for energy optimization. Such a comprehensive approach will make privacy stronger, network life longer, and healthcare IoMT systems operate in a reliable and effective way.","The research motivation behind the article **""A Hybrid PKI and Spiking Neural Network Approach for Enhancing Security and Energy Efficiency in IoMT-Based Healthcare 5.0""** is driven by the critical tension between advanced medical connectivity and the physical limitations of wearable devices.
-
-The authors identify four primary pillars of motivation:
-
-### 1. The Vulnerability of Healthcare 5.0
-Healthcare 5.0 emphasizes personalized, proactive care through the Internet of Medical Things (IoMT). However, this high level of connectivity creates a massive attack surface. The motivation stems from the need to protect sensitive Patient Health Information (PHI) against sophisticated cyber threats like Man-in-the-Middle (MitM) attacks, data tampering, and unauthorized access, which can have life-threatening consequences.
-
-### 2. Limitations of Conventional Cryptography
-Traditional security frameworks, such as standard Public Key Infrastructure (PKI), are often computationally expensive. The researchers are motivated by the fact that IoMT devices (like pacemakers or insulin pumps) have very limited battery life and processing power. Standard encryption protocols often drain these resources too quickly, making them impractical for long-term continuous monitoring.
-
-### 3. Energy Inefficiency of Deep Learning
-While traditional Artificial Neural Networks (ANNs) are effective at detecting intrusions, they require significant energy and high-performance hardware to process data. The article is motivated by the search for a ""brain-inspired"" alternative. **Spiking Neural Networks (SNNs)** are highlighted because they process information using discrete spikes (similar to biological neurons), which is significantly more energy-efficient than the continuous mathematical computations used in standard AI.
-
-### 4. The Need for a ""Hybrid"" Defense
-The researchers argue that neither encryption alone nor AI detection alone is sufficient. 
-*   **Encryption (PKI)** ensures data integrity and authentication.
-*   **AI (SNN)** provides dynamic threat detection and anomaly recognition.
-The core motivation is to merge these two distinct fields to create a ""best-of-both-worlds"" scenario: a system that is robust enough to stop hackers but light enough to run on a tiny, battery-powered medical sensor.
-
-### Summary of the Research Goal:
-The fundamental drive of the study is to bridge the gap between **high-level security** and **low-power consumption**, ensuring that the next generation of healthcare (Healthcare 5.0) is both safe from cyberattacks and sustainable for long-term patient use.",,,,,,
+like [12–14] . Diverse applications of IoT, exempliﬁed by [8] , emp","In the healthcare 5.0 era, IoMT is revolutionizing patient care by achieving seamless connectivity and real-time access to data. Still, significant issues remain in terms of secure energy-efficient data transmission. Protecting health information from unauthorized access to patient data and efficient utilization of energy in resource-constrained settings is very important. The requirements and actual motivation for this work relate to the meeting of the above two challenges jointly through the design of an effective framework that will rely on PKI for secure communication, spike neural networks for precise anomaly detection, and ZOA for energy optimization. Such a comprehensive approach will make privacy stronger, network life longer, and healthcare IoMT systems operate in a reliable and effective way.",,,
 Explain the neural network data used in the scientific article Towards an Intelligent and Automatic Irrigation System Based on Internet of Things with Authentication Feature in VANET.,"The Internet of Things is a dynamic global information network 
 composed of internet-connected devices [ 4 ]. Thanks to recent advances 
 in communications systems and wireless technology over the past 
@@ -2606,7 +2258,97 @@ i
 =
 x
 i
-","Advancements in sensor technology and the widespread adoption of
+  μ
+i
+̅̅̅̅̅̅̅̅̅̅̅̅ ̅
+σ
+2
+i
++ ε
+√ (11) 
+y
+i
+= γ x
+i
++ β (12) 
+After the above steps, a new feature distribution yi is obtained, and 
+the group normalization method is used to ensure the optimal perfor -
+mance and accelerate the convergence of the neural network model in 
+the process of producing the sample image. The long-term performance 
+of IoT devices in agricultural environments depends on multiple factors, 
+including device quality, environmental adaptability, energy manage -
+ment, and maintenance strategies. For example, high-quality sensors can 
+ensure the accuracy and stability of data, while devices with strong 
+environmental adaptability can work normally under different climate 
+and soil conditions. In addition, a reasonable energy consumption 
+management strategy can extend the service life of equipment and 
+reduce operating costs. In agricultural applications, the long-term per -
+formance of CNN models mainly depends on their robustness, general -
+ization ability, and data update strategies. Robust models can handle 
+image recognition tasks in various complex environments and lighting 
+conditions, while models with strong generalization ability can adapt to 
+the recognition needs of different varieties and growth stages of crops. In 
+addition, regularly updating the training dataset and model parameters 
+is also key to maintaining the long-term performance of the model. 
+Group Normalization (GN) reduces the model ’ s dependence on batch 
+size by dividing feature channels into multiple groups and normalizing 
+them within each group. This enables GN to maintain stable
+
+---
+
+Table 1: Subjects of the papers.
+Subject Paper Reference
+BC
+BC-RAN: Cloud radio access network enabled by blockchain for 5G [73]
+Blockchain-enabled wireless communications: a new paradigm towards 6G [74]
+Distributed Network Slicing Management Using Blockchains in E-Health Environments [75]
+Design of a Security and Trust Framework for 5G Multi-domain Scenarios [76]
+Data Broker: Dynamic Multi-Hop Routing Protocol in Blockchain Radio Access Network [77]
+Future Industry Internet of Things with Zero-trust Security [78]
+Blockchain Based Privacy Preserving Framework for Emerging 6G Wireless Communications [79]
+Blockchain-based fog radio access networks: Architecture, key technologies, and challenges [80]
+Evaluation of soft computing in intrusion detection for secure social Internet of Things based on collaborative edge
+computing [81]
+Resource Sharing and Trading of Blockchain Radio Access Networks: Architecture and Prototype Design [82]
+Radio optical network security analysis with routing in quantum computing for 5G wireless communication using
+blockchain machine learning model [83]
+Hedera: A Permissionless and Scalable Hybrid Blockchain Consensus Algorithm in Multi-Access Edge Computing for IoT [84]
+FH
+Securing Ethernet-based optical fronthaul for 5G network [85]
+Secure Open Fronthaul Interface for 5G Networks [86]
+Transport Security Considerations for the Open-RAN Fronthaul [87]
+Open-RAN Fronthaul Transport Security Architecture and Implementation [35]
+IDS/IPS
+Detecting DoS and DDoS Attacks by Using CuSum Algorithm in 5G Networks [88]
+Attacks and failures prediction framework for a collaborative 5G mobile network [89]
+The Novel System of Attacks Detection in 5G [90]
+An edge based hybrid intrusion detection framework for mobile edge computing [91]
+A highly secured IDS for IoT using EXPSO-STF A feature selection for LAANN to detect attacks [92]
+RRC
+Authentication Protocol for an IoT-Enabled LTE Network [93]
+On the Impact of Rogue Base Stations in 4G/LTE Self Organizing Net
+
+---
+
+ation of existing network infrastructure. By using this function, it becomes feasible to integrate elements of 
+the physical world into computerised systems, resulting in enhanced levels of efficiency, precision, and financial 
+profitability. The Internet of Things (IoT) encompasses a diverse array of applications. The Internet of Things 
+(IoT) may be used in several sectors such as healthcare, smart cities, smart homes, transportation, logistics, 
+agriculture, and smart traffic management. The quantity of Internet of Things (IoT) devices is increasing rapidly 
+and exponentially. The surge in numbers is accompanied by a significant escalation in security vulnerabilities. 
+This article presents the development of an intrusion detection system for the Internet of Things using machine 
+learning and feature selection techniques. The system aims to accurately categorise and forecast attacks on IoT 
+devices. This approach utilises the publicly accessible NSL KDD dataset as its input dataset. During the data 
+collecting process for NSL-KDD, all symbolic qualities are transformed into their corresponding numerical rep -
+resentations. Conversely, all numerical features are translated back into symbolic form at the conclusion of the 
+procedure. Principal component analysis is employed to achieve the objective of attribute extraction. After 
+completing the preparation step, the data set is classified using several machine learning techniques such as 
+support vector machine, linear regression, and random forest. Evaluating the veracity, exactness, and retrieval 
+rate of different machine learning algorithms is crucial for choosing the most effective ones. The accuracy of the 
+Intrusion Detection System (IDS) based on Particle Swarm Optimisation (PSO) is 98.5 percent. The PSO-based 
+SVM method is shown superior performance compared to random forest and linear regression methods in 
+terms of precision, recall, and specificity.
+This article is part of a special issue entitled: IoT","Advancements in sensor technology and the widespread adoption of
 smart solutions across various domains, including environmental, industrial,
 and medical sectors, have created numerous opportunities for
 innovative applications [22,23]. Applications simultaneously are
@@ -2634,30 +2376,7 @@ Neural networks are at the forefront of these operations because they
 perform enormous operations to manage the situation in conjunction
 with the rest of the transmission process procedures. This study investigates
 using the neural network, which is fully compatible with the
-multi-routing of Internet networks.","In the article ""Towards an Intelligent and Automatic Irrigation System Based on Internet of Things with Authentication Feature in VANET,"" the neural network is used to predict the irrigation requirements of the soil. 
-
-The data used for the neural network can be categorized into **Input Data**, **Target/Output Data**, and **Training Parameters**:
-
-### 1. Input Data (Environmental Features)
-The network processes real-time data collected from IoT sensors placed in the field. These inputs typically include:
-*   **Soil Moisture:** The primary indicator of whether the plant needs water.
-*   **Temperature:** Ambient temperature affecting evaporation rates.
-*   **Humidity:** Atmospheric moisture levels that influence the plant's water retention.
-*   **Light Intensity (Optional/Contextual):** Some variations of these models include solar radiation data to determine peak evaporation times.
-
-### 2. Output Data (The Decision)
-The neural network produces a classification or a numerical value that determines:
-*   **Irrigation Status:** A binary or categorical output (e.g., ""Pump ON"" or ""Pump OFF"").
-*   **Water Volume/Duration:** In more advanced setups, it predicts the specific amount of water required or the duration the irrigation valves should remain open.
-
-### 3. Data Source and Preprocessing
-*   **Dataset:** The data is often derived from historical sensor logs (time-series data) or publicly available agricultural datasets used to train the model before deployment.
-*   **Normalization:** Since temperature, moisture, and humidity have different scales (e.g., Celsius vs. percentage), the data is normalized (scaled between 0 and 1 or -1 and 1) to ensure the neural network converges efficiently during training.
-
-### 4. Role in the VANET Context
-While the neural network handles the **agronomic decision-making**, the data is transmitted through a **VANET (Vehicular Ad-hoc Network)** architecture. In this specific study, the data is secured using authentication features to ensure that the sensor readings (the neural network inputs) are genuine and have not been tampered with by malicious actors.
-
-**Summary:** The neural network uses **soil moisture, temperature, and humidity** as input features to automatically decide the **irrigation schedule**, optimizing water usage while maintaining crop health.",,,,,,
+multi-routing of Internet networks.",,,
 List the authors of the scientific article A Machine Learning Approach for Detecting Cybersecurity Vulnerabilities in the Internet of Medical Things,"CRediT authorship contribution statement
 Sundaravadivazhagan Balasubramanian: Writing – original draft. 
 Robin Cyriac: Supervision. Saleem Raja Abdul Samad: Supervision. 
@@ -2796,13 +2515,7 @@ https://doi.org/10.1016/j.heliyon.2025.e44362
 Heliyon xxx (xxxx) xxx 
 2405-8440/© 2025 The Author(s). Published by Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and 
 similar technologies. 
-Please cite this art","Ukamaka Oragwu, Benjamin Aziz ∗, Shahadate Rezvy","The authors of the scientific article titled **""A Machine Learning Approach for Detecting Cybersecurity Vulnerabilities in the Internet of Medical Things""** (published in *IEEE Access*, 2022) are:
-
-1.  **Sajad Homayoun**
-2.  **Vahid Dehghantanha**
-3.  **Mohammad Ahmadpanah**
-4.  **Sadegh Afifi**
-5.  **Kim-Kwang Raymond Choo**",,,,,,
+Please cite this art","Ukamaka Oragwu, Benjamin Aziz ∗, Shahadate Rezvy",,,
 What framework is proposed in the scientific article A New Design of Arithmetic and Logic Unit for Enhancing the Security of Future Internet of Things Devices Using Quantum-Dot Technology?,"y. The primary goal of this paper is to 
 propose a Novel Quantum Blockchain framework that protects from classical and Quantum 
 computing attacks. For this purpose, this article examines Quantum cryptography for securing 
@@ -2944,16 +2657,7 @@ Moreover, the transmitted data might contain sensitive data like personal data a
 tem (Quasim et al., 2023). In such a way, the suggested QCA-based component can be considered a serious advancement in solving the contemporary problems of data safety in comparison with the tradi
 tional approaches. The computer requirements to enable such profound analysis are frequently very complicated. It is essential to make sure that all components of an IoT system are not vulnerable to unauthorized access. In order to successfully mitigate the above security challenges, the proposed ALU design leverages the inherent benefits of QCA
 nology. ALUs play a crucial role in the processors or microcontrollers designed for IoT devices. In this regard, our focus is to realize a QCA-based ALU to guarantee enhanced reliability and security in contemporary IoT settings. The proposed design addresses the
-tational restrictions and security weaknesses, therefore providing more secure and efficient IoT-based systems. The proposed ALU is built using several components, some of which include an FA, a 2:1 MUX, and a 4:1 MUX. The following sections describe the design and implementation of the main components.","In the scientific article *""A New Design of Arithmetic and Logic Unit for Enhancing the Security of Future Internet of Things (IoT) Devices Using Quantum-Dot Technology,""* the proposed framework is a **Quantum-dot Cellular Automata (QCA) based Arithmetic and Logic Unit (ALU)** specifically optimized for cryptographic applications.
-
-The key components and features of this framework include:
-
-*   **QCA Nanotechnology:** Unlike traditional CMOS technology, the framework utilizes QCA, which uses the position of electrons within ""cells"" to represent binary states. This allows for significantly lower power consumption, higher density, and faster operating speeds.
-*   **Security-Oriented ALU:** The ALU is designed to perform essential arithmetic and logical operations required for encryption and decryption algorithms (such as XOR, Addition, and AND) with high efficiency.
-*   **Optimized Logic Gates:** The framework introduces redesigned QCA layouts for majority gates and inverters to minimize the ""area-delay product."" This makes the hardware more resistant to physical side-channel attacks by reducing the power footprint.
-*   **IoT Integration:** The framework is specifically tailored for the **Future Internet of Things**, where devices require robust security protocols but operate under extreme energy and space constraints.
-
-In summary, the framework proposes a **hardware-level security solution** using QCA technology to create more efficient and secure processors for the next generation of IoT devices.",,,,,,
+tational restrictions and security weaknesses, therefore providing more secure and efficient IoT-based systems. The proposed ALU is built using several components, some of which include an FA, a 2:1 MUX, and a 4:1 MUX. The following sections describe the design and implementation of the main components.",,,
 Explain the scalability analysis presented in the scientific article Fog Computing Based Public Key Encryption with Multi-Keyword Search for Internet of Vehicles.,"scalability in ultra-dense IoMT networks remains unverified. Prototyp -
 ing on IoT testbeds and optimizing session-key negotiation using group- 
 based authentication protocols can help address this issue.
@@ -3095,32 +2799,7 @@ certain time, the management complexity and cost and communication
 overhead may lower down the scalability if not properly handled (using
 load balancing etc.). But for high vehicular density, adding more fog
 nodes in the system may give effective result to the performance of the
-software.","The scalability analysis in the article **""Fog Computing Based Public Key Encryption with Multi-Keyword Search for Internet of Vehicles""** focuses on how the proposed system handles increasing amounts of data and users compared to traditional cloud-based models.
-
-The analysis evaluates scalability through three primary metrics: **computation overhead, communication costs, and network latency.**
-
-### 1. Offloading Computation (Fog Layer)
-The core of the scalability argument lies in the hierarchical architecture. By shifting heavy cryptographic operations (like partial decryption and keyword matching) from the central Cloud Server to localized **Fog Nodes**:
-*   **Reduced Bottlenecks:** The central cloud is no longer a single processing point for every search request, preventing performance degradation as the number of vehicles (Internet of Vehicles - IoV) increases.
-*   **Local Processing:** Since Fog nodes are distributed geographically, they handle requests from nearby vehicles simultaneously, allowing the system to scale horizontally by adding more Fog nodes.
-
-### 2. Search Efficiency
-The authors analyze how the time required for a multi-keyword search scales with the size of the database and the number of keywords:
-*   **Linear Growth:** The search time typically grows linearly with the number of documents, but because the Fog nodes perform the ""pre-matching"" or partial decryption, the overhead on the end-user (the vehicle/driver) remains constant and minimal.
-*   **Multi-keyword Optimization:** The scheme is designed so that adding more keywords to a query does not exponentially increase the computational burden, making it scalable for complex search requirements.
-
-### 3. Communication Overhead
-Scalability is also measured by the size of the trapdoors (search tokens) and ciphertexts:
-*   **Fixed-size Parameters:** The analysis demonstrates that the size of the security parameters remains manageable even as the network grows. 
-*   **Bandwidth Efficiency:** By utilizing Fog nodes to filter data, only relevant encrypted results are sent to the vehicles, reducing the bandwidth congestion that usually occurs in large-scale IoV deployments.
-
-### 4. Comparison with Cloud-Only Models
-The article provides experimental data showing that:
-*   **Latency:** As the number of vehicles increases, the response time in the Fog-based model remains significantly lower and more stable than in a traditional Cloud-only model.
-*   **Resource Constraints:** The analysis highlights that the system is scalable for **resource-constrained devices** (OBU - On-Board Units in cars) because the heavy lifting is offloaded to the Fog layer, ensuring that the vehicle's limited hardware can still perform secure searches regardless of the total network size.
-
-### Summary
-The scalability analysis concludes that the **Fog-to-Cloud architecture** is superior for IoV because it decentralizes the workload. This allows the system to support a high density of vehicles and a large volume of encrypted data without a proportional increase in latency or user-side computational requirements.",,,,,,
+software.",,,
 Provide a detailed explanation of predictive analytics as discussed in the article An Intelligent and Secure Internet of Robotic Things: A Review and Conceptual Framework,"Md.A. Rahim et al.
 Fig. 1. IoRT keyword correlation with other keywords.
 Fig. 2. Proposed quantitative analysis procedure.
@@ -3230,36 +2909,7 @@ predictive analysis [55]. For instance, Sharma and Villányi [56] proposed a pre
 manufacturing systems requirements, and provided decision priorities to guide actions for better outcomes by incorporating key
 components of many decision support systems. Similarly, Rahim et al. [57] developed a predictive model for vehicular engine
 health monitoring that prioritizes maintenance of the most vulnerable components, aiming to minimize maintenance costs and
-extend service life using a hybrid AI approach.","In the article **""An Intelligent and Secure Internet of Robotic Things: A Review and Conceptual Framework,""** predictive analytics is presented as a pillar of the ""Intelligence"" layer within the Internet of Robotic Things (IoRT) ecosystem.
-
-The article discusses predictive analytics through the following key dimensions:
-
-### 1. Definition and Core Function
-Predictive analytics in the IoRT context refers to the use of statistical algorithms, machine learning (ML), and historical data to identify the likelihood of future outcomes. Unlike standard IoT, which often focuses on monitoring, IoRT uses predictive analytics to enable robots to ""anticipate"" events and act autonomously before a situation escalates.
-
-### 2. The Role of Machine Learning and Deep Learning
-The authors emphasize that predictive capabilities are driven by advanced AI techniques:
-*   **Pattern Recognition:** Robots analyze vast streams of sensor data (visual, acoustic, thermal) to recognize patterns that precede specific events.
-*   **Proactive Decision Making:** Instead of reacting to a sensor trigger, the system uses predictive models to adjust the robot's trajectory or task priority in real-time.
-
-### 3. Key Applications within the Framework
-The article highlights several critical areas where predictive analytics is applied:
-*   **Predictive Maintenance:** This is a primary focus. By analyzing vibration, temperature, and usage patterns, the system predicts when a robotic component is likely to fail. This reduces downtime and prevents costly hardware damage.
-*   **Operational Optimization:** Predictive models forecast demand or environmental changes (e.g., warehouse traffic or energy consumption), allowing the robotic fleet to optimize its resource allocation.
-*   **Collision Avoidance and Path Planning:** In dynamic environments, predictive analytics allows robots to forecast the movement of humans or other robots to calculate the safest and most efficient path.
-
-### 4. Integration with Edge and Cloud Computing
-The article discusses the architectural placement of predictive analytics:
-*   **Edge Intelligence:** Real-time predictive tasks (like immediate obstacle avoidance) are processed at the ""Edge"" to reduce latency.
-*   **Cloud Intelligence:** Long-term predictive trends (like seasonal maintenance cycles across a global fleet) are processed in the Cloud, where massive datasets can be aggregated and analyzed.
-
-### 5. Synergy with Security
-A unique aspect of this review is the link between **predictive analytics and security**. The authors suggest that predictive models can be used for:
-*   **Anomaly Detection:** By establishing a ""baseline"" of normal robotic behavior, predictive analytics can identify deviations that suggest a cyber-attack or a sensor malfunction.
-*   **Intrusion Prediction:** Analyzing network traffic patterns to predict and mitigate potential security breaches before they compromise the robotic network.
-
-### Summary
-Within the conceptual framework of the article, **predictive analytics transforms a robot from a reactive machine into a proactive agent.** It is the mechanism that bridges the gap between ""sensing"" the environment and ""acting"" intelligently, ensuring the IoRT system is efficient, reliable, and secure.",,,,,,
+extend service life using a hybrid AI approach.",,,
 What dataset is used in the scientific article An Intelligent Native Network Slicing Security Architecture Empowered by Federated Learning?,"A. Roy, D. Bhattacharjee and O. Krejcar / Data in Brief 60 (2025) 111599 3 
 • Real-World Applications: 
 The dataset can be used for intrusion detection, traﬃc anomaly detection, and IoV security. 
@@ -3418,12 +3068,7 @@ to difficulties in achieving high accuracy or convergence in terms of
 learning in certain AI models. Fig. 7 shows that the malignant and
 benign classes are mixed, indicating an intrinsic classification challenge
 for ML-Agents. To migrate some of this overlap, we conducted a
-hyperparameter optimization.","In the scientific article *""An Intelligent Native Network Slicing Security Architecture Empowered by Federated Learning,""* the researchers primarily used the **NSL-KDD dataset** to evaluate their proposed security architecture.
-
-**Key details about the dataset usage in the paper:**
-*   **Purpose:** It was used to train and test the Federated Learning (FL) models for detecting network intrusions and anomalies within network slices.
-*   **Context:** The NSL-KDD dataset is a refined version of the classic KDD’99 dataset, designed to solve some of its inherent problems (such as redundant records) while providing a benchmark for network security AI models.
-*   **Implementation:** The authors typically partition this dataset to simulate decentralized data distribution across multiple ""slicing"" entities to demonstrate how Federated Learning can achieve high accuracy without sharing raw private data.",,,,,,
+hyperparameter optimization.",,,
 Describe the introduction provided in the article A Novel Ultra-Low Power Post-Quantum Approach Using Artificial Intelligence Based Key Generation for Cyber Physical System in Internet of Things.,"Journal of Network and Computer Applications 236 (2025) 104110
 Available online 17 January 2025
 1084-8045/© 2025 The Author(s). Published by Elsevier Ltd. This is an open access article under the CC BY license ( http://creativecommons.org/licenses/by/4.0/).
@@ -3587,26 +3232,7 @@ thus establishing the merit of proposed algorithm over the state of the
 art.This paper is systematized into several sections as follows: Section 2
 presents the prior work that has been done in this field. Section 3 introduces
 the proposed method. Section 4 discusses the experimental
-results and findings. Finally, Section 5 provides the concludes the paper","The introduction of the article **""A Novel Ultra-Low Power Post-Quantum Approach Using Artificial Intelligence Based Key Generation for Cyber Physical System in Internet of Things""** focuses on the intersection of security, the Internet of Things (IoT), and the emerging threat of quantum computing.
-
-Here is a concise description of the key points covered in the introduction:
-
-### 1. The Vulnerability of IoT and CPS
-The authors begin by highlighting the rapid expansion of Cyber-Physical Systems (CPS) and IoT devices in critical infrastructure (such as healthcare and smart grids). They note that these devices are often resource-constrained (low power, low memory) yet handle sensitive data, making them prime targets for cyberattacks.
-
-### 2. The Quantum Threat
-A major focus is placed on the ""Quantum Apocalypse""—the reality that traditional cryptographic algorithms (like RSA and ECC) will be easily broken by powerful quantum computers using Shor’s algorithm. The introduction emphasizes that current security protocols are insufficient for a post-quantum world.
-
-### 3. Limitations of Existing Post-Quantum Cryptography (PQC)
-The introduction discusses existing PQC candidates (such as lattice-based or code-based cryptography). It argues that while these are secure, they are often computationally expensive and consume too much power for tiny, battery-operated IoT sensors. This creates a ""security-performance gap.""
-
-### 4. The Role of Artificial Intelligence (AI)
-The authors introduce the concept of using AI—specifically Neural Cryptography—as a solution. They suggest that synchronized Neural Networks (like Tree Parity Machines) can generate secure keys through mutual learning. This method is highlighted for its potential to be lightweight and resistant to quantum attacks.
-
-### 5. Problem Statement and Objectives
-The introduction concludes by defining the paper's goal: to propose a novel, ultra-low-power key generation mechanism. This approach aims to provide **Post-Quantum Security** without compromising the **energy efficiency** required by IoT-based Cyber-Physical Systems.
-
-**In summary:** The introduction sets the stage by arguing that as we move toward a quantum era, we need a new class of ""intelligence-based"" security that is both mathematically robust against quantum computers and physically efficient enough for low-power IoT hardware.",,,,,,
+results and findings. Finally, Section 5 provides the concludes the paper",,,
 What are the contributions presented in the scientific article Blockchain-Based Identity Authentication and Data Interaction Scheme for Industrial Internet of Things?,"chine Learning
 CPU Central Processing Unit MT Mobile Terminal
 CSO Chicken Swarm Optimization mURLLC Massive Ultra-Reliable and Low-Latency Communications
@@ -3756,30 +3382,7 @@ Benchmarking 28 (5) (2021) 1740–1760.
 (1) We propose IADI, a scheme for identity authentication and asynchronous data interaction in the IIoT. Our scheme includesdesigning the identity smart contract, the identity authentication smart contract, and the data interaction smart contract. Thesesmart contracts are designed according to different stages of industrial data generation to achieve decentralization, distribution,and traceability. Each participant must be verified through the smart contract to continue sharing their private data to realize thecharacteristics of decentralization, distribution, and traceability.
 (2) Our identity authentication scheme is based on the Schnorr non-interactive zero-knowledge proof. It involves designingtwo private keys that collectively form the SIC. One private key is used to generate the participant’s identity on the blockchain,and the other generates the secret number for the participant’s identity authentication. This scheme realizes distributed identityauthentication and better protects the participants’ authentication privacy.
 (3) Our asynchronous data interaction scheme is based on the DH key agreement algorithm. The on-chain identity is used for thesession key agreement between the two participants to achieve asynchronous data interaction based on the identity authenticationscheme. The participants negotiated the key, generated the session key, and realized the encrypted data interaction based on thesymmetric key through the identity information disclosed in the blockchain.
-(4) Performance tests and security analysis indicate that our scheme offers better security while enhancing performance comparedto alternative algorithms. We achieve shorter identity authentication times, making it more suitable for practical applications in theIIoT.","Based on the research paper **""Blockchain-Based Identity Authentication and Data Interaction Scheme for Industrial Internet of Things""** (published by authors such as J. Liu, X. Niu, et al.), the primary contributions can be summarized into four key areas:
-
-### 1. Hybrid Blockchain Architecture
-The article proposes a dual-layer blockchain structure to balance privacy and efficiency in industrial settings:
-*   **Private Blockchain:** Used within specific industrial enterprises to handle internal data and local device management.
-*   **Consortium Blockchain:** Used for cross-enterprise interactions, ensuring that sensitive internal data remains private while allowing verifiable data exchange between different entities.
-
-### 2. Improved Identity Authentication Mechanism
-The authors introduce a decentralized authentication scheme that eliminates the ""single point of failure"" common in traditional centralized Certificate Authorities (CA). 
-*   It uses **identity-based encryption** and blockchain to store identity fingerprints.
-*   This allows IIoT devices to perform mutual authentication without relying on a constantly online central server, reducing latency and increasing system resilience.
-
-### 3. Secure and Traceable Data Interaction
-The scheme defines a rigorous process for data sharing between IIoT nodes:
-*   **Smart Contracts:** Automated scripts are used to enforce access control policies and execute data transactions.
-*   **Traceability:** Every data interaction is recorded on the distributed ledger, providing an immutable audit trail that helps in tracking the source of data or identifying malicious actors in the event of a breach.
-
-### 4. Optimization for Resource-Constrained Devices
-Recognizing that IIoT devices (sensors, actuators) often have limited processing power, the paper contributes:
-*   **Lightweight Cryptographic Algorithms:** The use of efficient protocols to minimize the computational overhead on edge devices.
-*   **Edge Computing Integration:** Offloading heavy verification tasks from the IIoT devices to edge nodes, ensuring the blockchain overhead does not deplete device battery or exceed processing limits.
-
-### Summary of Benefits
-The overall contribution is a framework that addresses the ""security bottlenecks"" of the Industrial Internet of Things by providing **decentralization, high security (resistance to Man-in-the-Middle and Replay attacks), and cross-domain interoperability.**",,,,,,
+(4) Performance tests and security analysis indicate that our scheme offers better security while enhancing performance comparedto alternative algorithms. We achieve shorter identity authentication times, making it more suitable for practical applications in theIIoT.",,,
 What is the conclusion of the scientific article Blockchain-Based Lightweight Authentication Scheme for Internet of Things Using Lattice Encryption Algorithm?,"iting – review & editing, Supervision, Funding acqui-
 sition. Xiaolong Liu: Writing – review & editing, Supervision, Investi-
 gation, Funding acquisition.
@@ -3916,19 +3519,7 @@ will focus on exploring advanced consensus mechanisms for further
 reducing computational overhead, investigating cross-chain authentication
 protocols for heterogeneous IoT environments, and developing
 adaptive security parameters to optimize the balance between security
-and performance.","The conclusion of the scientific article **""Blockchain-Based Lightweight Authentication Scheme for Internet of Things (IoT) Using Lattice Encryption Algorithm""** (typically associated with researchers focusing on post-quantum security for IoT) can be summarized into three key points:
-
-### 1. Security Against Quantum Attacks
-The primary conclusion is that the proposed scheme successfully addresses the vulnerability of traditional IoT authentication (which relies on RSA or Elliptic Curve Cryptography) to quantum computing. By using **Lattice-based cryptography** (specifically the Learning With Errors or Ring-LWE problems), the authors conclude that the system provides robust security in a post-quantum era.
-
-### 2. Efficiency for Resource-Constrained Devices
-The authors demonstrate that the scheme is **""lightweight.""** They conclude that the mathematical operations involved in lattice encryption (mostly simple matrix additions and multiplications) are more computationally efficient and require less energy than traditional modular exponentiation. This makes it highly suitable for IoT devices with limited battery life and processing power.
-
-### 3. Decentralization and Trust
-By integrating **Blockchain technology**, the study concludes that the scheme removes the ""single point of failure"" common in centralized authentication systems. The blockchain acts as a decentralized ledger for identity management, ensuring transparency, traceability, and resistance to Man-in-the-Middle (MitM) and Replay attacks.
-
-### Final Summary
-The researchers conclude that the combination of **Lattice Cryptography** and **Blockchain** provides a superior balance of **high-level security (quantum resistance)** and **low computational overhead**, making it a viable framework for securing large-scale, modern IoT networks.",,,,,,
+and performance.",,,
 What are the highlights of the scientific article Distributed Ledgers and Security Mechanisms on Radio Access Networks: A Systematic Review?,"Journal Pre-proof
 Distributed Ledgers and Security Mechanisms on Radio Access Networks: A Systematic Review
 Daniel Hindemburg de Miranda Marques and Dalton Cézane Gomes Valadares
@@ -4063,38 +3654,7 @@ map emphasizes the importance of security mec","The evolution of mobile communic
 • The increasing number of connected devices, especially IoT ones, is a security attention point in mobile networks.
 • Various security mechanisms, including Distributed ledger technologies (DLT), may enhance RAN security once these technologies can increase system
 resilience.
-• Other security approaches may also address RAN security issues.","The scientific article **""Distributed Ledgers and Security Mechanisms on Radio Access Networks: A Systematic Review""** (published in *IEEE Access*) provides a comprehensive analysis of how Blockchain and Distributed Ledger Technologies (DLT) can secure Next-Generation Radio Access Networks (RAN), such as 5G and 6G.
-
-Here are the key highlights of the study:
-
-### 1. Focus on Decentralization
-The review emphasizes that traditional centralized security models are insufficient for the dense and heterogeneous nature of modern RANs. It highlights DLT as a solution for providing **decentralized authentication, authorization, and accounting (AAA)** without a single point of failure.
-
-### 2. Taxonomy of Security Mechanisms
-The authors categorize the integration of DLT into RANs into several key domains:
-*   **Spectrum Management:** Using smart contracts to automate dynamic spectrum sharing and prevent unauthorized access.
-*   **Resource Orchestration:** Securely managing network slicing and edge computing resources.
-*   **Identity Management:** Implementing Decentralized Identifiers (DIDs) for User Equipment (UE) and IoT devices to ensure privacy and prevent spoofing.
-*   **Data Integrity:** Ensuring that the massive amounts of data generated at the network edge are tamper-proof.
-
-### 3. Key Benefits Identified
-*   **Trust in Multi-tenancy:** DLT enables trust between different mobile operators sharing the same physical infrastructure (infrastructure sharing).
-*   **Automation via Smart Contracts:** Reducing latency and manual overhead in service-level agreement (SLA) enforcement.
-*   **Enhanced Privacy:** Leveraging zero-knowledge proofs and cryptographic hashing to protect user metadata.
-
-### 4. Critical Challenges (The ""Trilemma"")
-The article identifies significant hurdles that remain for practical deployment:
-*   **Scalability:** The high latency of some consensus algorithms (like Proof of Work) is incompatible with the ultra-low latency requirements of 5G/6G.
-*   **Storage Overhead:** RAN nodes (like small cells) often have limited storage, making it difficult to maintain a full ledger.
-*   **Energy Consumption:** The computational cost of maintaining a blockchain can negate the energy-efficiency goals of modern networks.
-
-### 5. Future Research Directions
-The review concludes by suggesting that future research should focus on:
-*   **Lightweight Consensus Protocols:** Developing algorithms specifically for resource-constrained edge devices.
-*   **Cross-chain Interoperability:** Allowing different network providers using different blockchains to communicate.
-*   **AI-DLT Integration:** Using Machine Learning to optimize the performance of the distributed ledger within the RAN.
-
-**Summary:** The article serves as a roadmap for researchers, arguing that while DLT offers a robust framework for securing the future of wireless communication, significant engineering work is needed to align blockchain performance with the real-time demands of Radio Access Networks.",,,,,,
+• Other security approaches may also address RAN security issues.",,,
 Explain the cross-domain data sharing scheme presented in the scientific article Efficient and Secure Cross-Domain Data Sharing Scheme with Traceability for Industrial Internet!,"W. Luo et al.
 However, data silos among multiple manufacturers are a major
 challenge that conventional industrial data sharing methods find dif-
@@ -4308,42 +3868,7 @@ However, the industrial Internet system encompasses a vast array of
 resource-limited mobile devices. Therefore, existing cross-domain data
 sharing schemes need to be improved in performance and functionality.
 (3) Although cross-domain sharing schemes based on blockchain
-provide tamper proof and","The scientific article **""Efficient and Secure Cross-Domain Data Sharing Scheme with Traceability for Industrial Internet""** proposes a framework designed to solve the challenges of data silos, security risks, and lack of accountability when sharing sensitive information across different industrial network domains.
-
-The scheme is built upon three core pillars: **Blockchain, Attribute-Based Encryption (ABE), and Traceability.**
-
-### 1. Architectural Components
-The scheme involves several key entities:
-*   **Data Owner (DO):** Encrypts data and defines access policies.
-*   **Data User (DU):** Requests and decrypts data if they possess the correct attributes.
-*   **Attribute Authority (AA):** Manages identity and issues attribute keys within a specific domain.
-*   **Blockchain:** Acts as a decentralized, tamper-proof ledger that stores metadata, access logs, and ""identity fingerprints"" to ensure transparency.
-
-### 2. Key Technical Mechanisms
-
-#### A. Ciphertext-Policy Attribute-Based Encryption (CP-ABE)
-Instead of encrypting data for a specific person, the Data Owner encrypts it based on a **policy** (e.g., ""Department=Engineering AND Position=Manager""). Only users whose attributes satisfy this logic can decrypt the data. The paper optimizes this to be ""efficient,"" reducing the computational overhead typically associated with ABE in resource-constrained industrial devices.
-
-#### B. Blockchain-Enabled Cross-Domain Authentication
-To allow a user in ""Domain A"" to access data in ""Domain B,"" the scheme uses blockchain to verify the user’s identity without needing a centralized third party. The blockchain stores the public parameters of different domains, allowing for seamless cross-domain trust.
-
-#### C. Traceability and Accountability
-One of the unique features of this scheme is its ability to combat **key abuse**. 
-*   **Malicious User Detection:** If a user leaks their secret key to an unauthorized party, the system can mathematically trace the leaked key back to the specific user's identity.
-*   **Audit Trails:** Every access request and data exchange is recorded on the blockchain, providing an immutable audit log for forensic analysis.
-
-### 3. Workflow of the Scheme
-1.  **System Initialization:** Domains register on the blockchain and set up cryptographic parameters.
-2.  **Encryption:** The Data Owner encrypts the data locally, uploads the ciphertext to cloud storage, and sends the ""metadata"" (and a link) to the blockchain.
-3.  **Access Request:** A Data User from another domain requests access. Their attributes are verified against the blockchain's records.
-4.  **Decryption:** If authorized, the user retrieves the ciphertext and decrypts it using their attribute-based private key.
-5.  **Traceability (If needed):** If a security breach occurs, the authority uses a ""tracing algorithm"" to identify which user's key was used for the unauthorized access.
-
-### 4. Summary of Benefits
-*   **Security:** Data remains encrypted even if the storage provider is compromised.
-*   **Efficiency:** Optimized for Industrial Internet of Things (IIoT) devices with limited processing power.
-*   **Decentralization:** No single point of failure; trust is distributed across the blockchain.
-*   **Accountability:** Prevents users from sharing their keys anonymously, as they can be traced and held responsible.",,,,,,
+provide tamper proof and",,,
 "Identify and provide a detailed explanation of the research questions addressed in the scientific article Quantum Blockchain for Internet of Things: A Systematic Review, Proposed Solutions and Challenges.","Contents lists available at ScienceDirect
 Computers and Electrical Engineering
 journal homepage: www.elsevier.com/locate/compeleceng  
@@ -4492,30 +4017,7 @@ RQ2: Why should blockchain be utilized to implement privacy in IoT?Motivations: 
 3.
 What impact does Quantum technology exert on the current security facets of Blockchain concerning IoT?Motivations: To identify the recent Quantum impact on the security of Blockchain-enabled IoT.
 4.
-What Quantum-related guidelines can be adhered to ensure the effective utilization of Quantum blockchain in the process of IoT authentication?Motivations: To pinpoint Quantum-resistant strategies applicable for safeguarding IoT and addressing the susceptibilities of Blockchain.","In the scientific article **""Quantum Blockchain for Internet of Things: A Systematic Review, Proposed Solutions and Challenges,""** the researchers aim to bridge the gap between quantum computing, blockchain technology, and the Internet of Things (IoT).
-
-The research is structured around four primary research questions (RQs). Below is a detailed explanation of each:
-
-### RQ1: What are the current security vulnerabilities of classical IoT-Blockchain integration in the era of quantum computing?
-This question addresses the ""Quantum Threat."" The researchers investigate how Shor’s and Grover’s algorithms can compromise the cryptographic foundations of existing IoT blockchains. 
-*   **Focus:** It identifies that current public-key infrastructure (ECC and RSA) used in IoT devices is vulnerable to quantum attacks, potentially allowing malicious actors to forge digital signatures or hijack IoT nodes.
-
-### RQ2: What are the existing state-of-the-art solutions and frameworks for Quantum Blockchain?
-The authors conduct a systematic review of existing literature to identify how ""Quantum Blockchain"" is currently defined and implemented.
-*   **Focus:** This involves categorizing technologies such as Quantum Key Distribution (QKD), Quantum Digital Signatures (QDS), and post-quantum cryptography (PQC). The goal is to see which of these can be practically integrated into a decentralized ledger.
-
-### RQ3: How can a Quantum Blockchain architecture be optimized specifically for resource-constrained IoT environments?
-Standard quantum protocols are resource-heavy, while IoT devices are characterized by low power, limited memory, and low computational capacity.
-*   **Focus:** This research question seeks to identify ""lightweight"" quantum-resistant solutions. It explores how to implement quantum security without overwhelming the hardware limitations of sensors and smart devices, often proposing a layered architecture where heavy quantum lifting is done by specialized nodes.
-
-### RQ4: What are the open challenges and future directions for the practical deployment of Quantum IoT-Blockchain?
-The final research question looks toward the future, identifying the gap between theoretical models and real-world application.
-*   **Focus:** The researchers identify hurdles such as the decoherence of quantum states, the high cost of quantum hardware, the lack of standardized protocols, and the ""scalability trilemma"" (balancing security, decentralization, and scalability) within a quantum context.
-
----
-
-### Summary of the Research Objectives
-By addressing these four questions, the article provides a roadmap for transitioning from **Classical IoT-Blockchain** (which is efficient but insecure against quantum computers) to **Quantum-Secure IoT-Blockchain** (which is secure but currently difficult to implement at scale).",,,,,,
+What Quantum-related guidelines can be adhered to ensure the effective utilization of Quantum blockchain in the process of IoT authentication?Motivations: To pinpoint Quantum-resistant strategies applicable for safeguarding IoT and addressing the susceptibilities of Blockchain.",,,
 Describe the performance evaluation presented in the scientific article Smart-Contract-Based Blockchain-Enabled Decentralized Scheme for Improving Smart-Grid Security.,"S. Solera-Cotanilla et al.
 Declaration of competing interest
 The authors declare that they have no known competing financial interests or personal relationships that could have appeared 
@@ -4630,34 +4132,7 @@ work if there is a lot of traffic. Businesses have a great chance to grow becaus
 © 2025 The Authors. Published by Elsevier B.V .
 This is an open access article under the CC BY-NC-ND license (https://creativecommons.org/licenses/by-nc-nd/4.0)
 Peer-review under responsibility of the scientific committee of the Sixth International Conference on Futuristic Trends in Networks and 
-Computing Technologies (FTNCT06)","Blockchain technology is used in SG systems to improve the security, transparency, and efficiency of energy management. Its performance is evaluated using three key cost metrics: computation cost, communication cost, and smart-contract execution cost. Computation cost measures the resources required for energy transactions, while communication cost assesses data exchange among grid nodes. Smart-contract execution cost is critical, encompassing both one-time deployment costs and ongoing costs for regular interactions.","The performance evaluation in the article **""Smart-Contract-Based Blockchain-Enabled Decentralized Scheme for Improving Smart-Grid Security""** focuses on validating the efficiency, security, and scalability of the proposed framework.
-
-The evaluation is generally categorized into three main areas:
-
-### 1. Security Analysis
-The authors evaluate the scheme’s resilience against common cyber-attacks prevalent in smart grids. The evaluation demonstrates that the decentralized nature of the blockchain and the use of smart contracts effectively mitigate:
-*   **False Data Injection (FDI) Attacks:** By ensuring data integrity through cryptographic hashing.
-*   **Distributed Denial of Service (DDoS) Attacks:** By removing single points of failure found in centralized systems.
-*   **Man-in-the-Middle (MitM) Attacks:** Through secure, automated authentication protocols.
-
-### 2. Computational Efficiency (Gas Consumption)
-Since the scheme is based on smart contracts (typically implemented on Ethereum-like platforms), a significant portion of the evaluation focuses on **Gas consumption**.
-*   The study measures the cost of executing various functions, such as user registration, data logging, and transaction verification.
-*   The results usually show that while there is an overhead for blockchain operations, the costs remain within a feasible range for industrial smart-grid applications.
-
-### 3. Latency and Throughput
-The performance is measured in terms of how quickly the system processes transactions and smart grid commands:
-*   **Transaction Latency:** The time taken from the initiation of a request (e.g., a power trade or a status update) to its confirmation on the ledger.
-*   **Throughput:** The number of transactions the system can handle per second (TPS).
-*   The evaluation highlights that the scheme maintains low latency even as the number of nodes (smart meters/utility providers) increases, proving its **scalability**.
-
-### 4. Comparison with Existing Schemes
-The evaluation often includes a comparative study against traditional centralized systems and other existing blockchain-based models. The proposed scheme typically outperforms others by:
-*   Reducing the communication overhead.
-*   Providing a higher level of decentralization without significantly sacrificing processing speed.
-
-### Summary of Results
-The article concludes that the proposed scheme provides a **robust security layer** for smart grids with **acceptable computational costs**. It successfully balances the trade-off between the high-security requirements of critical infrastructure and the real-time operational needs of power distribution networks.",,,,,,
+Computing Technologies (FTNCT06)","Blockchain technology is used in SG systems to improve the security, transparency, and efficiency of energy management. Its performance is evaluated using three key cost metrics: computation cost, communication cost, and smart-contract execution cost. Computation cost measures the resources required for energy transactions, while communication cost assesses data exchange among grid nodes. Smart-contract execution cost is critical, encompassing both one-time deployment costs and ongoing costs for regular interactions.",,,
 What is the conclusion of the scientific article Toward Zero Trust in 5G Industrial Internet Collaboration System?,"ScienceDirect
 Available online at www.sciencedirect.com
 Procedia Computer Science 259 (2025) 1270–1281
@@ -4811,17 +4286,7 @@ systems requires to employ multiple security techniques, multi-modal
 authentication, quantitative trust assessment, and fine-grained and dynamic
 access control techniques. These researches are essential to ensure
 the security of the systems and to mitigate the potential risks of
-multiple and increasingly sophisticated attacks.","The conclusion of the scientific article **""Toward Zero Trust in 5G Industrial Internet Collaboration System""** focuses on addressing the security vulnerabilities inherent in traditional perimeter-based security models when applied to 5G-enabled industrial environments.
-
-Here are the key takeaways from the conclusion:
-
-1.  **Shift in Security Paradigm:** The authors conclude that traditional ""trust-but-verify"" models are insufficient for 5G industrial networks. They advocate for a **Zero Trust Architecture (ZTA)**, which operates on the principle of ""never trust, always verify,"" regardless of whether a device is inside or outside the network perimeter.
-2.  **Proposed Framework:** The article proposes a specific Zero Trust framework tailored for 5G industrial collaboration. This framework emphasizes **identity-centric security**, where access decisions are based on the dynamic evaluation of user identity, device health, and environmental context.
-3.  **Dynamic Access Control:** A major conclusion is the necessity of **continuous authentication and authorization**. Instead of a one-time login, the system must constantly reassess the risk level of every connection request in real-time to prevent lateral movement by attackers.
-4.  **Integration of Technologies:** The study concludes that the successful implementation of Zero Trust in 5G requires the integration of advanced technologies, such as **Software-Defined Networking (SDN)**, **Network Function Virtualization (NFV)**, and **Artificial Intelligence (AI)** for anomaly detection and automated policy enforcement.
-5.  **Future Outlook:** The authors highlight that while Zero Trust significantly enhances security, it also introduces complexity in management and potential latency issues. They conclude that future research must focus on optimizing the performance of Zero Trust protocols to ensure they do not hinder the high-speed, low-latency requirements of 5G industrial applications.
-
-In summary, the article concludes that **Zero Trust is a vital evolution for 5G industrial security**, providing a robust defense-in-depth strategy that protects sensitive industrial data and control systems against sophisticated cyber threats.",,,,,,
+multiple and increasingly sophisticated attacks.",,,
 Explain the application layer as discussed in the scientific article Privacy and Security of Wearable Internet of Things: A Scoping Review and Conceptual Framework Development for Safety and Health Management in Construction.,"processing raw data collected in the perception layer to generate
 meaningful information used in the application layer to make real-time
 decisions to improve safety monitoring. This layer consists of hardware,
@@ -4964,17 +4429,7 @@ instantly relayed to safety officers, who can respond swiftly in the event
 of an emergency or if a worker’s health is compromised. Such proactive
 measures can save lives and prevent accidents. In some cases, this in_x0002_formation contains personal information that can be used to identify
 individuals, thereby presenting the need to provide security measures to
-protect such information.","In the article ""Privacy and Security of Wearable Internet of Things: A Scoping Review and Conceptual Framework Development for Safety and Health Management in Construction,"" the **Application Layer** is the topmost level of the proposed framework.
-
-Its primary functions and characteristics include:
-
-*   **Human-Computer Interaction:** It serves as the interface between the IoT system and the end-users (e.g., construction workers, site managers, and safety officers).
-*   **Data Presentation:** It translates processed data into actionable insights, such as real-time safety alerts, health monitoring dashboards, and site risk visualizations.
-*   **Specific Use Cases:** In a construction context, this layer supports applications like proximity warnings (to avoid collisions), fall detection, heat stress monitoring, and labor productivity tracking.
-*   **Privacy and Security Role:** This layer is critical for access control. It manages user authentication and determines who has the authority to view sensitive personal health or location data.
-*   **Interoperability:** It is responsible for integrating various software services and ensuring that data from different wearable devices can be used effectively for safety management decisions.
-
-In summary, the Application Layer is where the value of the collected data is realized through **decision-making support** and **safety management services**.",,,,,,
+protect such information.",,,
 Describe the discussion provided in the article Security and Privacy in Edge Computing: A Survey of Electric Vehicles!,"Journal of Network and Computer Applications 237 (2025) 104130
 8
 N. Anjum et al.
@@ -5131,43 +4586,7 @@ presents a review of existing approaches developed in the domains of
 offloading, the IoV, and smart grids. The challenges identified in this
 paper point to a need for continuous efforts in developing secure and
 privacy-preserving solutions in the future.
-","The article **""Security and Privacy in Edge Computing: A Survey of Electric Vehicles""** (typically associated with researchers like B. J. Sahani et al. or similar surveys in the IEEE/ACM domain) provides a comprehensive analysis of the intersection between Edge Computing (EC) and Electric Vehicle (EV) ecosystems.
-
-The discussion in the article is centered around four primary pillars:
-
-### 1. The Architecture of Edge-Enabled EV Networks
-The article discusses how integrating Edge Computing into EV networks (often called **Vehicular Edge Computing or VEC**) moves computational resources closer to the vehicles. This reduces latency for critical applications such as:
-*   Autonomous driving decisions.
-*   Real-time charging station navigation.
-*   Vehicle-to-Grid (V2G) energy trading.
-
-### 2. Security Vulnerabilities and Threats
-A major portion of the discussion focuses on the expanded ""attack surface"" created by edge nodes. Key threats identified include:
-*   **Denial of Service (DoS):** Flooding edge nodes to disrupt V2G communication or charging services.
-*   **Man-in-the-Middle (MitM) Attacks:** Intercepting data between the EV and the Edge server to manipulate charging commands or billing info.
-*   **Sybil Attacks:** Forging multiple identities to influence traffic management or energy distribution algorithms.
-*   **Physical Security:** Unlike centralized clouds, edge nodes are often in accessible locations (e.g., roadside units), making them vulnerable to physical tampering.
-
-### 3. Privacy Concerns
-The article highlights that while EC improves speed, it poses significant risks to user privacy:
-*   **Location Privacy:** Continuous communication with edge nodes can reveal a user's precise movements and habits.
-*   **Data Privacy:** Sensitive information regarding battery status, payment details, and driving patterns is processed at the edge, requiring robust encryption.
-*   **Identity Privacy:** The need to mask the real identity of the EV owner during V2G transactions or when accessing edge services.
-
-### 4. Proposed Solutions and Defense Mechanisms
-The discussion reviews several state-of-the-art technologies aimed at securing these networks:
-*   **Blockchain:** Used for decentralized and transparent authentication and secure energy trading without a central authority.
-*   **Federated Learning:** Allowing EVs to train machine learning models locally and share only updates with the edge, keeping raw data private.
-*   **Authentication Protocols:** Lightweight cryptographic schemes (like ECC - Elliptic Curve Cryptography) designed for the limited processing power of EVs.
-*   **Software-Defined Networking (SDN):** To dynamically manage and isolate threats within the network.
-
-### 5. Future Research Directions
-The article concludes by identifying gaps in current research, such as the need for:
-*   **Standardization** of security protocols across different EV manufacturers and power grid providers.
-*   **Energy-efficient security:** Ensuring that complex encryption does not drain the EV’s battery.
-*   **Cross-layer security:** Protecting the system across the physical, network, and application layers simultaneously.
-
-**Summary:** The core argument of the article is that while Edge Computing is essential for the scalability of Electric Vehicles, it introduces unique security and privacy risks that traditional cloud-based security cannot fully address, necessitating decentralized and lightweight protection mechanisms.",,,,,,
+",,,
 Explain the concept of abused domain categorization as discussed in the scientific article Web of Shadows: Investigating Malware Abuse of Internet Services,"Contents lists available at ScienceDirect
 Computers & Security
 journal homepage: www.elsevier.com/locate/cose
@@ -5337,25 +4756,4 @@ the top 10 categories by total number of domains in the category. The
 table captures the diverse range of popularity of abused domains, e.g., 6
 domains in the Tranco top 1K and 7 domains with a rank larger than
 500,000.
-","In the article *Web of Shadows: Investigating Malware Abuse of Internet Services*, ""abused domain categorization"" refers to the phenomenon where malware operators exploit the established reputations of legitimate web services to facilitate malicious activities.
-
-The concept breaks down into several key components:
-
-### 1. Exploitation of Trust
-Malware authors do not always host their infrastructure on known ""bad"" domains. Instead, they leverage **reputable, high-traffic domains** (such as cloud storage, social media, or blogging platforms). Because these domains are categorized as ""Safe"" or ""Productive"" by web filters and security software, the malicious traffic remains undetected.
-
-### 2. Categorization Bypass
-Security systems often use **URL filtering** based on categories (e.g., ""Social Media,"" ""Education,"" ""Business"").
-*   **The Tactic:** If malware communicates with `docs.google.com` or `dropbox.com` to download a configuration file or exfiltrate data, the security appliance sees a ""Productive"" category and allows the connection.
-*   **The Result:** The categorization intended to protect the network actually provides a ""shadow"" for the malware to hide within.
-
-### 3. Functional Abuse
-The article highlights how malware uses these categorized domains for specific infrastructure roles:
-*   **C&C (Command and Control):** Using social media posts or comments to send commands to infected bots.
-*   **Drop Zones:** Using legitimate cloud storage to host second-stage payloads.
-*   **Data Exfiltration:** Sending stolen data to personal accounts on legitimate file-sharing sites.
-
-### 4. The Challenge for Defenders
-The core issue discussed is that **coarse-grained categorization** is insufficient. Blocking an ""abused"" domain like GitHub or Twitter would cause massive business disruption (false positives). Therefore, the malware benefits from a ""shield of legitimacy"" provided by the domain's positive categorization, making it difficult for automated systems to distinguish between a user uploading a photo and malware exfiltrating a password database.
-
-In summary, **abused domain categorization** is the strategic use of benignly categorized web services by malware to bypass reputation-based security filters and blend in with normal user traffic.",,,,,,
+",,,
