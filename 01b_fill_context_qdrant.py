@@ -82,6 +82,61 @@ def keyword_overlap_score(query: str, text: str) -> int:
     return len(q & t)
 
 
+def extract_title_hint(query: str) -> str:
+    patterns = [
+        r"(?:article|document)\s+(.+?)(?:[!?]|$)",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, query, flags=re.IGNORECASE)
+        if match:
+            return match.group(1).strip(" \"'*!?.")
+    return ""
+
+
+def title_match_score(query: str, text: str) -> int:
+    title = extract_title_hint(query)
+    if not title:
+        return 0
+
+    normalized_text = re.sub(r"\s+", " ", text.lower())
+    normalized_title = re.sub(r"\s+", " ", title.lower())
+    if normalized_title in normalized_text:
+        return 10_000
+
+    title_tokens = set(tokenize(title))
+    text_tokens = set(tokenize(text))
+    overlap = len(title_tokens & text_tokens)
+    if not title_tokens:
+        return 0
+
+    coverage = overlap / len(title_tokens)
+    return int(coverage * 1000) + overlap
+
+
+def file_name_match_score(query: str, file_name: str) -> int:
+    title = extract_title_hint(query)
+    if not title or not file_name:
+        return 0
+
+    title_tokens = set(tokenize(title))
+    file_tokens = set(tokenize(file_name))
+    overlap = len(title_tokens & file_tokens)
+    if not title_tokens:
+        return 0
+
+    coverage = overlap / len(title_tokens)
+    return int(coverage * 10000) + overlap
+
+
+def candidate_score(query: str, text: str, file_name: str = "") -> tuple[int, int]:
+    combined = f"{file_name} {text}".strip()
+    return (
+        file_name_match_score(query, file_name),
+        title_match_score(query, combined),
+        keyword_overlap_score(query, combined),
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Fill empty Context column via Qdrant top-k retrieval.")
     parser.add_argument("--input", default="data_awal.xlsx", help="Input Excel/CSV file path")
@@ -93,7 +148,7 @@ def main() -> None:
     args = parser.parse_args()
 
     qdrant_url = os.getenv("QDRANT_URL")
-    qdrant_collection = os.getenv("QDRANT_COLLECTION", "Skripsi-RAG")
+    qdrant_collection = os.getenv("QDRANT_COLLECTION", "my_documents")
     qdrant_api_key = os.getenv("QDRANT_API_KEY")
     ollama_base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
     embedding_model = os.getenv("EMBEDDING_MODEL", "nomic-embed-text:latest")
@@ -108,12 +163,18 @@ def main() -> None:
     else:
         df = pd.read_excel(args.input, skiprows=1)
 
-    question_col = "Question" if "Question" in df.columns else ("Pertanyaan" if "Pertanyaan" in df.columns else None)
+    question_col = None
+    for candidate in ("Question", "Pertanyaan", "question"):
+        if candidate in df.columns:
+            question_col = candidate
+            break
     if not question_col:
         raise ValueError("No Question/Pertanyaan column found in input.")
 
-    if "Context" not in df.columns:
-        df["Context"] = None
+    context_col = "Context" if "Context" in df.columns else ("context" if "context" in df.columns else "Context")
+    if context_col not in df.columns:
+        df[context_col] = None
+    df[context_col] = df[context_col].astype(object)
 
     if args.test_query:
         question = args.test_query
@@ -125,16 +186,16 @@ def main() -> None:
             text = extract_text_from_payload(payload, text_keys).strip()
             if len(text) < args.min_chars:
                 continue
-            contexts.append(text)
-        contexts.sort(key=lambda t: keyword_overlap_score(question, t), reverse=True)
-        for i, ctx in enumerate(contexts[: args.topk], start=1):
+            contexts.append((text, str(payload.get("file_name", ""))))
+        contexts.sort(key=lambda item: candidate_score(question, item[0], item[1]), reverse=True)
+        for i, (ctx, _) in enumerate(contexts[: args.topk], start=1):
             print(f"\n-- {i}")
             print(ctx[:500])
         return
 
     filled = 0
     for idx, row in tqdm(df.iterrows(), total=len(df), desc="Retrieving contexts"):
-        if not is_empty(row.get("Context")):
+        if not is_empty(row.get(context_col)):
             continue
         question = row.get(question_col, "")
         if is_empty(question):
@@ -149,11 +210,11 @@ def main() -> None:
             text = extract_text_from_payload(payload, text_keys).strip()
             if len(text) < args.min_chars:
                 continue
-            contexts.append(text)
+            contexts.append((text, str(payload.get("file_name", ""))))
 
-        contexts.sort(key=lambda t: keyword_overlap_score(str(question), t), reverse=True)
+        contexts.sort(key=lambda item: candidate_score(str(question), item[0], item[1]), reverse=True)
 
-        df.at[idx, "Context"] = "\n\n---\n\n".join(contexts[: args.topk])
+        df.at[idx, context_col] = "\n\n---\n\n".join(text for text, _ in contexts[: args.topk])
         filled += 1
 
     if args.output.lower().endswith(".csv"):

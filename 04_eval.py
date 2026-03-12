@@ -1,10 +1,13 @@
+import argparse
+import asyncio
+import json
+import os
+import re
+
 import pandas as pd
 from dotenv import load_dotenv
-import os
-import asyncio
-import re
-import json
 from openai import AsyncOpenAI
+from ragas import SingleTurnSample
 from ragas.llms import llm_factory
 from ragas.embeddings import OpenAIEmbeddings
 from ragas.metrics import ContextPrecision, ContextRecall, ContextEntityRecall, Faithfulness, NoiseSensitivity, AnswerRelevancy
@@ -31,17 +34,64 @@ embeddings = OpenAIEmbeddings(
     client=embeddings_client
 )
 
+
+class RagasEmbeddingsAdapter:
+    def __init__(self, base_embeddings):
+        self.base_embeddings = base_embeddings
+
+    def embed_query(self, text):
+        return self.base_embeddings.embed_text(text)
+
+    def embed_documents(self, texts):
+        return self.base_embeddings.embed_texts(texts)
+
 metrics = [
     ContextPrecision(llm=evaluator_llm),
     ContextRecall(llm=evaluator_llm),
     ContextEntityRecall(llm=evaluator_llm),
     Faithfulness(llm=evaluator_llm),
     NoiseSensitivity(llm=evaluator_llm),
-    AnswerRelevancy(llm=evaluator_llm, embeddings=embeddings),
+    AnswerRelevancy(llm=evaluator_llm, embeddings=RagasEmbeddingsAdapter(embeddings)),
 ]
 
-df = pd.read_csv('03_with_answers.csv')
-OUTPUT_CSV = '04_evaluated.csv'
+metric_lookup = {metric.name: metric for metric in metrics}
+
+parser = argparse.ArgumentParser(description="Evaluate generated answers with ragas metrics.")
+parser.add_argument("--input", default="03_with_answers.csv", help="Input CSV containing question, context, ground truth, and generated answer.")
+parser.add_argument("--output", default="04_evaluated.csv", help="Output CSV path.")
+parser.add_argument("--start", type=int, default=0, help="Start row index (0-based).")
+parser.add_argument("--limit", type=int, default=None, help="Maximum number of rows to evaluate.")
+parser.add_argument("--concurrency", type=int, default=1, help="Number of rows to evaluate in parallel.")
+parser.add_argument(
+    "--metrics",
+    default="all",
+    help="Comma-separated metric names to evaluate, or 'all'.",
+)
+args = parser.parse_args()
+
+source_df = pd.read_csv(args.input)
+if args.start < 0:
+    raise ValueError("--start must be >= 0")
+
+if args.limit is not None and args.limit < 1:
+    raise ValueError("--limit must be >= 1")
+if args.concurrency < 1:
+    raise ValueError("--concurrency must be >= 1")
+
+if args.metrics.strip().lower() == "all":
+    active_metrics = metrics
+else:
+    selected_metric_names = [name.strip() for name in args.metrics.split(",") if name.strip()]
+    unknown_metrics = [name for name in selected_metric_names if name not in metric_lookup]
+    if unknown_metrics:
+        raise ValueError(f"Unknown metrics: {', '.join(unknown_metrics)}")
+    active_metrics = [metric_lookup[name] for name in selected_metric_names]
+
+end_idx = None if args.limit is None else args.start + args.limit
+df = source_df.iloc[args.start:end_idx].copy()
+OUTPUT_CSV = args.output
+metric_timeout = os.getenv("EVAL_METRIC_TIMEOUT")
+METRIC_TIMEOUT_SECONDS = float(metric_timeout) if metric_timeout else None
 
 RETRY_LIMITS = [
     {"question": 400, "answer": 1600, "reference": 1600},
@@ -52,7 +102,10 @@ RETRY_LIMITS = [
     {"question": 120, "answer": 220, "reference": 220},
 ]
 
-print(f"Evaluating {len(df)} answers...")
+print(
+    f"Evaluating {len(df)} answers from row {args.start} "
+    f"with concurrency={args.concurrency} and metrics={[metric.name for metric in active_metrics]}..."
+)
 
 
 def is_auth_error(error):
@@ -105,47 +158,16 @@ async def evaluate_metric(metric, question, answer, reference, contexts, limits)
         question, answer, reference, contexts, limits
     )
 
-    if metric.name == "context_precision":
-        score = await metric.ascore(
-            user_input=clean_question,
-            response=clean_answer,
-            retrieved_contexts=clean_contexts,
-            reference=clean_reference,
-        )
-    elif metric.name == "context_recall":
-        score = await metric.ascore(
-            user_input=clean_question,
-            response=clean_answer,
-            retrieved_contexts=clean_contexts,
-            reference=clean_reference,
-        )
-    elif metric.name == "context_entity_recall":
-        score = await metric.ascore(
-            user_input=clean_question,
-            response=clean_answer,
-            retrieved_contexts=clean_contexts,
-            reference=clean_reference,
-        )
-    elif metric.name == "faithfulness":
-        score = await metric.ascore(
-            user_input=clean_question,
-            response=clean_answer,
-            retrieved_contexts=clean_contexts,
-        )
-    elif metric.name == "noise_sensitivity":
-        score = await metric.ascore(
-            user_input=clean_question,
-            response=clean_answer,
-            retrieved_contexts=clean_contexts,
-            reference=clean_reference,
-        )
-    elif metric.name == "answer_relevancy":
-        score = await metric.ascore(
-            user_input=clean_question,
-            response=clean_answer,
-        )
-    else:
-        return None
+    sample_kwargs = {
+        "user_input": clean_question,
+        "response": clean_answer,
+    }
+    if metric.name in ("context_precision", "context_recall", "context_entity_recall", "faithfulness", "noise_sensitivity"):
+        sample_kwargs["retrieved_contexts"] = clean_contexts
+    if metric.name in ("context_precision", "context_recall", "context_entity_recall", "noise_sensitivity"):
+        sample_kwargs["reference"] = clean_reference
+
+    score = await metric.single_turn_ascore(SingleTurnSample(**sample_kwargs), timeout=METRIC_TIMEOUT_SECONDS)
 
     return extract_metric_value(score)
 
@@ -191,12 +213,12 @@ def parse_contexts(value):
 
 
 async def evaluate_row(idx, question, answer, reference, contexts, existing_result):
-    results = {metric.name: existing_result.get(metric.name) for metric in metrics}
+    results = {metric.name: existing_result.get(metric.name) for metric in active_metrics}
 
     if pd.isna(answer) or str(answer).strip() == '':
         return results
 
-    for metric in metrics:
+    for metric in active_metrics:
         if results.get(metric.name) is not None:
             continue
 
@@ -234,7 +256,7 @@ def load_existing_results():
     existing_results = []
     for _, row in existing_df.iterrows():
         row_result = {}
-        for metric in metrics:
+        for metric in active_metrics:
             value = row.get(metric.name)
             if pd.isna(value):
                 row_result[metric.name] = None
@@ -249,30 +271,50 @@ def load_existing_results():
 
 def persist_results(results):
     output_df = df.copy()
-    for metric in metrics:
+    for metric in active_metrics:
         output_df[metric.name] = [row.get(metric.name) for row in results]
     output_df.to_csv(OUTPUT_CSV, index=False)
 
 
 async def evaluate_all():
     results = load_existing_results()
-    for idx, row in tqdm(df.iterrows(), total=len(df), desc="Evaluating"):
-        if all(results[idx].get(metric.name) is not None for metric in metrics):
+    pending_tasks = []
+
+    async def run_row(row_idx, row_data):
+        question = row_data["question"]
+        answer = row_data["generated_answer"]
+        reference = row_data["ground_truth_answer"]
+        contexts = parse_contexts(row_data.get("context"))
+        row_result = await evaluate_row(row_idx, question, answer, reference, contexts, results[row_idx])
+        return row_idx, row_result
+
+    for idx, row in df.iterrows():
+        if all(results[idx].get(metric.name) is not None for metric in active_metrics):
             continue
 
-        question = row['question']
-        answer = row['generated_answer']
-        reference = row['ground_truth_answer']
-        contexts = parse_contexts(row.get('context'))
+        pending_tasks.append(asyncio.create_task(run_row(idx, row)))
 
-        results[idx] = await evaluate_row(idx, question, answer, reference, contexts, results[idx])
-        persist_results(results)
+        if len(pending_tasks) >= args.concurrency:
+            done, pending_tasks = await asyncio.wait(pending_tasks, return_when=asyncio.FIRST_COMPLETED)
+            pending_tasks = list(pending_tasks)
+            for task in done:
+                idx_done, row_result = await task
+                results[idx_done] = row_result
+                persist_results(results)
+
+    while pending_tasks:
+        done, pending_tasks = await asyncio.wait(pending_tasks, return_when=asyncio.FIRST_COMPLETED)
+        pending_tasks = list(pending_tasks)
+        for task in done:
+            idx_done, row_result = await task
+            results[idx_done] = row_result
+            persist_results(results)
 
     return results
 
 results = asyncio.run(evaluate_all())
 
-for i, metric in enumerate(metrics):
+for i, metric in enumerate(active_metrics):
     df[metric.name] = [r[metric.name] for r in results]
 
 persist_results(results)
@@ -281,7 +323,7 @@ print(f"Evaluation saved to {OUTPUT_CSV}")
 print(f"\nFirst 3 rows with scores:")
 print(df[['question', 'context_precision', 'context_recall', 'context_entity_recall', 'noise_sensitivity', 'faithfulness', 'answer_relevancy']].head(3))
 print(f"\nAverage scores:")
-for metric in metrics:
+for metric in active_metrics:
     valid_scores = df[metric.name].dropna()
     if not valid_scores.empty:
         print(f"  {metric.name}: {valid_scores.mean():.4f}")
