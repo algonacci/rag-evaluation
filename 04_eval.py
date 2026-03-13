@@ -17,14 +17,26 @@ load_dotenv()
 
 evaluator_client = AsyncOpenAI(
     base_url=os.getenv('EVALUATOR_LLM_BASE_URL') or os.getenv('EVALUATOR_GENERATOR_LLM_BASE_URL'),
-    api_key=os.getenv('EVALUATOR_LLM_API_KEY')
+    api_key=os.getenv('EVALUATOR_LLM_API_KEY'),
+    timeout=float(os.getenv("EVALUATOR_LLM_REQUEST_TIMEOUT", "120")),
 )
 
 evaluator_model = os.getenv('EVALUATOR_LLM_MODEL_NAME')
 if not evaluator_model:
     raise ValueError("EVALUATOR_LLM_MODEL_NAME not found in .env file")
 
-evaluator_llm = llm_factory(evaluator_model, client=evaluator_client)
+EVALUATOR_TEMPERATURE = float(os.getenv("EVALUATOR_LLM_TEMPERATURE", os.getenv("LLM_TEMPERATURE", "0")))
+EVALUATOR_TOP_P = float(os.getenv("EVALUATOR_LLM_TOP_P", os.getenv("LLM_TOP_P", "1")))
+EVALUATOR_MAX_TOKENS = int(os.getenv("EVALUATOR_LLM_MAX_TOKENS", os.getenv("LLM_MAX_TOKENS", "512")))
+EVALUATOR_REQUEST_TIMEOUT = float(os.getenv("EVALUATOR_LLM_REQUEST_TIMEOUT", "120"))
+
+evaluator_llm = llm_factory(
+    evaluator_model,
+    client=evaluator_client,
+    temperature=EVALUATOR_TEMPERATURE,
+    top_p=EVALUATOR_TOP_P,
+    max_tokens=EVALUATOR_MAX_TOKENS,
+)
 
 embeddings_client = AsyncOpenAI(
     api_key=os.getenv('OPENAI_API_KEY')
@@ -89,7 +101,9 @@ else:
 
 end_idx = None if args.limit is None else args.start + args.limit
 df = source_df.iloc[args.start:end_idx].copy()
+target_indices = list(df.index)
 OUTPUT_CSV = args.output
+existing_output_df = None
 metric_timeout = os.getenv("EVAL_METRIC_TIMEOUT")
 METRIC_TIMEOUT_SECONDS = float(metric_timeout) if metric_timeout else None
 
@@ -104,7 +118,9 @@ RETRY_LIMITS = [
 
 print(
     f"Evaluating {len(df)} answers from row {args.start} "
-    f"with concurrency={args.concurrency} and metrics={[metric.name for metric in active_metrics]}..."
+    f"with concurrency={args.concurrency}, metrics={[metric.name for metric in active_metrics]}, "
+    f"temperature={EVALUATOR_TEMPERATURE}, top_p={EVALUATOR_TOP_P}, "
+    f"max_tokens={EVALUATOR_MAX_TOKENS}, request_timeout={EVALUATOR_REQUEST_TIMEOUT}s..."
 )
 
 
@@ -249,12 +265,16 @@ async def evaluate_row(idx, question, answer, reference, contexts, existing_resu
 
 
 def load_existing_results():
+    global existing_output_df
     if not os.path.exists(OUTPUT_CSV):
+        existing_output_df = source_df.copy()
         return [{} for _ in range(len(df))]
 
     existing_df = pd.read_csv(OUTPUT_CSV)
+    existing_output_df = existing_df.copy()
     existing_results = []
-    for _, row in existing_df.iterrows():
+    for target_idx in target_indices:
+        row = existing_df.iloc[target_idx]
         row_result = {}
         for metric in active_metrics:
             value = row.get(metric.name)
@@ -270,9 +290,13 @@ def load_existing_results():
 
 
 def persist_results(results):
-    output_df = df.copy()
+    output_df = existing_output_df.copy() if existing_output_df is not None and len(existing_output_df) == len(source_df) else source_df.copy()
     for metric in active_metrics:
-        output_df[metric.name] = [row.get(metric.name) for row in results]
+        if metric.name not in output_df.columns:
+            output_df[metric.name] = None
+        metric_values = [row.get(metric.name) for row in results]
+        for position, target_idx in enumerate(target_indices):
+            output_df.at[target_idx, metric.name] = metric_values[position]
     output_df.to_csv(OUTPUT_CSV, index=False)
 
 
@@ -280,34 +304,34 @@ async def evaluate_all():
     results = load_existing_results()
     pending_tasks = []
 
-    async def run_row(row_idx, row_data):
+    async def run_row(local_idx, row_idx, row_data):
         question = row_data["question"]
         answer = row_data["generated_answer"]
         reference = row_data["ground_truth_answer"]
         contexts = parse_contexts(row_data.get("context"))
-        row_result = await evaluate_row(row_idx, question, answer, reference, contexts, results[row_idx])
-        return row_idx, row_result
+        row_result = await evaluate_row(row_idx, question, answer, reference, contexts, results[local_idx])
+        return local_idx, row_result
 
-    for idx, row in df.iterrows():
-        if all(results[idx].get(metric.name) is not None for metric in active_metrics):
+    for local_idx, (row_idx, row) in enumerate(df.iterrows()):
+        if all(results[local_idx].get(metric.name) is not None for metric in active_metrics):
             continue
 
-        pending_tasks.append(asyncio.create_task(run_row(idx, row)))
+        pending_tasks.append(asyncio.create_task(run_row(local_idx, row_idx, row)))
 
         if len(pending_tasks) >= args.concurrency:
             done, pending_tasks = await asyncio.wait(pending_tasks, return_when=asyncio.FIRST_COMPLETED)
             pending_tasks = list(pending_tasks)
             for task in done:
-                idx_done, row_result = await task
-                results[idx_done] = row_result
+                local_idx_done, row_result = await task
+                results[local_idx_done] = row_result
                 persist_results(results)
 
     while pending_tasks:
         done, pending_tasks = await asyncio.wait(pending_tasks, return_when=asyncio.FIRST_COMPLETED)
         pending_tasks = list(pending_tasks)
         for task in done:
-            idx_done, row_result = await task
-            results[idx_done] = row_result
+            local_idx_done, row_result = await task
+            results[local_idx_done] = row_result
             persist_results(results)
 
     return results
@@ -321,7 +345,8 @@ persist_results(results)
 
 print(f"Evaluation saved to {OUTPUT_CSV}")
 print(f"\nFirst 3 rows with scores:")
-print(df[['question', 'context_precision', 'context_recall', 'context_entity_recall', 'noise_sensitivity', 'faithfulness', 'answer_relevancy']].head(3))
+preview_columns = ["question"] + [metric.name for metric in active_metrics if metric.name in df.columns]
+print(df[preview_columns].head(3))
 print(f"\nAverage scores:")
 for metric in active_metrics:
     valid_scores = df[metric.name].dropna()

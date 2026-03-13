@@ -1,0 +1,313 @@
+question,context,ground_truth_answer,generated_answer,context_precision,context_recall,context_entities_recall,noise_sensitivity,response_relevancy,faithfulness
+"Based on the article Designing Secure Blockchain-Based Authentication and Key Management Mechanism for Internet of Drones Applications, explain the Blockchain Implementation Phase","Journal of Systems Architecture 160 (2025) 103365
+Available online 15 February 2025
+1383-7621/© 2025 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies.
+Contents lists available at ScienceDirect
+Journal of Systems Architecture
+journal homepage: www.elsevier.com/locate/sysarc
+Designing secure blockchain-based authentication and key management
+mechanism for Internet of Drones applications
+Mohammad Wazid a, Saksham Mittal a,b, Ashok Kumar Das c,d
+ ,∗, SK Hafizul Islam e,∗∗,
+Mohammed J.F. Alenazi f, Athanasios V. Vasilakos g
+a Department of Computer Science and Engineering, Graphic Era Deemed to be University, Dehradun 248 002, India
+b Department of Computer Science and Engineering, Graphic Era Hill University, Dehradun 248 002, India
+c Center for Security, Theory and Algorithmic Research, International Institute of Information Technology, Hyderabad 500 032, India
+d Department of Computer Science and Engineering, College of Informatics, Korea University, 145 Anam-ro, Seongbuk-gu, Seoul 02841, South Korea
+e Department of Computer Science and Engineering, Indian Institute of Information Technology Kalyani, West Bengal 741 235, India
+f Department of Computer Engineering, College of Computer and Information Sciences (CCIS), King Saud University, Riyadh 11451, Saudi Arabia
+g Center for AI Research (CAIR), University of Agder (UiA), 4879 Grimstad, Norway
+A R T I C L E I N F O
+Keywords:
+Internet of Drones
+Blockchain
+Authentication
+Key agreement
+Session key
+Security
+A B S T R A C T
+Due to advancement in Information and Communications Technology (ICT) and Internet of Things (IoT), the
+Internet of Drones (IoD) can be employed in numerous applications, facilitating the daily lives of diverse users,
+including civilians and others. Wireless communication nature leads to an IoD environment to be vulnerable
+to various potential attack risks, such as data breaches, man-in-the-middle, impersonation, replay, and data
+lea
+
+---
+
+Journal of Systems Architecture 160 (2025) 103365
+16
+M. Wazid et al.
+[44] B. Khadem, A.M. Suteh, M. Ahmad, A. Alkhayyat, M.S. Farash, H.S. Khalifa, An
+improved WBSN key-agreement protocol based on static parameters and hash
+functions, IEEE Access 9 (2021) 78463–78473.
+[45] C.J.F. Cremers, Scyther : Semantics and verification of security protocols,
+2006, https://pure.tue.nl/ws/files/2425555/200612074.pdf (Accessed on August
+2024).
+[46] M. Tanveer, A.H. Zahid, M. Ahmad, A. Baz, H. Alhakami, LAKE-IoD: Lightweight
+authenticated key exchange protocol for the internet of drone environment, IEEE
+Access 8 (2020) 155645–155659.
+[47] D. He, S. Zeadally, B. Xu, X. Huang, An efficient identity-based conditional
+privacy-preserving authentication scheme for vehicular ad hoc networks, IEEE
+Trans. Inf. Forensics Secur. 10 (12) (2015) 2681–2691.
+[48] M. Fan, X. Zhang, Consortium blockchain based data aggregation and regulation
+mechanism for smart grid, IEEE Access 7 (2019) 35929–35940.
+[49] Drones in healthcare: A lifesaving innovation, 2024, Available at:
+https://www.indowings.com/blog/5-reasons-why-we-need-to-use-drones-in-
+the-hospital-management.php . (Accessed on October 2024).
+[50] Military drone market, 2023, https://www.fortunebusinessinsights.com/military-
+drone-market-102181 . (Accessed on October 2024).
+Mohammad Wazid received his Master of Technology in
+Computer Network Engineering from Graphic Era Univer-
+sity, Dehradun, India, and received a Ph.D. in Computer
+Science and Engineering from the International Institute of
+Information Technology, Hyderabad, India. He is currently
+working as a Professor in the Department of Computer
+Science and Engineering, Graphic Era University, Dehradun,
+India. He is the head of the cybersecurity and IoT research
+group at Graphic Era University, Dehradun, India. Prior to
+this, he was an assistant professor in the Department of
+Computer Science and Engineering at the Manipal Institute
+of Technology, MAHE, Manipal, India. He was also a post
+
+---
+
+𝑇 𝐶 𝐴𝐿𝐴𝑆 for the secure
+communication of IoD.
+Mishra et al. [35] represented a framework for managing authenti-
+cation and session keys using blockchain technology. This framework
+supported the integration of big data analytics capabilities for drones
+that operate on networks beyond 5G applications. Through a compre-
+hensive security examination and scyther tool-based formal security
+verification, they have proven their scheme secured against the wide
+range of attacks.
+In 2024, Algarni and Jan [36] proposed a robust yet lightweight
+security mechanism utilizing a fuzzy extractor and the MD5 (Message
+Digest 5) algorithm to authenticate all IoD participants and ensure
+secure communication. However, the MD5 hash algorithm is widely
+recognized as less secure compared to more robust alternatives like the
+Secure Hash Algorithm (SHA-256). Consequently, the overall strength
+of their scheme is compromised. Moreover, their approach does not
+incorporate support for blockchain implementation.
+Research gaps and novelty: Blockchain technology offers powerful
+solutions to strengthen the security of the IoD environment. By enabling
+the creation of unique digital identities for individual drones, which
+are securely stored and managed on the blockchain, it helps mitigate
+the risk of impersonation attacks [37]. In addition, the data coming
+securely from the drones to the ground station server is used for
+the transactions and later, the blocks formed from the authentic and
+genuine data from the drones are stored in the blockchain network
+maintained by the cloud servers. Storing data on semi-trusted cloud
+servers raises serious concerns about data poisoning attacks, which
+can significantly impact businesses and organizations by corrupting big
+data analytics, leading to financial losses and reputational damage [38].
+Research shows notable improvements in accuracy, recall, precision,
+and F1-score when data is free from poisoning attacks and is directly
+sourced from the blockchain. In this
+
+---
+
+Journal of Systems Architecture 160 (2025) 103365
+5
+M. Wazid et al.
+Table 1
+Notations used in BAKMM-IoD.
+Notation Meaning
+BAKMM-IoD Short name of the proposed mechanism
+ An adversary
+𝐷 𝐸𝑖, 𝐼 𝐷𝐷 𝐸𝑖
+, 𝑅𝐼 𝐷𝐷 𝐸𝑖
+𝑖th deployed drone, its identity
+and pseudo-identity, respectively
+𝐸 𝑆𝑗, 𝐼 𝐷𝐸 𝑆𝑗
+, 𝑅𝐼 𝐷𝐸 𝑆𝑗
+𝑗th ground station server, its identity
+and pseudo-identity, respectively
+𝐶 𝑆𝑘, 𝐼 𝐷𝐶 𝑆𝑘
+, 𝑅𝐼 𝐷𝐶 𝑆𝑘
+𝑘th cloud server, its identity
+and pseudo-identity, respectively
+𝑅𝐴, 𝑘𝑅𝐴 The registration authority
+(trusted entity), its secret key
+and its pseudo-identity, respectively
+𝑘𝐷 𝐸𝑖
+, 𝑘𝐸 𝑆𝑗
+Private keys 𝐷 𝐸𝑖 and 𝐸 𝑆𝑗
+𝑆 𝑁𝑅𝐴, 𝑆 𝑁𝐷 𝐸𝑖
+and 𝑆 𝑁𝐸 𝑆𝑗
+The secret numbers of
+𝑅𝐴, 𝐷 𝐸𝑖 and 𝐸 𝑆𝑗, respectively
+𝑀 𝑆𝐷 𝐸𝑖 −𝐸 𝑆𝑗
+primary secret key of both 𝐷 𝐸𝑖 and 𝐸 𝑆𝑗
+𝑀 𝑆𝐸 𝑆𝑗 −𝐶 𝑆𝑘
+primary secret key of both 𝐸 𝑆𝑗 and 𝐶 𝑆𝑘
+𝑇𝑥 Different timestamp values used
+𝑟𝑠𝑥 Different random secret values used
+𝛥𝑇 The allowed delay value to
+mitigate replay attack
+ℎ(⋅) Cryptographic one-way hash
+function utilized
+𝑆 𝐾𝑎𝑖 ,𝑏𝑗
+The session key obtained and established
+in between entities 𝑎𝑖 and 𝑏𝑗
+∥ A concatenation computation
+⊕ A bitwise exclusive-OR (𝑋 𝑂 𝑅) computation
+‘‘key management phase’’. The cloud servers are the part of peer-to-
+peer server network and does the task of blockchain implementation.
+Some of the cloud servers are also the miner nodes of the network and
+perform the task of blockchain mining with the help of the consensus
+algorithm.
+The details of the used notations are provided in Table 1 The
+following is a concise overview of the phases.
+4.1. Registration phase
+In this phase, the registration authority (𝑅𝐴) is tasked with regis-
+tering the entities, which comprise the drone (𝐷 𝐸𝑖), the ground station
+server (𝐸 𝑆𝑗), and the cloud server (𝐶 𝑆𝑘). Comprehensive information
+is provided here.
+4.1.1. Registration of drone 𝐷 𝐸𝑖
+The drone 𝐷 𝐸𝑖’s registration is performed as follows.
+• RSDI1: Initially, 𝑅𝐴 designates 𝑆 𝑁𝑅𝐴 as its confidential (secret)
+number and 𝑘𝑅𝐴 as its confidential key. The pseudo iden","During this step, we present the specifics of the blockchain. It is a
+significant phase of the proposed mechanism. Note that ‘‘Elliptic Curve
+Cryptography (ECC)’’ encryption is used to encrypt a transaction in a
+block with the help of the public key 𝐾 𝑈𝐸 𝑆𝑗
+of the respective ground
+station server (𝐸 𝑆𝑗 ) so that only 𝐸 𝑆𝑗 can decrypt the data using its
+own private key. In this case, since block verification involves the verification
+of signature present in a block using the ‘‘Elliptic Curve Digital
+Signature Algorithm (ECDSA)’’ for signature verification, we have applied
+the public-key based ECC encryption for protection of transactions
+(containing the crucial data in case of sensitive applications such as
+healthcare and military).
+The particulars are delineated using the following steps:
+• BIP1: As discussed earlier, the ground station server 𝐸 𝑆𝑗 receives
+information 𝐼 𝑛𝑓𝐷 𝐸𝑖
+from a connected drone 𝐷 𝐸𝑖 through the
+established session key 𝑆 𝐾𝐷 𝐸𝑖,𝐸 𝑆𝑗
+in a secure way. Then 𝐸 𝑆𝑗
+creates a partial block 𝑃 𝐵 𝐾𝐸 𝑆𝑗
+from the received information
+𝐼 𝑛𝑓𝐷 𝐸𝑖
+. First, 𝐸 𝑆𝑗 creates its public and private key pairs as
+{𝐾 𝑈𝐸 𝑆𝑗
+, 𝐾 𝑆𝐸 𝑆𝑗
+} through some public key cryptographic systems,
+i.e., Elliptic Curve Cryptography (ECC) algorithm. It then
+divides 𝐼 𝑛𝑓𝐷 𝐸𝑖
+into some transactions say 𝑡𝑟𝑥 = {𝑡𝑟1, 𝑡𝑟2,…, 𝑡𝑟𝑥}.
+Further, 𝐸 𝑆𝑗 encrypts 𝑡𝑟𝑥 with its public key 𝐾 𝑈𝐸 𝑆𝑗
+to convert
+them into encrypted transactions, say 𝑇 𝑅𝑥 = 𝐸𝐾 𝑈𝐸 𝑆𝑗
+(𝑡𝑟𝑥). The
+partial block contains fields as follows 𝑃 𝐵 𝐾𝐸 𝑆𝑗 = {𝑂 𝑊 𝐼𝐸 𝑆𝑗
+,
+𝐾 𝑈𝐸 𝑆𝑗
+, 𝑇 𝑅𝑥, 𝑀 𝑇𝑟𝑜𝑜𝑡𝐸 𝑆𝑗
+}, where 𝑂 𝑊 𝐼𝐸 𝑆𝑗
+is owner 𝐸 𝑆𝑗 ’s identity
+information and 𝑀 𝑇𝑟𝑜𝑜𝑡𝐸 𝑆𝑗
+is the Merkle tree root value, which
+is generated from all transactions. 𝐸 𝑆𝑗 then sends partial block
+𝑃 𝐵 𝐾𝐸 𝑆𝑗
+to connected cloud server 𝐶 𝑆𝑙 with the help of the
+established session key 𝑆 𝐾𝐸 𝑆𝑗 ,𝐶 𝑆𝑘
+in a secure way.
+• BIP2: After receiving 𝑃 𝐵 𝐾𝐸 𝑆𝑗
+, 𝐶 𝑆𝑙 makes full block 𝐹 𝐵 𝐾𝐶 𝑆𝑙 from it. 𝐹 𝐵 𝐾𝐶 𝑆𝑙
+contains fields as 𝐹 𝐵 𝐾𝐶 𝑆𝑙 = {𝐵 𝐼 𝐷𝐹 𝐵 𝐾𝐶 𝑆𝑙
+,
+𝑅𝑁𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝑇 𝑆 𝑉𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙−1
+, 𝑂 𝑊 𝐼𝐸 𝑆𝑗
+,
+𝐾 𝑈𝐸 𝑆𝑗
+, 𝑇 𝑅𝑥, 𝑀 𝑇𝑟𝑜𝑜𝑡𝐸 𝑆𝑗
+, 𝑆 𝑖𝑔 𝑛𝐹 𝐵 𝐾𝐶 𝑆𝑙
+}, where 𝐵 𝐼 𝐷𝐹 𝐵 𝐾𝐶 𝑆𝑙
+,
+𝑅𝑁𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝑇 𝑆 𝑉𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙−1
+, and
+𝑆 𝑖𝑔 𝑛𝐹 𝐵 𝐾𝐶 𝑆𝑙
+are the block’s (𝐹 𝐵 𝐾𝐶 𝑆𝑙
+) identity information, a
+random nonce value, the timestamp, the hash of the current
+block, the hash of the preceding block, and the block’s signature
+𝐹 𝐵 𝐾𝐶 𝑆𝑙
+.
+• BIP3: Upon the completion of this process, 𝐶 𝑆𝑙 will disseminate
+𝐹 𝐵 𝐾𝐶 𝑆𝑙
+via its peer-to-peer cloud server network. At this juncture,
+the appointed leader, referred to as 𝐶 𝑆′′
+𝑙
+, will initiate a
+consensus over the just received block. To achieve this purpose,
+the server (𝐶 𝑆′′
+𝑙
+) may employ the procedures of the standard
+‘‘practical Byzantine Fault Tolerance (pBFT) method [21]’’. The
+block 𝐹 𝐵 𝐾𝐶 𝑆𝑙
+is incorporated into the blockchain 𝐵 𝐶 𝐻𝐼 𝑜𝐷𝑖
+at
+the successful completion of the consensus process. The formed
+blockchain 𝐵 𝐶 𝐻𝐼 𝑜𝐷𝑖
+can be considered like a ‘‘consortium
+blockchain’’. As it contains some private data, however, at the
+same time some of the data should be available publicly as per
+the raised requirements.
+For the better understanding of the readers, the proposed BAKMMIoD
+is also explained through a process flow diagram, which is depicted
+in Fig. 2. It provides the details of various activities and processes
+of the proposed scheme. The activities like registration of drone, registration
+of ground station server, and registration of cloud server
+are highlighted. After that, there is the execution of authentication
+and key establishment between the drone and ground station server.
+Further, there is the execution of key management between the ground
+station server and cloud server. After that, there is the execution of the
+blockchain formation phase.
+Remark 1. Here, we provide the importance of using the blockchain
+technology instead of using a strong public-key encryption algorithm,
+like RSA-2048 or others, for storing the encrypted data in a semi-trusted
+cloud environment. In fact, Mitra et al. [38] interestingly investigated
+the ‘‘impact on blockchain-based artificial intelligence (AI)/machine
+learning (ML)-enabled big data analytics for cognitive IoT environment’’.
+They argued that data poisoning attacks are a serious concern
+when the data is simply stored in semi-trusted cloud storage in place
+of the blockchain, because they can significantly impact businesses
+and organizations, both financially and in terms of their reputation,
+particularly when the big data analytics rely on corrupted data. Their
+comprehensive experimental results illustrate the impact of data poisoning
+attacks on an ML model when data is stored in cloud storage
+(i.e., outside of blockchain) versus in a blockchain (i.e., without data
+poisoning). The findings reveal substantial performance improvements
+in accuracy, recall, precision, and F1-score when the data remain free
+from poisoning attacks. This is true because the data residing into the
+blockchain cannot be tampered when the transactions are added into
+the blockchain through the consensus mechanism. Hence, though the
+blockchain implementation becomes little more costly as compared to
+simply putting encrypted data in semi-trusted cloud storage, we certainly
+have various advantages not only for strengthening the security
+of the system, but also for improving substantial performance in terms
+of accuracy, recall, precision, and F1-score in big data analytics.
+Remark 2. The identity is the original identity information of an entity
+(i.e., drone, ground station server and cloud server), whereas to make
+the communication anonymous we have used pseudo identity, due to
+this mechanism the original identity of an entity is not revealed to the
+other entities of the network. The temporary identity is used to make
+the communication anonymous as well as untraceable. The temporary
+identity information is changed in each session, because in each session
+we have the provision of use of a new temporary identity. It helps us
+to achieve the untraceability property for the exchanged data in every
+session of the communications.","Based on the article ""Designing Secure Blockchain-Based Authentication and Key Management Mechanism for Internet of Drones Applications,"" the **Blockchain Implementation Phase** is a critical component of the proposed BAKMM-IoD mechanism.
+
+According to the retrieved text, the phase involves the following key elements:
+
+*   **Role of Cloud Servers:** The cloud servers ($CS_k$) function as part of a peer-to-peer (P2P) server network. They are responsible for the actual implementation of the blockchain.
+*   **Mining and Consensus:** Specific cloud servers act as **miner nodes** within the network. These nodes perform the task of blockchain mining, facilitated by a consensus algorithm.
+*   **Data Integrity and Storage:** The blockchain is used to store blocks formed from ""authentic and genuine data"" received from the drones via ground station servers. This process is designed to protect against **data poisoning attacks** that often occur when data is stored on semi-trusted cloud servers.
+*   **Identity Management:** The blockchain helps mitigate impersonation attacks by enabling the creation, secure storage, and management of unique digital identities for individual drones.
+
+*Note: While the provided context outlines the roles and objectives of this phase, specific step-by-step algorithmic details of the blockchain implementation were not included in the retrieved snippets; this summary relies on the architectural descriptions provided in the text.*",,,,,,

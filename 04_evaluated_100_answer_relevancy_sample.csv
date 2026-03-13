@@ -1,0 +1,533 @@
+question,context,ground_truth_answer,generated_answer,context_precision,context_recall,context_entities_recall,noise_sensitivity,response_relevancy,faithfulness,answer_relevancy
+"Based on the article Designing Secure Blockchain-Based Authentication and Key Management Mechanism for Internet of Drones Applications, explain the Blockchain Implementation Phase","Journal of Systems Architecture 160 (2025) 103365
+Available online 15 February 2025
+1383-7621/© 2025 Elsevier B.V. All rights are reserved, including those for text and data mining, AI training, and similar technologies.
+Contents lists available at ScienceDirect
+Journal of Systems Architecture
+journal homepage: www.elsevier.com/locate/sysarc
+Designing secure blockchain-based authentication and key management
+mechanism for Internet of Drones applications
+Mohammad Wazid a, Saksham Mittal a,b, Ashok Kumar Das c,d
+ ,∗, SK Hafizul Islam e,∗∗,
+Mohammed J.F. Alenazi f, Athanasios V. Vasilakos g
+a Department of Computer Science and Engineering, Graphic Era Deemed to be University, Dehradun 248 002, India
+b Department of Computer Science and Engineering, Graphic Era Hill University, Dehradun 248 002, India
+c Center for Security, Theory and Algorithmic Research, International Institute of Information Technology, Hyderabad 500 032, India
+d Department of Computer Science and Engineering, College of Informatics, Korea University, 145 Anam-ro, Seongbuk-gu, Seoul 02841, South Korea
+e Department of Computer Science and Engineering, Indian Institute of Information Technology Kalyani, West Bengal 741 235, India
+f Department of Computer Engineering, College of Computer and Information Sciences (CCIS), King Saud University, Riyadh 11451, Saudi Arabia
+g Center for AI Research (CAIR), University of Agder (UiA), 4879 Grimstad, Norway
+A R T I C L E I N F O
+Keywords:
+Internet of Drones
+Blockchain
+Authentication
+Key agreement
+Session key
+Security
+A B S T R A C T
+Due to advancement in Information and Communications Technology (ICT) and Internet of Things (IoT), the
+Internet of Drones (IoD) can be employed in numerous applications, facilitating the daily lives of diverse users,
+including civilians and others. Wireless communication nature leads to an IoD environment to be vulnerable
+to various potential attack risks, such as data breaches, man-in-the-middle, impersonation, replay, and data
+lea
+
+---
+
+Journal of Systems Architecture 160 (2025) 103365
+16
+M. Wazid et al.
+[44] B. Khadem, A.M. Suteh, M. Ahmad, A. Alkhayyat, M.S. Farash, H.S. Khalifa, An
+improved WBSN key-agreement protocol based on static parameters and hash
+functions, IEEE Access 9 (2021) 78463–78473.
+[45] C.J.F. Cremers, Scyther : Semantics and verification of security protocols,
+2006, https://pure.tue.nl/ws/files/2425555/200612074.pdf (Accessed on August
+2024).
+[46] M. Tanveer, A.H. Zahid, M. Ahmad, A. Baz, H. Alhakami, LAKE-IoD: Lightweight
+authenticated key exchange protocol for the internet of drone environment, IEEE
+Access 8 (2020) 155645–155659.
+[47] D. He, S. Zeadally, B. Xu, X. Huang, An efficient identity-based conditional
+privacy-preserving authentication scheme for vehicular ad hoc networks, IEEE
+Trans. Inf. Forensics Secur. 10 (12) (2015) 2681–2691.
+[48] M. Fan, X. Zhang, Consortium blockchain based data aggregation and regulation
+mechanism for smart grid, IEEE Access 7 (2019) 35929–35940.
+[49] Drones in healthcare: A lifesaving innovation, 2024, Available at:
+https://www.indowings.com/blog/5-reasons-why-we-need-to-use-drones-in-
+the-hospital-management.php . (Accessed on October 2024).
+[50] Military drone market, 2023, https://www.fortunebusinessinsights.com/military-
+drone-market-102181 . (Accessed on October 2024).
+Mohammad Wazid received his Master of Technology in
+Computer Network Engineering from Graphic Era Univer-
+sity, Dehradun, India, and received a Ph.D. in Computer
+Science and Engineering from the International Institute of
+Information Technology, Hyderabad, India. He is currently
+working as a Professor in the Department of Computer
+Science and Engineering, Graphic Era University, Dehradun,
+India. He is the head of the cybersecurity and IoT research
+group at Graphic Era University, Dehradun, India. Prior to
+this, he was an assistant professor in the Department of
+Computer Science and Engineering at the Manipal Institute
+of Technology, MAHE, Manipal, India. He was also a post
+
+---
+
+𝑇 𝐶 𝐴𝐿𝐴𝑆 for the secure
+communication of IoD.
+Mishra et al. [35] represented a framework for managing authenti-
+cation and session keys using blockchain technology. This framework
+supported the integration of big data analytics capabilities for drones
+that operate on networks beyond 5G applications. Through a compre-
+hensive security examination and scyther tool-based formal security
+verification, they have proven their scheme secured against the wide
+range of attacks.
+In 2024, Algarni and Jan [36] proposed a robust yet lightweight
+security mechanism utilizing a fuzzy extractor and the MD5 (Message
+Digest 5) algorithm to authenticate all IoD participants and ensure
+secure communication. However, the MD5 hash algorithm is widely
+recognized as less secure compared to more robust alternatives like the
+Secure Hash Algorithm (SHA-256). Consequently, the overall strength
+of their scheme is compromised. Moreover, their approach does not
+incorporate support for blockchain implementation.
+Research gaps and novelty: Blockchain technology offers powerful
+solutions to strengthen the security of the IoD environment. By enabling
+the creation of unique digital identities for individual drones, which
+are securely stored and managed on the blockchain, it helps mitigate
+the risk of impersonation attacks [37]. In addition, the data coming
+securely from the drones to the ground station server is used for
+the transactions and later, the blocks formed from the authentic and
+genuine data from the drones are stored in the blockchain network
+maintained by the cloud servers. Storing data on semi-trusted cloud
+servers raises serious concerns about data poisoning attacks, which
+can significantly impact businesses and organizations by corrupting big
+data analytics, leading to financial losses and reputational damage [38].
+Research shows notable improvements in accuracy, recall, precision,
+and F1-score when data is free from poisoning attacks and is directly
+sourced from the blockchain. In this
+
+---
+
+Journal of Systems Architecture 160 (2025) 103365
+5
+M. Wazid et al.
+Table 1
+Notations used in BAKMM-IoD.
+Notation Meaning
+BAKMM-IoD Short name of the proposed mechanism
+ An adversary
+𝐷 𝐸𝑖, 𝐼 𝐷𝐷 𝐸𝑖
+, 𝑅𝐼 𝐷𝐷 𝐸𝑖
+𝑖th deployed drone, its identity
+and pseudo-identity, respectively
+𝐸 𝑆𝑗, 𝐼 𝐷𝐸 𝑆𝑗
+, 𝑅𝐼 𝐷𝐸 𝑆𝑗
+𝑗th ground station server, its identity
+and pseudo-identity, respectively
+𝐶 𝑆𝑘, 𝐼 𝐷𝐶 𝑆𝑘
+, 𝑅𝐼 𝐷𝐶 𝑆𝑘
+𝑘th cloud server, its identity
+and pseudo-identity, respectively
+𝑅𝐴, 𝑘𝑅𝐴 The registration authority
+(trusted entity), its secret key
+and its pseudo-identity, respectively
+𝑘𝐷 𝐸𝑖
+, 𝑘𝐸 𝑆𝑗
+Private keys 𝐷 𝐸𝑖 and 𝐸 𝑆𝑗
+𝑆 𝑁𝑅𝐴, 𝑆 𝑁𝐷 𝐸𝑖
+and 𝑆 𝑁𝐸 𝑆𝑗
+The secret numbers of
+𝑅𝐴, 𝐷 𝐸𝑖 and 𝐸 𝑆𝑗, respectively
+𝑀 𝑆𝐷 𝐸𝑖 −𝐸 𝑆𝑗
+primary secret key of both 𝐷 𝐸𝑖 and 𝐸 𝑆𝑗
+𝑀 𝑆𝐸 𝑆𝑗 −𝐶 𝑆𝑘
+primary secret key of both 𝐸 𝑆𝑗 and 𝐶 𝑆𝑘
+𝑇𝑥 Different timestamp values used
+𝑟𝑠𝑥 Different random secret values used
+𝛥𝑇 The allowed delay value to
+mitigate replay attack
+ℎ(⋅) Cryptographic one-way hash
+function utilized
+𝑆 𝐾𝑎𝑖 ,𝑏𝑗
+The session key obtained and established
+in between entities 𝑎𝑖 and 𝑏𝑗
+∥ A concatenation computation
+⊕ A bitwise exclusive-OR (𝑋 𝑂 𝑅) computation
+‘‘key management phase’’. The cloud servers are the part of peer-to-
+peer server network and does the task of blockchain implementation.
+Some of the cloud servers are also the miner nodes of the network and
+perform the task of blockchain mining with the help of the consensus
+algorithm.
+The details of the used notations are provided in Table 1 The
+following is a concise overview of the phases.
+4.1. Registration phase
+In this phase, the registration authority (𝑅𝐴) is tasked with regis-
+tering the entities, which comprise the drone (𝐷 𝐸𝑖), the ground station
+server (𝐸 𝑆𝑗), and the cloud server (𝐶 𝑆𝑘). Comprehensive information
+is provided here.
+4.1.1. Registration of drone 𝐷 𝐸𝑖
+The drone 𝐷 𝐸𝑖’s registration is performed as follows.
+• RSDI1: Initially, 𝑅𝐴 designates 𝑆 𝑁𝑅𝐴 as its confidential (secret)
+number and 𝑘𝑅𝐴 as its confidential key. The pseudo iden","During this step, we present the specifics of the blockchain. It is a
+significant phase of the proposed mechanism. Note that ‘‘Elliptic Curve
+Cryptography (ECC)’’ encryption is used to encrypt a transaction in a
+block with the help of the public key 𝐾 𝑈𝐸 𝑆𝑗
+of the respective ground
+station server (𝐸 𝑆𝑗 ) so that only 𝐸 𝑆𝑗 can decrypt the data using its
+own private key. In this case, since block verification involves the verification
+of signature present in a block using the ‘‘Elliptic Curve Digital
+Signature Algorithm (ECDSA)’’ for signature verification, we have applied
+the public-key based ECC encryption for protection of transactions
+(containing the crucial data in case of sensitive applications such as
+healthcare and military).
+The particulars are delineated using the following steps:
+• BIP1: As discussed earlier, the ground station server 𝐸 𝑆𝑗 receives
+information 𝐼 𝑛𝑓𝐷 𝐸𝑖
+from a connected drone 𝐷 𝐸𝑖 through the
+established session key 𝑆 𝐾𝐷 𝐸𝑖,𝐸 𝑆𝑗
+in a secure way. Then 𝐸 𝑆𝑗
+creates a partial block 𝑃 𝐵 𝐾𝐸 𝑆𝑗
+from the received information
+𝐼 𝑛𝑓𝐷 𝐸𝑖
+. First, 𝐸 𝑆𝑗 creates its public and private key pairs as
+{𝐾 𝑈𝐸 𝑆𝑗
+, 𝐾 𝑆𝐸 𝑆𝑗
+} through some public key cryptographic systems,
+i.e., Elliptic Curve Cryptography (ECC) algorithm. It then
+divides 𝐼 𝑛𝑓𝐷 𝐸𝑖
+into some transactions say 𝑡𝑟𝑥 = {𝑡𝑟1, 𝑡𝑟2,…, 𝑡𝑟𝑥}.
+Further, 𝐸 𝑆𝑗 encrypts 𝑡𝑟𝑥 with its public key 𝐾 𝑈𝐸 𝑆𝑗
+to convert
+them into encrypted transactions, say 𝑇 𝑅𝑥 = 𝐸𝐾 𝑈𝐸 𝑆𝑗
+(𝑡𝑟𝑥). The
+partial block contains fields as follows 𝑃 𝐵 𝐾𝐸 𝑆𝑗 = {𝑂 𝑊 𝐼𝐸 𝑆𝑗
+,
+𝐾 𝑈𝐸 𝑆𝑗
+, 𝑇 𝑅𝑥, 𝑀 𝑇𝑟𝑜𝑜𝑡𝐸 𝑆𝑗
+}, where 𝑂 𝑊 𝐼𝐸 𝑆𝑗
+is owner 𝐸 𝑆𝑗 ’s identity
+information and 𝑀 𝑇𝑟𝑜𝑜𝑡𝐸 𝑆𝑗
+is the Merkle tree root value, which
+is generated from all transactions. 𝐸 𝑆𝑗 then sends partial block
+𝑃 𝐵 𝐾𝐸 𝑆𝑗
+to connected cloud server 𝐶 𝑆𝑙 with the help of the
+established session key 𝑆 𝐾𝐸 𝑆𝑗 ,𝐶 𝑆𝑘
+in a secure way.
+• BIP2: After receiving 𝑃 𝐵 𝐾𝐸 𝑆𝑗
+, 𝐶 𝑆𝑙 makes full block 𝐹 𝐵 𝐾𝐶 𝑆𝑙 from it. 𝐹 𝐵 𝐾𝐶 𝑆𝑙
+contains fields as 𝐹 𝐵 𝐾𝐶 𝑆𝑙 = {𝐵 𝐼 𝐷𝐹 𝐵 𝐾𝐶 𝑆𝑙
+,
+𝑅𝑁𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝑇 𝑆 𝑉𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙−1
+, 𝑂 𝑊 𝐼𝐸 𝑆𝑗
+,
+𝐾 𝑈𝐸 𝑆𝑗
+, 𝑇 𝑅𝑥, 𝑀 𝑇𝑟𝑜𝑜𝑡𝐸 𝑆𝑗
+, 𝑆 𝑖𝑔 𝑛𝐹 𝐵 𝐾𝐶 𝑆𝑙
+}, where 𝐵 𝐼 𝐷𝐹 𝐵 𝐾𝐶 𝑆𝑙
+,
+𝑅𝑁𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝑇 𝑆 𝑉𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙
+, 𝐻 𝑎𝑠ℎ𝐹 𝐵 𝐾𝐶 𝑆𝑙−1
+, and
+𝑆 𝑖𝑔 𝑛𝐹 𝐵 𝐾𝐶 𝑆𝑙
+are the block’s (𝐹 𝐵 𝐾𝐶 𝑆𝑙
+) identity information, a
+random nonce value, the timestamp, the hash of the current
+block, the hash of the preceding block, and the block’s signature
+𝐹 𝐵 𝐾𝐶 𝑆𝑙
+.
+• BIP3: Upon the completion of this process, 𝐶 𝑆𝑙 will disseminate
+𝐹 𝐵 𝐾𝐶 𝑆𝑙
+via its peer-to-peer cloud server network. At this juncture,
+the appointed leader, referred to as 𝐶 𝑆′′
+𝑙
+, will initiate a
+consensus over the just received block. To achieve this purpose,
+the server (𝐶 𝑆′′
+𝑙
+) may employ the procedures of the standard
+‘‘practical Byzantine Fault Tolerance (pBFT) method [21]’’. The
+block 𝐹 𝐵 𝐾𝐶 𝑆𝑙
+is incorporated into the blockchain 𝐵 𝐶 𝐻𝐼 𝑜𝐷𝑖
+at
+the successful completion of the consensus process. The formed
+blockchain 𝐵 𝐶 𝐻𝐼 𝑜𝐷𝑖
+can be considered like a ‘‘consortium
+blockchain’’. As it contains some private data, however, at the
+same time some of the data should be available publicly as per
+the raised requirements.
+For the better understanding of the readers, the proposed BAKMMIoD
+is also explained through a process flow diagram, which is depicted
+in Fig. 2. It provides the details of various activities and processes
+of the proposed scheme. The activities like registration of drone, registration
+of ground station server, and registration of cloud server
+are highlighted. After that, there is the execution of authentication
+and key establishment between the drone and ground station server.
+Further, there is the execution of key management between the ground
+station server and cloud server. After that, there is the execution of the
+blockchain formation phase.
+Remark 1. Here, we provide the importance of using the blockchain
+technology instead of using a strong public-key encryption algorithm,
+like RSA-2048 or others, for storing the encrypted data in a semi-trusted
+cloud environment. In fact, Mitra et al. [38] interestingly investigated
+the ‘‘impact on blockchain-based artificial intelligence (AI)/machine
+learning (ML)-enabled big data analytics for cognitive IoT environment’’.
+They argued that data poisoning attacks are a serious concern
+when the data is simply stored in semi-trusted cloud storage in place
+of the blockchain, because they can significantly impact businesses
+and organizations, both financially and in terms of their reputation,
+particularly when the big data analytics rely on corrupted data. Their
+comprehensive experimental results illustrate the impact of data poisoning
+attacks on an ML model when data is stored in cloud storage
+(i.e., outside of blockchain) versus in a blockchain (i.e., without data
+poisoning). The findings reveal substantial performance improvements
+in accuracy, recall, precision, and F1-score when the data remain free
+from poisoning attacks. This is true because the data residing into the
+blockchain cannot be tampered when the transactions are added into
+the blockchain through the consensus mechanism. Hence, though the
+blockchain implementation becomes little more costly as compared to
+simply putting encrypted data in semi-trusted cloud storage, we certainly
+have various advantages not only for strengthening the security
+of the system, but also for improving substantial performance in terms
+of accuracy, recall, precision, and F1-score in big data analytics.
+Remark 2. The identity is the original identity information of an entity
+(i.e., drone, ground station server and cloud server), whereas to make
+the communication anonymous we have used pseudo identity, due to
+this mechanism the original identity of an entity is not revealed to the
+other entities of the network. The temporary identity is used to make
+the communication anonymous as well as untraceable. The temporary
+identity information is changed in each session, because in each session
+we have the provision of use of a new temporary identity. It helps us
+to achieve the untraceability property for the exchanged data in every
+session of the communications.","The Blockchain Implementation Phase in the article ""Designing Secure Blockchain-Based Authentication and Key Management Mechanism for Internet of Drones Applications"" involves the integration of blockchain technology to enhance security in the Internet of Drones (IoD) environment. This phase is part of a broader framework that includes the registration of entities such as drones, ground stations, and cloud servers.
+
+In this phase, the cloud servers function as part of a peer-to-peer network, where some servers also act as miner nodes. These nodes are responsible for blockchain mining, utilizing a consensus algorithm to validate transactions. The blockchain securely stores unique digital identities for each drone, mitigating risks such as impersonation attacks. Additionally, data transmitted from drones to ground stations is recorded on the blockchain, ensuring authenticity and integrity.
+
+The implementation aims to protect against various attack vectors, including data breaches and man-in-the-middle attacks, by leveraging the decentralized and tamper-resistant nature of blockchain technology. This enhances the overall security of communications within the IoD framework.",,,,,,,
+"What is the conclusion of the document 6G Internet-of-Things Assisted Smart Homes and Buildings: Enabling Technologies, Opportunities and Challenges?","n each domain along with 
+the pros and cons are discussed.
+• The paper highlights the challenges related to the mentioned key technologies that hinder the deployment of SHs and SBs. 
+Furthermore, future research directions are discussed in the context of 6G IoT towards the full realization of 6G-enabled SHs 
+and SBs.
+1.2. Structure and organization of the survey
+The organization of the paper is graphically depicted in Fig.  3 and the section wise description is given as follows. Section 2 
+presents the concept of IoT-enabled SHs and SBs followed by the system and technologies, the major requirements, and advanced 
+ICT technologies for SHs and SBs. Section 3 provides a holistic view of the trending 6G technologies in the context of SHs and SBs. 
+Furthermore, the existing literature on these topics such as ISAC, ML, VLC, and BC is explored, and the challenges related to the 
+use of these technologies are discussed. Section 4 presents the possible future research directions related to the topic. Finally, the 
+paper is summarized and concluded in Section 5.
+Internet of Things 32 (2025) 101658 
+3
+
+---
+
+A. Ullah et al.
+Table 1
+Existing survey papers on SHs/SBs and contribution of this work.
+ Related works Main focus Brief description and contribution  
+ [13–16] A review on SHs A brief overview of the previous research on SHs, its associated technologies, and the 
+interrelationship between the different blocks of SHs are presented.
+ 
+ [17] Review on sensing in SHs 
+and SBs
+The article provides state of the art (SOTA) review of the sensor technology for SHs and SBs. The 
+strengths and weaknesses of these sensor technologies are discussed while considering 
+infrastructure-mediated sensing and direct environment sensing.
+ 
+ [18–22] Health care The detailed literature survey is carried out in [18] focusing on the history, potential research areas, 
+future research directions and use case of SH in health care. [19,20] presents the technologies such as 
+communication and sensing platforms, and the use cases of artificail intelligence (AI) techniques in 
+the SH’s activities such as modeling and recognition. The survey also overviews the development of 
+human–computer interfaces in SH. Similarly, [21,22] focuses on the health monitoring system in SH 
+from a general perspective and particularly focus on aged peoples and peoples with disabilities. 
+Different functions and services are highlighted to detect and monitor human behaviors in a smart 
+environment. Furthermore, challenges, system requirements, design, and modeling of smart health 
+management systems with future recommendations are discussed.
+ 
+ [23] Requirements for 
+IoT-assisted SH
+The survey provides a taxonomy of the major requirements for SH and the architecture as well as 
+technologies adopted for IoT-assisted SH. Seven unique requirements and challenges in IoT-assisted 
+SH are identified.
+ 
+ [24] A systematic survey on SH 
+from user perspective
+The survey aims to provide a systematic review of SH technologies from the user perspective. the 
+review outlines the systematic methodology, SH types and characteristi
+
+---
+
+ter 
+automation in SHs and IoT technologies, intelligence has become a fundamental component [23]. The major requirements of SHs and 
+SBs, highlighted in the literature, include self-reconfigurability, heterogeneity, context awareness, extensibility, security and privacy 
+protection, and intelligence. To fulfill these requirements a large number of IoT applications with billions of interconnected sensors 
+and devices need to be deployed which requires fixed or mobile network technologies. The connection of billions of devices through 
+fixed wiring is highly cost-prohibitive and is practically unfeasible. Mobile networks emerge as the only viable solution for this 
+massive scale connectivity [45]. The communication landscape is poised for a significant transition, prioritizing M2M interactions 
+over human-oriented communication. Attaching subscriber identity module (SIM) cards to devices and subsequently linking them 
+to a controlling infrastructure through wireless networks, supported by optical fiber-based fixed networking, offers a more practical 
+and efficient approach.
+2.2. Advanced information and communication technologies for smart homes and smart buildings
+An essential aspect of future SCs includes the seamless integration of SHs and SBs within the SCs framework. The important key 
+components in this regard involve the IoT, clouds of things (CoT), and AI, all interconnected through pervasive and constant M2M 
+communications leveraging 5G and 6G technologies [46]. In the context of modern ICT-based infrastructure, the incorporation of 
+cutting-edge technologies such as 5G, IoT, CoT, and distributed AI is imperative. However, the AI aspect presents unique challenges 
+as it operates within the resource-constrained environment of IoT. To address this, an advanced AI (AAI) system becomes essential 
+to effectively manage intricate IoT patterns. Implementing the AAI as a distributed framework allows seamless interaction with AI 
+systems embedded in IoT devices, SHs
+
+---
+
+dology, Formal analysis, Data curation. Fawad: Writing – 
+original draft, Visualization, Methodology, Formal analysis, Data curation. Aamir Nadeem: Writing – original draft, Methodology, 
+Data curation. Muhammad Arif: Writing – original draft, Data curation. Muhammad Mehran Bashir: Writing – original draft, 
+Data curation. Wooyeol Choi: Writing – review & editing, Validation, Supervision, Resources, Project administration, Investigation, 
+Funding acquisition, Conceptualization.
+Declaration of competing interest
+The authors declare the following financial interests/personal relationships which may be considered as potential competing 
+interests: This research was suported by the Chung-Ang University Research Grants in 2025.
+Data availability
+No data was used for the research described in the article.
+References
+[1] Y. Liu, C. Yang, L. Jiang, S. Xie, Y. Zhang, Intelligent edge computing for IoT-based energy management in smart cities, IEEE Netw. 33 (2) (2019) 
+111–117.
+[2] G.F. Huseien, K.W. Shah, A review on 5G technology for smart energy management and smart buildings in Singapore, Energy AI 7 (2022) 100116.
+[3] S. Mumtaz, A. Alsohaily, Z. Pang, A. Rayes, K.F. Tsang, J. Rodriguez, Massive Internet of Things for industrial applications: Addressing wireless IIoT 
+connectivity challenges and ecosystem fragmentation, IEEE Ind. Electron. Mag. 11 (1) (2017) 28–33.
+[4] G. Enabler, Discover Key Trends & Insights on Disruptive Technologies & IoT Innovations, GrowthEnabler, Bengaluru, India, 2017.
+[5] Industrial IoT (IIoT) Market Size & amp; Forecast to 2026, Market Study Rep., Selbyville, DE, USA, 2019.
+[6] M. Stoyanova, Y. Nikoloudakis, S. Panagiotakis, E. Pallis, E.K. Markakis, A survey on the Internet of Things (IoT) forensics: Challenges, approaches, and 
+open issues, IEEE Commun. Surv. Tutor. 22 (2) (2020) 1191–1221.
+[7] D. Minoli, K. Sohraby, B. Occhiogrosso, IoT considerations, requirements, and architectures for smart buildings—Energy optimization and next-generation","As an integrant of SCs, SHs and SBs equipped with advanced communication technologies and IoT can provide a variety of
+services to their inhabitants through adaptations and responsiveness. However, the conventional communication systems deteriorate
+to provide satisfactory performance due to the high data generated by the IoT devices. The 6G-IoT system will lead to intelligent and
+autonomous connected systems that can pave the way to turn the concept of SCs from hype to reality. In this paper, we surveyed the
+existing literature on SHs and SBs and we investigated the enabling 6G technologies in the context of SHs and SBs with an emphasis
+on IoT enabled SHs and SBs, its major requirements, advanced ICT, and enabling 6G technologies followed by the key challenges and
+opportunities. Given the significance of 6G and IoT in SCs, this survey article provide a guideline and helpful resources in defining
+the future research direction in modeling of future SHs and SBs. Keeping in view the challenges, the advanced ML techniques
+needs to be explored for integrated communication and sensing in SHs and SBs such as transformer and diffusion models. On the
+other hand, cloud–edge collaboration technologies such as federated learning, edge intelligence and distributed optimization can be
+considered to enhance intelligence in SHs and SBs. Similarly, the performance evaluation and optimization of the multiple coexisted
+technologies such as JCAS, VLC and sensing, BC, and RIS aided smart indoor environment needs further exploration in future. More
+specifically, advances in RIS architectures such as simultaneous transmission and reflection (STAR)-RIS and optical RIS (ORIS) for
+the SH and SB applications is one of the trending topic that needs to be explored. Moreover, explainable AI along with the digital
+twin needs to be considered for SHs and SBs applications. On the other hand, the interoperability of multiple technologies in case
+of interconnected homes and building along with the healthcare systems is challenging and needs special consideration","The conclusion of the document ""6G Internet-of-Things Assisted Smart Homes and Buildings: Enabling Technologies, Opportunities and Challenges"" emphasizes the challenges associated with deploying smart homes (SHs) and smart buildings (SBs) using 6G technologies. It discusses the need for advanced information and communication technologies, such as IoT and AI, to meet the major requirements of SHs and SBs, including self-reconfigurability, security, and context awareness. The paper also outlines future research directions necessary for the successful implementation of 6G-enabled SHs and SBs, highlighting the importance of addressing existing challenges to fully realize their potential.",,,,,,,0.9562711318650229
+Explain the Comparisons of Communicational Overhead in the scientific article A Blockchain and IPFS-Aided Anonymous Traitor Tracing Scheme Based on Puncturable Encryption in Industrial Internet of Things!,"Computers and Electrical Engineering 122 (2025) 109896
+Available online 13 December 2024
+0045-7906/© 2024 Elsevier Ltd. All rights are reserved, including those for text and data mining, AI training, and similar technologies.
+Contents lists available at ScienceDirect
+Computers and Electrical Engineering
+journal homepage: www.elsevier.com/locate/compeleceng
+A blockchain and IPFS-Aided anonymous traitor tracing scheme
+based on puncturable encryption in Industrial Internet of Things
+Yan Liu a, Yingzi Hu b, Xinyan Lv b, Sitong Zhou b, Jiongru Li b
+ , Shuanggen Liu b
+ ,∗
+a Department of information Technology, Shanxi Professional College of Finance, Taiyuan, China
+b School of Cyberspace Security, Xi’an University of Posts and Telecommunications, Shaanxi, China
+A R T I C L E I N F O
+Keywords:
+Traitor tracing
+Puncturable encryption
+Industrial Internet of Things
+Blockchain
+Interplanetary file system
+A B S T R A C T
+The development of intelligent industrial Internet of Things has improved production efficiency,
+but at the same time, it has also put forward higher requirements for security protection. When
+data is shared between IoT devices, many systems use attribute-based encryption primitives to
+encrypt the data and upload it to the cloud. However, ABE will have the problem that it is
+difficult for a single user to revoke, the attribute will be leaked, and the privacy of users with
+the same attribute will also be leaked. In addition, the amount of data in IIoT is huge, and
+there will be bottlenecks in data storage. In this paper, we propose a blockchain and IPFS-
+assisted puncturable-based anonymous traitor tracing scheme on the IIoT. The combination of
+blockchain and IPFS solves the problem of data storage, realizes the scalability of storage, the
+anonymity protects the privacy of users, and the puncturable encryption provides the dynamic
+revocation of users without affecting the normal decryption of this system by other users.
+Combined with traitor tracing technology, th
+
+---
+
+In:
+IEEE INFOCOM 2018-IEEE conference on computer communications. IEEE; 2018, p. 1511–9.
+[30] Phuong Tran Viet Xuan, Susilo Willy, Kim Jongkil, Yang Guomin, Liu Dongxi. Puncturable proxy re-encryption supporting to group messaging service. In:
+Computer security–ESORICS 2019: 24th European symposium on research in computer security, Luxembourg, September 23–27, 2019, proceedings, part
+I 24. Springer; 2019, p. 215–33.
+[31] Boneh Dan, Sahai Amit, Waters Brent. Fully collusion resistant traitor tracing with short ciphertexts and private keys. In: Annual international conference
+on the theory and applications of cryptographic techniques. Springer; 2006, p. 573–92.
+[32] Garg Sanjam, Kumarasubramanian Abishek, Sahai Amit, Waters Brent. Building efficient fully collusion-resilient traitor tracing and revocation schemes.
+In: Proceedings of the 17th ACM conference on computer and communications security. 2010, p. 121–30.
+[33] Mandal Mriganka, Sarkar Ramprasad. Efficient identity-based traceable cloud data broadcasting with outsider anonymity and simultaneous individual
+transmission. J Inf Secur Appl 2023;78:103584.
+[34] Liu Shuanggen, Pan Hailun, Wang Xu An, Zhao Siyi, Li Qing. A traceable and revocable broadcast encryption scheme for preventing malicious encryptors
+in medical IoT. J Syst Archit 2024;149:103100.
+[35] Fan Kai, Li Wenhao, Bai Yuhan, Yang Yintang, Yang Kan, Li Hui. EIV-BT-ABE: Efficient attribute-based encryption with black-box traceability based on
+encrypted identity vector. IEEE Internet Things J 2023.
+[36] Zhang Leyou, Li Xinmin, Wu Qing, Rezaeibagha Fatemeh. Blockchain-aided anonymous traceable and revocable access control scheme with dynamic policy
+updating for the cloud IoT. IEEE Internet Things J 2023;11(1):526–42.
+[37] Zhang Xiaohong, Du Wenqi, Moshayedi Ata Jahangir. A traceable and revocable multi-authority attribute-based access control scheme for mineral industry
+data secure storage in blockchain. J Supercomput 2023;79(13):14743–79.
+[38] Lynn Ben, et
+
+---
+
+Computers and Electrical Engineering 122 (2025) 109896
+13
+Y. Liu et al.
+[11] Li Qi, Xia Bin, Huang Haiping, Zhang Yinghui, Zhang Tao. TRAC: Traceable and revocable access control scheme for mHealth in 5G-enabled IIoT. IEEE
+Trans Ind Inf 2021;18(5):3437–48.
+[12] Han Dezhi, Pan Nannan, Li Kuan-Ching. A traceable and revocable ciphertext-policy attribute-based encryption scheme based on privacy protection. IEEE
+Trans Dependable Secure Comput 2020;19(1):316–27.
+[13] Wang Mingyue, Miao Yinbin, Guo Yu, Huang Hejiao, Wang Cong, Jia Xiaohua. Aesm 2 attribute-based encrypted search for multi-owner and multi-user
+distributed systems. IEEE Trans Parallel Distrib Syst 2022;34(1):92–107.
+[14] Liu Zhen, Wong Duncan S. Practical attribute-based encryption: traitor tracing, revocation and large universe. Comput J 2016;59(7):983–1004.
+[15] Li Xiaoyi, Liang Kaitai, Liu Zhen, Wong Duncan S. Attribute based encryption: Traitor tracing, revocation and fully security on prime order groups. Cryptol.
+ePrint Arch. 2016.
+[16] Ma Ruonan, Zhang Leyou, Wu Qing, Mu Yi, Rezaeibagha Fatemeh. Be-trdss: Blockchain-enabled secure and efficient traceable-revocable data-sharing
+scheme in industrial internet of things. IEEE Trans Ind Inf 2023;19(11):10821–30.
+[17] Nakamoto Satoshi. Bitcoin: A peer-to-peer electronic cash system. 2008.
+[18] Li Yannan, Yang Guomin, Susilo Willy, Yu Yong, Au Man Ho, Liu Dongxi. Traceable monero: Anonymous cryptocurrency with enhanced accountability.
+IEEE Trans Dependable Secure Comput 2019;18(2):679–91.
+[19] Reshi Iraq Ahmad, Sholla Sahil. Securing IoT data: Fog computing, blockchain, and tailored privacy-enhancing technologies in action. Peer-to-Peer Netw
+Appl 2024;1–29.
+[20] Reshi Iraq Ahmad, Sholla Sahil. The blockchain conundrum: An in-depth examination of challenges, contributing technologies, and alternatives. Concurr
+Comput: Pract Exper 2024;36(8):e7987.
+[21] Reshi Iraq Ahmad, Sholla Sahil. Challenges for security in iot, emerging solutions, and research directions.
+
+---
+
+Computers and Electrical Engineering 122 (2025) 109896
+12
+Y. Liu et al.
+Fig. 5. Comparison of communication and storage overhead.
+Declaration of competing interest
+No conflict of interest exists in the submission of this manuscript, and the manuscript is approved by all authors for publication.
+I would like to declare on behalf of my co-authors that the work described was original research that has not been published
+previously, and is not under consideration for publication elsewhere, in whole or in part. All the authors listed have approved the
+manuscript that is enclosed.
+Data availability
+No data was used for the research described in the article.
+References
+[1] Chen Baotong, Wan Jiafu, Shu Lei, Li Peng, Mukherjee Mithun, Yin Boxing. Smart factory of industry 4.0: Key technologies, application case, and challenges.
+IEEE Access 2017;6:6505–19.
+[2] Dong Jingnan, Xu Guangxia, Ma Chuang, Liu Jun, Cliff Uchani Gutierrez Omar. Certificate-free cross-domain fine-grained access control mechanism for
+industrial internet. Hum Cent Comput Inf Sci 2024;14.
+[3] Dong Jingnan, Xu Guangxia, Ma Chuang, Liu Jun, Cliff Uchani Gutierrez Omar. Blockchain-based certificate-free cross-domain authentication mechanism
+for industrial internet. IEEE Internet Things J 2023.
+[4] Benet Juan. Ipfs-content addressed, versioned, p2p file system. 2014, arXiv preprint arXiv:1407.3561.
+[5] Athanere Smita, Thakur Ramesh. Blockchain based hierarchical semi-decentralized approach using IPFS for secure and efficient data sharing. J King Saud
+Univ-Comput Inf Sci 2022;34(4):1523–34.
+[6] Kaur Manpreet, Gupta Shikha, Kumar Deepak, Raboaca Maria Simona, Goyal SB, Verma Chaman. Ipfs: An off-chain storage solution for blockchain. In:
+Proceedings of international conference on recent innovations in computing, vol. 1. Springer; 2023, p. 513–25.
+[7] Chor Benny, Fiat Amos, Naor Moni. Tracing traitors. In: Advances in cryptology—CRYPTO’94: 14th annual international cryptology conference Santa
+Barbara, California,","As an integrant of SCs, SHs and SBs equipped with advanced communication technologies and IoT can provide a variety of services to their inhabitants through adaptations and responsiveness. However, the conventional communication systems deteriorate to provide satisfactory performance due to the high data generated by the IoT devices. The 6G-IoT system will lead to intelligent and autonomous connected systems that can pave the way to turn the concept of SCs from hype to reality. In this paper, we surveyed the existing literature on SHs and SBs and we investigated the enabling 6G technologies in the context of SHs and SBs with an emphasis on IoT enabled SHs and SBs, its major requirements, advanced ICT, and enabling 6G technologies followed by the key challenges and opportunities. Given the significance of 6G and IoT in SCs, this survey article provide a guideline and helpful resources in defining the future research direction in modeling of future SHs and SBs. Keeping in view the challenges, the advanced ML techniques needs to be explored for integrated communication and sensing in SHs and SBs such as transformer and diffusion models. On the other hand, cloud–edge collaboration technologies such as federated learning, edge intelligence and distributed optimization can be considered to enhance intelligence in SHs and SBs. Similarly, the performance evaluation and optimization of the multiple coexisted technologies such as JCAS, VLC and sensing, BC, and RIS aided smart indoor environment needs further exploration in future. More specifically, advances in RIS architectures such as simultaneous transmission and reflection (STAR)-RIS and optical RIS (ORIS) for the SH and SB applications is one of the trending topic that needs to be explored. Moreover, explainable AI along with the digital twin needs to be considered for SHs and SBs applications. On the other hand, the interoperability of multiple technologies in case of interconnected homes and building along with the healthcare systems is challenging and needs special consideration.","The article ""A Blockchain and IPFS-Aided Anonymous Traitor Tracing Scheme Based on Puncturable Encryption in Industrial Internet of Things"" discusses the communication overhead associated with the proposed scheme. It highlights the challenges of data sharing in the Industrial Internet of Things (IIoT), particularly the need for efficient data storage and user privacy protection. The integration of blockchain and the Interplanetary File System (IPFS) is presented as a solution to these challenges, allowing for scalable storage and enhanced anonymity.
+
+The paper likely includes a comparison of communication and storage overhead, illustrating how the proposed scheme reduces these overheads compared to traditional methods. However, specific details about the comparisons, such as quantitative metrics or graphical representations, are not provided in the retrieved context. 
+
+In general, communication overhead refers to the additional data transmitted over the network to facilitate secure communication, while storage overhead pertains to the extra space required to store encrypted data and metadata. The proposed scheme aims to minimize both types of overhead by leveraging the strengths of blockchain and IPFS, thus improving the efficiency of data handling in IIoT environments. 
+
+For a more detailed analysis, one would need to refer directly to the figures and tables presented in the article.",,,,,,,
