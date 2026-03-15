@@ -293,12 +293,52 @@ Behavior:
   - `partial`
 - excludes `noise_sensitivity` from the final clean report.
 
+How the Excel file is formed (step-by-step):
+
+1. **Input**: a CSV produced by step 4 (typically `04_evaluated.csv`, but it can be any evaluated CSV, e.g. `04_evaluated_100.csv` or `04_evaluated_real.csv`).
+2. **Load**: the script reads the CSV into a DataFrame.
+3. **Column normalization** (compat for older runs):
+   - `context_entities_recall` is mapped into `context_entity_recall`
+   - `response_relevancy` is mapped into `answer_relevancy`
+4. **Metric parsing**:
+   - metrics may be plain numbers, or strings like `MetricResult(value=0.1234)`
+   - the script extracts the numeric value and converts it to a float
+5. **Select exported columns**:
+   - question, context, ground_truth_answer, generated_answer
+   - context_precision, context_recall, context_entity_recall, faithfulness, answer_relevancy
+6. **Row filtering**:
+   - rows are kept if at least 1 of the 5 metric columns is present (not all metrics must be present)
+7. **Status labeling**:
+   - `complete` if all 5 metrics exist for that row
+   - `partial` otherwise
+8. **Workbook creation**:
+   - sheet `evaluation`: the cleaned table + `status`
+   - sheet `summary`: counts + average metrics + a note about excluding `noise_sensitivity`
+9. **Excel formatting (cosmetic)**:
+   - freeze header row, add auto-filter
+   - wrap long text columns (question/context/answers)
+   - bold header row and auto-adjust column widths within limits
+
+Naming convention for the output Excel:
+
+- the exporter does not hardcode names like `05_evaluated_100_ready.xlsx`
+- the output file name is whatever you pass via `--output` (default: `05_evaluated_clean.xlsx`)
+- as a result, a client-ready file like `05_evaluated_100_ready.xlsx` is simply a normal export with a descriptive name
+
 Run:
 
 ```bash
 uv run python 05_export_clean_eval.py \
   --input 04_evaluated.csv \
   --output 05_evaluated_clean.xlsx
+```
+
+Example: exporting the 100-row report used in this repo:
+
+```bash
+uv run python 05_export_clean_eval.py \
+  --input 04_evaluated_100.csv \
+  --output 05_evaluated_100_ready.xlsx
 ```
 
 ## Recommended Production Flow
